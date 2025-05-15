@@ -7,7 +7,7 @@ Além disso, o Stellar oferece suporte tanto a **API Keys** (tokens de acesso di
 ## 🔗 Links
 - Site Stellar DataStore: [https://stellards.io/](https://stellards.io/)
 - Documentação: [https://stellards.io/Documentation/GettingStarted](https://stellards.io/Documentation/GettingStarted)
-- Onde baixar os recursos utilizados:
+- Onde baixar os recursos utilizados (opicional pois pode se utilizar recursos natívos ou bibliotecas para consumo de APIs REST):
   - [FNC Cloud Pack](https://www.tmssoftware.com/site/tmsfnccloudpack.asp)
 
 ## ▶️ Vídeos de demonstração dos projetos no Youtube
