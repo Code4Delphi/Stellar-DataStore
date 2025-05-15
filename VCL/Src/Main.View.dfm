@@ -1,7 +1,7 @@
 object MainView: TMainView
   Left = 0
   Top = 0
-  Caption = 'MainView'
+  Caption = 'Stellar DataStore'
   ClientHeight = 656
   ClientWidth = 782
   Color = clBtnFace
@@ -44,6 +44,8 @@ object MainView: TMainView
     Align = alTop
     Caption = ' Authentication '
     TabOrder = 1
+    ExplicitLeft = -1
+    ExplicitTop = -5
     DesignSize = (
       782
       305)
@@ -191,7 +193,7 @@ object MainView: TMainView
       OnClick = btnConnectClick
     end
     object btnDisconnect: TButton
-      Left = 180
+      Left = 179
       Top = 266
       Width = 75
       Height = 25
@@ -243,7 +245,6 @@ object MainView: TMainView
     Align = alBottom
     Padding.Right = 10
     TabOrder = 4
-    ExplicitTop = 635
     object lbCount: TLabel
       Left = 765
       Top = 1

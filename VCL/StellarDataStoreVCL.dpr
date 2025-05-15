@@ -9,6 +9,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.Title := 'Stellar DataStore';
   Application.CreateForm(TMainView, MainView);
   Application.Run;
 end.
