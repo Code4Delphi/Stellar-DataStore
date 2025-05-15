@@ -15,16 +15,18 @@ object MainView: TMainView
   TextHeight = 15
   object Panel2: TPanel
     Left = 0
-    Top = 339
+    Top = 331
     Width = 782
-    Height = 291
+    Height = 299
     Align = alClient
     TabOrder = 0
+    ExplicitTop = 339
+    ExplicitHeight = 291
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1
       Width = 780
-      Height = 289
+      Height = 297
       Align = alClient
       BorderStyle = bsNone
       DataSource = DataSource1
@@ -40,18 +42,16 @@ object MainView: TMainView
     Left = 0
     Top = 0
     Width = 782
-    Height = 305
+    Height = 297
     Align = alTop
     Caption = ' Authentication '
     TabOrder = 1
-    ExplicitLeft = -1
-    ExplicitTop = -5
     DesignSize = (
       782
-      305)
+      297)
     object Label1: TLabel
       Left = 24
-      Top = 104
+      Top = 100
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -60,7 +60,7 @@ object MainView: TMainView
     end
     object Label2: TLabel
       Left = 24
-      Top = 130
+      Top = 126
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -69,7 +69,7 @@ object MainView: TMainView
     end
     object Label3: TLabel
       Left = 24
-      Top = 157
+      Top = 153
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -78,38 +78,12 @@ object MainView: TMainView
     end
     object Label4: TLabel
       Left = 24
-      Top = 213
+      Top = 204
       Width = 69
       Height = 15
       Alignment = taRightJustify
       AutoSize = False
       Caption = 'Project ID'
-    end
-    object Label5: TLabel
-      Left = 24
-      Top = 80
-      Width = 91
-      Height = 15
-      Caption = 'OAuth2.0 access'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label6: TLabel
-      Left = 24
-      Top = 21
-      Width = 109
-      Height = 15
-      Caption = 'Direct access token'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
     end
     object Label7: TLabel
       Left = 24
@@ -122,7 +96,7 @@ object MainView: TMainView
     end
     object Label8: TLabel
       Left = 24
-      Top = 193
+      Top = 184
       Width = 38
       Height = 15
       Caption = 'Others'
@@ -135,7 +109,7 @@ object MainView: TMainView
     end
     object Label9: TLabel
       Left = 24
-      Top = 240
+      Top = 231
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -152,7 +126,7 @@ object MainView: TMainView
     end
     object edtClientID: TEdit
       Left = 99
-      Top = 100
+      Top = 96
       Width = 657
       Height = 23
       Anchors = [akLeft, akTop, akRight]
@@ -160,7 +134,7 @@ object MainView: TMainView
     end
     object edtSecret: TEdit
       Left = 99
-      Top = 127
+      Top = 123
       Width = 657
       Height = 23
       Anchors = [akLeft, akTop, akRight]
@@ -168,7 +142,7 @@ object MainView: TMainView
     end
     object edtCallbackURL: TEdit
       Left = 99
-      Top = 154
+      Top = 150
       Width = 657
       Height = 23
       Anchors = [akLeft, akTop, akRight]
@@ -176,7 +150,7 @@ object MainView: TMainView
     end
     object edtProjectID: TEdit
       Left = 99
-      Top = 210
+      Top = 201
       Width = 657
       Height = 23
       Anchors = [akLeft, akTop, akRight]
@@ -184,7 +158,7 @@ object MainView: TMainView
     end
     object btnConnect: TButton
       Left = 99
-      Top = 266
+      Top = 257
       Width = 75
       Height = 25
       Cursor = crHandPoint
@@ -193,8 +167,8 @@ object MainView: TMainView
       OnClick = btnConnectClick
     end
     object btnDisconnect: TButton
-      Left = 179
-      Top = 266
+      Left = 177
+      Top = 257
       Width = 75
       Height = 25
       Cursor = crHandPoint
@@ -212,20 +186,53 @@ object MainView: TMainView
     end
     object edtTableName: TEdit
       Left = 99
-      Top = 237
+      Top = 228
       Width = 657
       Height = 23
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 8
     end
+    object rdDirectAccessToken: TRadioButton
+      Left = 23
+      Top = 21
+      Width = 133
+      Height = 17
+      Caption = 'Direct access token'
+      Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 9
+      TabStop = True
+      OnClick = rdDirectAccessTokenClick
+    end
+    object rdOAuth2: TRadioButton
+      Left = 23
+      Top = 76
+      Width = 118
+      Height = 17
+      Caption = 'OAuth2.0 access'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 10
+      OnClick = rdOAuth2Click
+    end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 305
+    Top = 297
     Width = 782
     Height = 34
     Align = alTop
     TabOrder = 3
+    ExplicitTop = 305
     object DBNavigator1: TDBNavigator
       Left = 1
       Top = 1
@@ -235,6 +242,8 @@ object MainView: TMainView
       DataSource = DataSource1
       Align = alLeft
       TabOrder = 0
+      ExplicitLeft = 2
+      ExplicitTop = -3
     end
   end
   object Panel3: TPanel
@@ -253,7 +262,6 @@ object MainView: TMainView
       Align = alRight
       Caption = '0'
       Layout = tlCenter
-      ExplicitLeft = 769
       ExplicitHeight = 15
     end
     object Label10: TLabel
@@ -264,8 +272,7 @@ object MainView: TMainView
       Align = alRight
       Caption = 'Count: '
       Layout = tlCenter
-      ExplicitLeft = 380
-      ExplicitTop = -15
+      ExplicitHeight = 15
     end
   end
   object TMSFNCCloudStellarDataStoreDataSetVCL1: TTMSFNCCloudStellarDataStoreDataSetVCL

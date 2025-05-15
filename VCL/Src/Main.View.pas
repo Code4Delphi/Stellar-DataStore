@@ -31,8 +31,6 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
     Label7: TLabel;
     edtAccessToken: TEdit;
     edtClientID: TEdit;
@@ -53,10 +51,14 @@ type
     Panel3: TPanel;
     lbCount: TLabel;
     Label10: TLabel;
+    rdDirectAccessToken: TRadioButton;
+    rdOAuth2: TRadioButton;
     procedure btnConnectClick(Sender: TObject);
     procedure btnDisconnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
+    procedure rdDirectAccessTokenClick(Sender: TObject);
+    procedure rdOAuth2Click(Sender: TObject);
   private
     procedure SaveSettingsIni;
     procedure LoadSettingsIni;
@@ -135,10 +137,25 @@ begin
   Self.ConfigScreen;
 end;
 
+procedure TMainView.rdDirectAccessTokenClick(Sender: TObject);
+begin
+  Self.ConfigScreen;
+end;
+
+procedure TMainView.rdOAuth2Click(Sender: TObject);
+begin
+  Self.ConfigScreen;
+end;
+
 procedure TMainView.ConfigScreen;
 begin
   btnDisconnect.Enabled := TMSFNCCloudStellarDataStoreDataSetVCL1.Active;
   btnConnect.Enabled := not btnDisconnect.Enabled;
+
+  edtAccessToken.Enabled := rdDirectAccessToken.Checked;
+  edtClientID.Enabled := rdOAuth2.Checked;
+  edtSecret.Enabled := rdOAuth2.Checked;
+  edtCallbackURL.Enabled := rdOAuth2.Checked;
 end;
 
 procedure TMainView.DataSource1StateChange(Sender: TObject);
