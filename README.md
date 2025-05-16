@@ -17,7 +17,7 @@ Além disso, o Stellar DataStore oferece suporte nativo e descomplicado a **API 
   - [FNC Cloud Pack](https://www.tmssoftware.com/site/tmsfnccloudpack.asp)
 
 ## ▶️ Vídeos de demonstração dos projetos no Youtube
-- [Link do vídeo](https://www.youtube.com/@Code4Delphi)
+- [Link do vídeo](https://www.youtube.com/watch?v=8we50_Hjtuo&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
 
 ## 📝 Postagem completa
 [Acessar postagem completo com informações sobre Stellar DataStore com Delphi](https://code4delphi.com.br/blog/stellar-datastore-com-delphi/)
