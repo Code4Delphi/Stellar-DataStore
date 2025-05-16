@@ -20,8 +20,6 @@ object MainView: TMainView
     Height = 299
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 339
-    ExplicitHeight = 291
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1
@@ -232,7 +230,6 @@ object MainView: TMainView
     Height = 34
     Align = alTop
     TabOrder = 3
-    ExplicitTop = 305
     object DBNavigator1: TDBNavigator
       Left = 1
       Top = 1
@@ -242,8 +239,6 @@ object MainView: TMainView
       DataSource = DataSource1
       Align = alLeft
       TabOrder = 0
-      ExplicitLeft = 2
-      ExplicitTop = -3
     end
   end
   object Panel3: TPanel
@@ -272,7 +267,8 @@ object MainView: TMainView
       Align = alRight
       Caption = 'Count: '
       Layout = tlCenter
-      ExplicitHeight = 15
+      ExplicitLeft = 720
+      ExplicitTop = 5
     end
   end
   object TMSFNCCloudStellarDataStoreDataSetVCL1: TTMSFNCCloudStellarDataStoreDataSetVCL
