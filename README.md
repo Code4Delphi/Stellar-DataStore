@@ -1,8 +1,12 @@
 # Stellar DataStore com Delphi
 
-O Stellar DataStore é um banco de dados na nuvem que permite armazenar, consultar e manipular dados de forma extremamente simples. Com ele, você não precisa se preocupar com infraestrutura, servidores, configuração de banco de dados ou escrita de APIs, basta criar um projeto, uma tabela e começar a usar via API ou componentes visuais no Delphi. É ideal para aplicações desktop, mobile e web que precisam de persistência rápida, confiável e segura.
+Se preocupe apenas com o front-end. Deixe toda a complexidade do back-end com a Stellar DataStore.
 
-Além disso, o Stellar oferece suporte tanto a **API Keys** (tokens de acesso direto) quanto a **OAuth2.0**, de forma extremamente fácil e transparente para o desenvolvedor, sem necessidade de lidar diretamente com fluxos de autenticação complicados.
+O Stellar DataStore é um backend de dados como serviço, que simplifica completamente o armazenamento e a manipulação de dados na nuvem. Com ele, você cria seu banco de dados diretamente na plataforma e já conta com uma **API REST completa**, pronta para uso sem necessidade de configurar servidores, infraestrutura ou escrever código backend.
+
+A plataforma permite armazenar, consultar e manipular dados de forma simples e eficiente. Basta criar um projeto, definir suas tabelas e começar a usar via API ou por meio de componentes visuais no Delphi ou em qualquer outra linguagem. É a solução ideal para aplicações desktop, mobile ou web que precisam de uma persistência de dados rápida, segura e confiável.
+
+Além disso, o Stellar DataStore oferece suporte nativo e descomplicado a **API Keys** (tokens de acesso direto) e **OAuth 2.0**, eliminando a complexidade dos fluxos tradicionais de autenticação e facilitando a integração com segurança.
 
 ![Stellar-DataStore-Delphi](https://github.com/user-attachments/assets/c613b0f5-2318-41e6-89e4-c13dcd720dae)
 
