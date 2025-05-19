@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{FDE37897-4D66-472D-BF53-A7C49474AEC0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="VCL\StellarDataStoreVCL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Web\StellarDataStoreWeb.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="StellarDataStoreVCL">
+        <MSBuild Projects="VCL\StellarDataStoreVCL.dproj"/>
+    </Target>
+    <Target Name="StellarDataStoreVCL:Clean">
+        <MSBuild Projects="VCL\StellarDataStoreVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="StellarDataStoreVCL:Make">
+        <MSBuild Projects="VCL\StellarDataStoreVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="StellarDataStoreWeb">
+        <MSBuild Projects="Web\StellarDataStoreWeb.dproj"/>
+    </Target>
+    <Target Name="StellarDataStoreWeb:Clean">
+        <MSBuild Projects="Web\StellarDataStoreWeb.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="StellarDataStoreWeb:Make">
+        <MSBuild Projects="Web\StellarDataStoreWeb.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="StellarDataStoreVCL;StellarDataStoreWeb"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="StellarDataStoreVCL:Clean;StellarDataStoreWeb:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="StellarDataStoreVCL:Make;StellarDataStoreWeb:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

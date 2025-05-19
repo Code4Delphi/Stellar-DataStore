@@ -184,14 +184,13 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object edtTableName: TWebEdit
-      Left = 100
+      Left = 98
       Top = 224
       Width = 1104
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
-      Text = 'products'
       WidthPercent = 100.000000000000000000
     end
     object btnConnect: TWebButton
@@ -226,7 +225,6 @@ object MainView: TMainView
     ChildOrder = 1
     Padding.Right = 10
     TabOrder = 1
-    ExplicitTop = 710
     object WebLabel1: TWebLabel
       Left = 1181
       Top = 0
@@ -260,7 +258,6 @@ object MainView: TMainView
     Align = alClient
     ChildOrder = 2
     TabOrder = 2
-    ExplicitHeight = 386
     object WebImageControl1: TWebImageControl
       Left = 977
       Top = 179
@@ -348,13 +345,13 @@ object MainView: TMainView
   object WebStellarDataStoreClientDataset1: TWebStellarDataStoreClientDataset
     TableId = 0
     AfterScroll = WebStellarDataStoreClientDataset1AfterScroll
-    Left = 560
-    Top = 248
+    Left = 480
+    Top = 360
   end
   object WebDataSource1: TWebDataSource
     DataSet = WebStellarDataStoreClientDataset1
     OnStateChange = WebDataSource1StateChange
-    Left = 544
-    Top = 312
+    Left = 480
+    Top = 416
   end
 end
