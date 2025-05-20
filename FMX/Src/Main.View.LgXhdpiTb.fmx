@@ -1,0 +1,54 @@
+inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
+  ClientHeight = 829
+  ClientWidth = 480
+  DesignerMasterStyle = 3
+  inherited gBoxAuthentication: TGroupBox
+    Size.Width = 480.000000000000000000
+    inherited lbAccessToken: TLabel
+      Size.Width = 450.000000000000000000
+    end
+    inherited edtAccessToken: TEdit
+      Size.Width = 450.000000000000000000
+    end
+    inherited lbProjectID: TLabel
+      Size.Width = 450.000000000000000000
+      TabOrder = 37
+    end
+    inherited edtProjectID: TEdit
+      TabOrder = 40
+      Size.Width = 450.000000000000000000
+    end
+    inherited lbTableName: TLabel
+      Size.Width = 450.000000000000000000
+      TabOrder = 36
+    end
+    inherited edtTableName: TEdit
+      TabOrder = 38
+      Size.Width = 450.000000000000000000
+    end
+    inherited Panel1: TPanel
+      Size.Width = 450.000000000000000000
+      TabOrder = 41
+    end
+  end
+  inherited btnFooter: TPanel
+    Position.Y = 797.000000000000000000
+    Size.Width = 480.000000000000000000
+    inherited Label1: TLabel
+      Position.X = 377.000000000000000000
+    end
+    inherited lbCount: TLabel
+      Position.X = 440.000000000000000000
+    end
+  end
+  inherited GroupBox1: TGroupBox
+    Size.Width = 480.000000000000000000
+    Size.Height = 556.000000000000000000
+    inherited ListBox1: TListBox
+      Size.Width = 480.000000000000000000
+      Size.Height = 531.000000000000000000
+      Viewport.Width = 475.000000000000000000
+      Viewport.Height = 531.000000000000000000
+    end
+  end
+end

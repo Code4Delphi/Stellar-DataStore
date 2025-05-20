@@ -1,7 +1,7 @@
 object MainView: TMainView
   Left = 0
   Top = 0
-  Caption = 'Stellar DataStore'
+  Caption = 'Stellar DataStore - VCL'
   ClientHeight = 656
   ClientWidth = 782
   Color = clBtnFace
@@ -267,8 +267,7 @@ object MainView: TMainView
       Align = alRight
       Caption = 'Count: '
       Layout = tlCenter
-      ExplicitLeft = 720
-      ExplicitTop = 5
+      ExplicitHeight = 15
     end
   end
   object TMSFNCCloudStellarDataStoreDataSetVCL1: TTMSFNCCloudStellarDataStoreDataSetVCL

@@ -1,0 +1,196 @@
+object MainView: TMainView
+  Left = 0
+  Top = 0
+  Caption = 'Stellar DataStore - FMX'
+  ClientHeight = 640
+  ClientWidth = 360
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 3
+  object gBoxAuthentication: TGroupBox
+    Align = Top
+    Padding.Left = 15.000000000000000000
+    Padding.Top = 25.000000000000000000
+    Padding.Right = 15.000000000000000000
+    Size.Width = 360.000000000000000000
+    Size.Height = 241.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Authentication'
+    TabOrder = 0
+    object lbAccessToken: TLabel
+      Align = Top
+      Position.X = 15.000000000000000000
+      Position.Y = 25.000000000000000000
+      Size.Width = 330.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Access token'
+      TabOrder = 39
+    end
+    object edtAccessToken: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 42
+      Position.X = 15.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 330.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lbProjectID: TLabel
+      Align = Top
+      Position.X = 15.000000000000000000
+      Position.Y = 80.000000000000000000
+      Size.Width = 330.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Project ID'
+      TabOrder = 38
+    end
+    object edtProjectID: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 41
+      Position.X = 15.000000000000000000
+      Position.Y = 103.000000000000000000
+      Size.Width = 330.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lbTableName: TLabel
+      Align = Top
+      Position.X = 15.000000000000000000
+      Position.Y = 135.000000000000000000
+      Size.Width = 330.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Table name'
+      TabOrder = 37
+    end
+    object edtTableName: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 40
+      Position.X = 15.000000000000000000
+      Position.Y = 158.000000000000000000
+      Size.Width = 330.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Panel1: TPanel
+      Align = Top
+      Position.X = 15.000000000000000000
+      Position.Y = 190.000000000000000000
+      Size.Width = 330.000000000000000000
+      Size.Height = 43.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 43
+      object btnConnect: TButton
+        Align = Left
+        Size.Width = 164.000000000000000000
+        Size.Height = 43.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Connect'
+        TextSettings.Trimming = None
+        OnClick = btnConnectClick
+      end
+      object btnDisconnect: TButton
+        Align = Left
+        Position.X = 164.000000000000000000
+        Size.Width = 165.000000000000000000
+        Size.Height = 43.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Disconnect'
+        TextSettings.Trimming = None
+      end
+    end
+  end
+  object TMSFNCCloudStellarDataStoreConnection1: TTMSFNCCloudStellarDataStoreConnection
+    Size.Width = 26.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    Position.X = 153.000000000000000000
+    Position.Y = 344.000000000000000000
+    Authentication.CallBackURL = 'http://127.0.0.1:8888'
+    Left = 592
+    Top = 36
+  end
+  object btnFooter: TPanel
+    Align = Bottom
+    Position.Y = 608.000000000000000000
+    Size.Width = 360.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    object Label1: TLabel
+      Align = Right
+      Position.X = 257.000000000000000000
+      Size.Width = 63.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Count:'
+      TabOrder = 1
+    end
+    object lbCount: TLabel
+      Align = Right
+      AutoSize = True
+      Position.X = 320.000000000000000000
+      Size.Width = 40.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 0
+    end
+  end
+  object GroupBox1: TGroupBox
+    Align = Client
+    Padding.Left = 15.000000000000000000
+    Padding.Top = 25.000000000000000000
+    Padding.Right = 15.000000000000000000
+    Size.Width = 360.000000000000000000
+    Size.Height = 367.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Produtos'
+    TabOrder = 5
+    object ListBox1: TListBox
+      Align = Client
+      Size.Width = 330.000000000000000000
+      Size.Height = 342.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      ShowSizeGrip = True
+      DisableFocusEffect = True
+      Items.Strings = (
+        'Item 01'
+        'Item 02'
+        'Item 03'
+        'Item 04')
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      ShowCheckboxes = True
+      Viewport.Width = 330.000000000000000000
+      Viewport.Height = 342.000000000000000000
+    end
+  end
+  object TMSFNCCloudStellarDataStoreDataSetFMX1: TTMSFNCCloudStellarDataStoreDataSetFMX
+    Connection = TMSFNCCloudStellarDataStoreConnection1
+    TableID = -1
+    SortOrder = <>
+    Filter = <>
+    FieldDefs = <>
+    Left = 152
+    Top = 416
+  end
+  object DataSource1: TDataSource
+    DataSet = TMSFNCCloudStellarDataStoreDataSetFMX1
+    OnStateChange = DataSource1StateChange
+    Left = 144
+    Top = 480
+  end
+end

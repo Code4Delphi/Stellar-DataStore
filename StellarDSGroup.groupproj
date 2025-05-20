@@ -9,6 +9,9 @@
         <Projects Include="Web\StellarDataStoreWeb.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FMX\StellarDataStoreFMX.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="StellarDataStoreWeb:Make">
         <MSBuild Projects="Web\StellarDataStoreWeb.dproj" Targets="Make"/>
     </Target>
+    <Target Name="StellarDataStoreFMX">
+        <MSBuild Projects="FMX\StellarDataStoreFMX.dproj"/>
+    </Target>
+    <Target Name="StellarDataStoreFMX:Clean">
+        <MSBuild Projects="FMX\StellarDataStoreFMX.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="StellarDataStoreFMX:Make">
+        <MSBuild Projects="FMX\StellarDataStoreFMX.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="StellarDataStoreVCL;StellarDataStoreWeb"/>
+        <CallTarget Targets="StellarDataStoreVCL;StellarDataStoreWeb;StellarDataStoreFMX"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="StellarDataStoreVCL:Clean;StellarDataStoreWeb:Clean"/>
+        <CallTarget Targets="StellarDataStoreVCL:Clean;StellarDataStoreWeb:Clean;StellarDataStoreFMX:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="StellarDataStoreVCL:Make;StellarDataStoreWeb:Make"/>
+        <CallTarget Targets="StellarDataStoreVCL:Make;StellarDataStoreWeb:Make;StellarDataStoreFMX:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
