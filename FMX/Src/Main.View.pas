@@ -18,7 +18,9 @@ uses
   FMX.Edit,
   Data.DB,
   FMX.TMSFNCCloudStellarDataStoreDataSet,
-  FMX.TMSFNCCustomComponent, FMX.Layouts, FMX.ListBox;
+  FMX.TMSFNCCustomComponent,
+  FMX.Layouts,
+  FMX.ListBox, Products.View;
 
 type
   TMainView = class(TForm)
@@ -40,15 +42,16 @@ type
     lbCount: TLabel;
     GroupBox1: TGroupBox;
     ListBox1: TListBox;
+    btnAdd: TButton;
     procedure btnConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
+    procedure btnAddClick(Sender: TObject);
   private
     procedure ConfigScreen;
     procedure PreencherListBox;
-    { Private declarations }
   public
-    { Public declarations }
+
   end;
 
 var
@@ -122,6 +125,16 @@ begin
     ListBox1.AddObject(ListItem);
 
     TMSFNCCloudStellarDataStoreDataSetFMX1.Next;
+  end;
+end;
+
+procedure TMainView.btnAddClick(Sender: TObject);
+begin
+  var LView := TProductsView.Create(nil);
+  try
+    LView.ShowModal;
+  finally
+    LView.Free;
   end;
 end;
 

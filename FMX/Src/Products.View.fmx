@@ -1,0 +1,11 @@
+object ProductsView: TProductsView
+  Left = 0
+  Top = 0
+  Caption = 'Products register'
+  ClientHeight = 640
+  ClientWidth = 360
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+end

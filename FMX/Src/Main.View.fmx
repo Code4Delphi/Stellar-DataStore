@@ -27,12 +27,12 @@ object MainView: TMainView
       Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       Text = 'Access token'
-      TabOrder = 39
+      TabOrder = 38
     end
     object edtAccessToken: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Top
-      TabOrder = 42
+      TabOrder = 41
       Position.X = 15.000000000000000000
       Position.Y = 48.000000000000000000
       Size.Width = 330.000000000000000000
@@ -47,12 +47,12 @@ object MainView: TMainView
       Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       Text = 'Project ID'
-      TabOrder = 38
+      TabOrder = 37
     end
     object edtProjectID: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Top
-      TabOrder = 41
+      TabOrder = 40
       Position.X = 15.000000000000000000
       Position.Y = 103.000000000000000000
       Size.Width = 330.000000000000000000
@@ -67,12 +67,12 @@ object MainView: TMainView
       Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       Text = 'Table name'
-      TabOrder = 37
+      TabOrder = 36
     end
     object edtTableName: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Top
-      TabOrder = 40
+      TabOrder = 39
       Position.X = 15.000000000000000000
       Position.Y = 158.000000000000000000
       Size.Width = 330.000000000000000000
@@ -86,7 +86,7 @@ object MainView: TMainView
       Size.Width = 330.000000000000000000
       Size.Height = 43.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 43
+      TabOrder = 42
       object btnConnect: TButton
         Align = Left
         Size.Width = 164.000000000000000000
@@ -121,16 +121,18 @@ object MainView: TMainView
   end
   object btnFooter: TPanel
     Align = Bottom
-    Position.Y = 608.000000000000000000
+    Padding.Left = 15.000000000000000000
+    Padding.Right = 15.000000000000000000
+    Position.Y = 584.000000000000000000
     Size.Width = 360.000000000000000000
-    Size.Height = 32.000000000000000000
+    Size.Height = 56.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
     object Label1: TLabel
       Align = Right
-      Position.X = 257.000000000000000000
+      Position.X = 258.000000000000000000
       Size.Width = 63.000000000000000000
-      Size.Height = 32.000000000000000000
+      Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
       TextSettings.HorzAlign = Center
       Text = 'Count:'
@@ -139,12 +141,23 @@ object MainView: TMainView
     object lbCount: TLabel
       Align = Right
       AutoSize = True
-      Position.X = 320.000000000000000000
-      Size.Width = 40.000000000000000000
-      Size.Height = 32.000000000000000000
+      Position.X = 321.000000000000000000
+      Size.Width = 24.000000000000000000
+      Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
       Text = '0'
       TabOrder = 0
+    end
+    object btnAdd: TButton
+      Align = Left
+      Position.X = 15.000000000000000000
+      Size.Width = 73.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Add'
+      TextSettings.Trimming = None
+      OnClick = btnAddClick
     end
   end
   object GroupBox1: TGroupBox
@@ -153,14 +166,14 @@ object MainView: TMainView
     Padding.Top = 25.000000000000000000
     Padding.Right = 15.000000000000000000
     Size.Width = 360.000000000000000000
-    Size.Height = 367.000000000000000000
+    Size.Height = 343.000000000000000000
     Size.PlatformDefault = False
     Text = 'Produtos'
     TabOrder = 5
     object ListBox1: TListBox
       Align = Client
       Size.Width = 330.000000000000000000
-      Size.Height = 342.000000000000000000
+      Size.Height = 318.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 6
       ShowSizeGrip = True
@@ -175,7 +188,7 @@ object MainView: TMainView
       DefaultItemStyles.GroupFooterStyle = ''
       ShowCheckboxes = True
       Viewport.Width = 330.000000000000000000
-      Viewport.Height = 342.000000000000000000
+      Viewport.Height = 318.000000000000000000
     end
   end
   object TMSFNCCloudStellarDataStoreDataSetFMX1: TTMSFNCCloudStellarDataStoreDataSetFMX
