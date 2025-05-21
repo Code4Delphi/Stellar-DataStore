@@ -70,8 +70,6 @@ type
     edtName: TEdit;
     Label5: TLabel;
     edtDate: TDateEdit;
-    pnStatus: TPanel;
-    lbStatus: TLabel;
     TMSFNCCloudStellarDataStoreDataSetFMX1id: TIntegerField;
     TMSFNCCloudStellarDataStoreDataSetFMX1Name: TStringField;
     TMSFNCCloudStellarDataStoreDataSetFMX1Price: TFloatField;
@@ -85,6 +83,7 @@ type
     lbCount: TLabel;
     btnAdd: TButton;
     ckAddImage: TCheckBox;
+    lbStatus: TLabel;
     procedure btnConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
@@ -101,6 +100,7 @@ type
     procedure btnAddClick(Sender: TObject);
   private
     FIdAlter: Integer;
+    FIdFoco: Integer;
     procedure ConfigScreen;
     procedure FillListBox;
     procedure RefreshProducts;
@@ -228,6 +228,10 @@ begin
     LListBoxItem := TListBoxItem.Create(ListBox1);
     LListBoxItem.Text := Format('%s | %.2f | %s', [LName, LPrice, LDate]);
     LListBoxItem.Tag := TMSFNCCloudStellarDataStoreDataSetFMX1Id.Asinteger;
+
+    if LListBoxItem.Tag = FIdFoco then
+      LListBoxItem.IsSelected := True;
+
     ListBox1.AddObject(LListBoxItem);
 
     TMSFNCCloudStellarDataStoreDataSetFMX1.Next;
@@ -328,9 +332,13 @@ begin
     end;
   end;
 
+  FIdFoco := TMSFNCCloudStellarDataStoreDataSetFMX1id.AsInteger;
+
   TabControlProducts.ActiveTab := tabList;
   Self.ClearFieldsRegister;
   Self.RefreshProducts;
+
+  ListBox1.SetFocus;
 end;
 
 procedure TMainView.btnAddClick(Sender: TObject);

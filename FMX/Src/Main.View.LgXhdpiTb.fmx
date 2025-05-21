@@ -14,19 +14,19 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
   end
   inherited TabControl1: TTabControl
     Size.Width = 480.000000000000000000
-    Size.Height = 758.000000000000000000
+    Size.Height = 778.000000000000000000
     Sizes = (
       480s
-      709s
+      729s
       480s
-      709s)
+      729s)
     inherited tabAuthentication: TTabItem
       Size.Width = 107.000000000000000000
       ExplicitSize.cx = 180.000000000000000000
       ExplicitSize.cy = 49.000000000000000000
       inherited gBoxAuthentication: TGroupBox
         Size.Width = 480.000000000000000000
-        Size.Height = 709.000000000000000000
+        Size.Height = 729.000000000000000000
         inherited lbAccessToken: TLabel
           Size.Width = 450.000000000000000000
         end
@@ -56,37 +56,39 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
       ExplicitSize.cy = 49.000000000000000000
       inherited TabControlProducts: TTabControl
         Size.Width = 480.000000000000000000
-        Size.Height = 709.000000000000000000
+        Size.Height = 729.000000000000000000
         Sizes = (
           480s
-          660s
+          680s
           480s
-          660s)
+          680s)
         inherited tabList: TTabItem
           Size.Width = 33.000000000000000000
           ExplicitSize.cx = 180.000000000000000000
           ExplicitSize.cy = 49.000000000000000000
           inherited gBoxProducts: TGroupBox
             Size.Width = 480.000000000000000000
-            Size.Height = 566.000000000000000000
+            Size.Height = 576.000000000000000000
             inherited ListBox1: TListBox
               Size.Width = 450.000000000000000000
-              Size.Height = 541.000000000000000000
+              Size.Height = 551.426635742187500000
               Viewport.Width = 330.000000000000000000
               Viewport.Height = 435.000000000000000000
             end
           end
           inherited btnFooter: TPanel
-            Position.Y = 586.000000000000000000
+            Position.Y = 596.000000000000000000
             Size.Width = 480.000000000000000000
             inherited imgProduct: TImage
               Position.X = 391.000000000000000000
             end
           end
           inherited pnCount: TPanel
-            Position.Y = 566.000000000000000000
+            Position.Y = 576.000000000000000000
             Size.Width = 480.000000000000000000
             inherited lbCount: TLabel
+              Margins.Right = 15.000000000000000000
+              Position.X = -30.000000000000000000
               Size.Width = 480.000000000000000000
             end
           end
@@ -97,7 +99,7 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
           ExplicitSize.cy = 49.000000000000000000
           inherited pnRegisterBack: TPanel
             Size.Width = 480.000000000000000000
-            Size.Height = 660.000000000000000000
+            Size.Height = 680.000000000000000000
             inherited pnButtonsRegister: TPanel
               Size.Width = 450.000000000000000000
             end
@@ -125,13 +127,6 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
           end
         end
       end
-    end
-  end
-  inherited pnStatus: TPanel
-    Position.Y = 809.000000000000000000
-    Size.Width = 480.000000000000000000
-    inherited lbStatus: TLabel
-      Size.Width = 480.000000000000000000
     end
   end
   inherited TMSFNCCloudStellarDataStoreDataSetFMX1: TTMSFNCCloudStellarDataStoreDataSetFMX

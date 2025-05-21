@@ -151,17 +151,17 @@ object MainView: TMainView
   object TabControl1: TTabControl
     Align = Client
     Size.Width = 360.000000000000000000
-    Size.Height = 569.000000000000000000
+    Size.Height = 589.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
     TabIndex = 1
-    TabOrder = 7
+    TabOrder = 6
     TabPosition = PlatformDefault
     Sizes = (
       360s
-      520s
+      540s
       360s
-      520s)
+      540s)
     object tabAuthentication: TTabItem
       CustomIcon = <
         item
@@ -183,7 +183,7 @@ object MainView: TMainView
         Padding.Top = 25.000000000000000000
         Padding.Right = 15.000000000000000000
         Size.Width = 360.000000000000000000
-        Size.Height = 520.000000000000000000
+        Size.Height = 540.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 11.000000000000000000
         TabOrder = 0
@@ -305,7 +305,7 @@ object MainView: TMainView
       object TabControlProducts: TTabControl
         Align = Client
         Size.Width = 360.000000000000000000
-        Size.Height = 520.000000000000000000
+        Size.Height = 540.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
         TabIndex = 1
@@ -313,9 +313,9 @@ object MainView: TMainView
         TabPosition = PlatformDefault
         Sizes = (
           360s
-          471s
+          491s
           360s
-          471s)
+          491s)
         object tabList: TTabItem
           CustomIcon = <
             item
@@ -337,14 +337,16 @@ object MainView: TMainView
             Padding.Top = 25.000000000000000000
             Padding.Right = 15.000000000000000000
             Size.Width = 360.000000000000000000
-            Size.Height = 377.000000000000000000
+            Size.Height = 387.000000000000000000
             Size.PlatformDefault = False
             TextSettings.Font.Size = 11.000000000000000000
             TabOrder = 3
             object ListBox1: TListBox
-              Align = Client
+              Align = Scale
+              Position.X = 15.000000000000000000
+              Position.Y = 24.370277404785160000
               Size.Width = 330.000000000000000000
-              Size.Height = 352.000000000000000000
+              Size.Height = 362.629699707031300000
               Size.PlatformDefault = False
               TabOrder = 6
               ShowSizeGrip = True
@@ -357,14 +359,15 @@ object MainView: TMainView
               DefaultItemStyles.GroupFooterStyle = ''
               OnItemClick = ListBox1ItemClick
               Viewport.Width = 330.000000000000000000
-              Viewport.Height = 352.000000000000000000
+              Viewport.Height = 362.600000000000000000
             end
           end
           object btnFooter: TPanel
             Align = Bottom
             Padding.Left = 15.000000000000000000
             Padding.Right = 15.000000000000000000
-            Position.Y = 397.000000000000000000
+            Margins.Bottom = 10.000000000000000000
+            Position.Y = 407.000000000000000000
             Size.Width = 360.000000000000000000
             Size.Height = 74.000000000000000000
             Size.PlatformDefault = False
@@ -456,21 +459,35 @@ object MainView: TMainView
           end
           object pnCount: TPanel
             Align = Bottom
-            Position.Y = 377.000000000000000000
+            Padding.Left = 15.000000000000000000
+            Padding.Right = 15.000000000000000000
+            Position.Y = 387.000000000000000000
             Size.Width = 360.000000000000000000
             Size.Height = 20.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 4
             object lbCount: TLabel
-              Align = Client
+              Align = MostRight
               AutoSize = True
               StyledSettings = [Family, Style, FontColor]
-              Size.Width = 360.000000000000000000
+              Position.X = 249.000000000000000000
+              Size.Width = 96.000000000000000000
               Size.Height = 20.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 11.000000000000000000
-              TextSettings.HorzAlign = Center
+              TextSettings.HorzAlign = Trailing
               Text = '0'
+              TabOrder = 1
+            end
+            object lbStatus: TLabel
+              Align = MostLeft
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 15.000000000000000000
+              Size.Width = 248.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 11.000000000000000000
+              Text = '...'
               TabOrder = 0
             end
           end
@@ -494,9 +511,9 @@ object MainView: TMainView
             Padding.Left = 15.000000000000000000
             Padding.Top = 25.000000000000000000
             Padding.Right = 15.000000000000000000
-            Position.Y = -8.000000000000000000
+            Position.Y = -8.339702606201172000
             Size.Width = 360.000000000000000000
-            Size.Height = 471.000000000000000000
+            Size.Height = 491.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
             object pnButtonsRegister: TPanel
@@ -628,25 +645,6 @@ object MainView: TMainView
     Authentication.CallBackURL = 'http://127.0.0.1:8888'
     Left = 592
     Top = 36
-  end
-  object pnStatus: TPanel
-    Align = Bottom
-    Position.Y = 620.000000000000000000
-    Size.Width = 360.000000000000000000
-    Size.Height = 20.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 4
-    object lbStatus: TLabel
-      Align = Client
-      StyledSettings = [Family, Style, FontColor]
-      Size.Width = 360.000000000000000000
-      Size.Height = 20.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.HorzAlign = Center
-      Text = '...'
-      TabOrder = 0
-    end
   end
   object TMSFNCCloudStellarDataStoreDataSetFMX1: TTMSFNCCloudStellarDataStoreDataSetFMX
     Connection = TMSFNCCloudStellarDataStoreConnection1
