@@ -68,10 +68,10 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
           ExplicitSize.cy = 49.000000000000000000
           inherited gBoxProducts: TGroupBox
             Size.Width = 480.000000000000000000
-            Size.Height = 580.000000000000000000
+            Size.Height = 560.000000000000000000
             inherited ListBox1: TListBox
               Size.Width = 450.000000000000000000
-              Size.Height = 555.000000000000000000
+              Size.Height = 535.000000000000000000
               Viewport.Width = 330.000000000000000000
               Viewport.Height = 435.000000000000000000
             end
@@ -79,11 +79,15 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
           inherited btnFooter: TPanel
             Position.Y = 580.000000000000000000
             Size.Width = 480.000000000000000000
-            inherited Label1: TLabel
-              Position.X = 378.000000000000000000
+            inherited imgProduct: TImage
+              Position.X = 405.000000000000000000
             end
+          end
+          inherited pnCount: TPanel
+            Position.Y = 560.000000000000000000
+            Size.Width = 480.000000000000000000
             inherited lbCount: TLabel
-              Position.X = 441.000000000000000000
+              Size.Width = 480.000000000000000000
             end
           end
         end

@@ -337,14 +337,14 @@ object MainView: TMainView
             Padding.Top = 25.000000000000000000
             Padding.Right = 15.000000000000000000
             Size.Width = 360.000000000000000000
-            Size.Height = 391.000000000000000000
+            Size.Height = 371.000000000000000000
             Size.PlatformDefault = False
             TextSettings.Font.Size = 11.000000000000000000
             TabOrder = 3
             object ListBox1: TListBox
               Align = Client
               Size.Width = 330.000000000000000000
-              Size.Height = 366.000000000000000000
+              Size.Height = 346.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 6
               ShowSizeGrip = True
@@ -357,10 +357,9 @@ object MainView: TMainView
               DefaultItemStyles.ItemStyle = ''
               DefaultItemStyles.GroupHeaderStyle = ''
               DefaultItemStyles.GroupFooterStyle = ''
-              ShowCheckboxes = True
               OnItemClick = ListBox1ItemClick
               Viewport.Width = 330.000000000000000000
-              Viewport.Height = 366.000000000000000000
+              Viewport.Height = 346.000000000000000000
             end
           end
           object btnFooter: TPanel
@@ -372,38 +371,14 @@ object MainView: TMainView
             Size.Height = 80.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 5
-            object Label1: TLabel
-              Align = Right
-              StyledSettings = [Family, Style, FontColor]
-              Position.X = 258.000000000000000000
-              Size.Width = 63.000000000000000000
-              Size.Height = 80.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Size = 11.000000000000000000
-              TextSettings.HorzAlign = Center
-              Text = 'Count:'
-              TabOrder = 1
-            end
-            object lbCount: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Style, FontColor]
-              Position.X = 321.000000000000000000
-              Size.Width = 24.000000000000000000
-              Size.Height = 80.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Size = 11.000000000000000000
-              Text = '0'
-              TabOrder = 0
-            end
             object btnRefresh: TButton
               Align = Left
               StyledSettings = [Family, Style, FontColor]
               Position.X = 15.000000000000000000
-              Size.Width = 73.000000000000000000
+              Size.Width = 59.000000000000000000
               Size.Height = 80.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 2
+              TabOrder = 0
               Text = 'Refresh'
               TextSettings.Trimming = None
               OnClick = btnRefreshClick
@@ -412,17 +387,17 @@ object MainView: TMainView
               MultiResBitmap = <
                 item
                 end>
-              Align = Left
-              Position.X = 161.000000000000000000
-              Size.Width = 72.000000000000000000
+              Align = Right
+              Position.X = 285.000000000000000000
+              Size.Width = 60.000000000000000000
               Size.Height = 80.000000000000000000
               Size.PlatformDefault = False
             end
             object btnLoadImg: TButton
               Align = Left
               StyledSettings = [Family, Style, FontColor]
-              Position.X = 88.000000000000000000
-              Size.Width = 73.000000000000000000
+              Position.X = 74.000000000000000000
+              Size.Width = 57.000000000000000000
               Size.Height = 80.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 3
@@ -430,6 +405,52 @@ object MainView: TMainView
               TextSettings.Font.Size = 11.000000000000000000
               TextSettings.Trimming = None
               OnClick = btnLoadImgClick
+            end
+            object edtEdit: TButton
+              Align = Left
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 131.000000000000000000
+              Size.Width = 49.000000000000000000
+              Size.Height = 80.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              Text = 'Edit'
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.Trimming = None
+              OnClick = edtEditClick
+            end
+            object btnDelete: TButton
+              Align = Left
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 180.000000000000000000
+              Size.Width = 49.000000000000000000
+              Size.Height = 80.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              Text = 'Delete'
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.Trimming = None
+              OnClick = btnDeleteClick
+            end
+          end
+          object pnCount: TPanel
+            Align = Bottom
+            Position.Y = 371.000000000000000000
+            Size.Width = 360.000000000000000000
+            Size.Height = 20.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 4
+            object lbCount: TLabel
+              Align = Client
+              AutoSize = True
+              StyledSettings = [Family, Style, FontColor]
+              Size.Width = 360.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.HorzAlign = Center
+              Text = '0'
+              TabOrder = 0
             end
           end
         end

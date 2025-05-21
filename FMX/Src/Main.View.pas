@@ -24,8 +24,12 @@ uses
   System.Messaging,
   FMX.Objects,
   FMX.TabControl,
-  FMX.DateTimeCtrls, FMX.TMSFNCCloudBase, FMX.TMSFNCCloudOAuth, FMX.TMSFNCCloudDataStore,
-  FMX.TMSFNCCloudStellarDataStore;
+  FMX.DateTimeCtrls,
+  FMX.TMSFNCCloudBase,
+  FMX.TMSFNCCloudOAuth,
+  FMX.TMSFNCCloudDataStore,
+  FMX.TMSFNCCloudStellarDataStore,
+  FMX.DialogService;
 
 type
   TMainView = class(TForm)
@@ -53,8 +57,6 @@ type
     gBoxProducts: TGroupBox;
     ListBox1: TListBox;
     btnFooter: TPanel;
-    Label1: TLabel;
-    lbCount: TLabel;
     btnRefresh: TButton;
     imgProduct: TImage;
     tabRegister: TTabItem;
@@ -77,6 +79,10 @@ type
     TMSFNCCloudStellarDataStoreDataSetFMX1Image: TBlobField;
     Panel4: TPanel;
     btnLoadImg: TButton;
+    edtEdit: TButton;
+    btnDelete: TButton;
+    pnCount: TPanel;
+    lbCount: TLabel;
     procedure btnConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
@@ -88,7 +94,10 @@ type
     procedure TMSFNCCloudStellarDataStoreDataSetFMX1GetBlobData(Sender: TObject; const AField, ARecordID: string;
       var AAllow: Boolean);
     procedure btnLoadImgClick(Sender: TObject);
+    procedure edtEditClick(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
   private
+    FIdAlter: Integer;
     procedure ConfigScreen;
     procedure FillListBox;
     procedure LoadImageToImage;
@@ -96,6 +105,8 @@ type
     procedure LoadImageToImage2;
     procedure TentarCarregarImagem;
     procedure CarregarImagemDoDataset;
+    procedure ClearOnCreate;
+    procedure ClearFieldsRegister;
   public
 
   end;
@@ -110,8 +121,7 @@ implementation
 
 procedure TMainView.FormCreate(Sender: TObject);
 begin
-  ListBox1.Clear;
-  lbStatus.Text := '';
+  Self.ClearOnCreate;
   TabControlProducts.ActiveTab := tabList;
   TabControl1.ActiveTab := tabAuthentication;
   Self.ConfigScreen;
@@ -121,18 +131,33 @@ begin
   edtTableName.Text := 'products';
 end;
 
+procedure TMainView.ClearOnCreate;
+begin
+  ListBox1.Clear;
+  lbStatus.Text := '';
+  Self.ClearFieldsRegister;
+end;
+
+procedure TMainView.ClearFieldsRegister;
+begin
+  FIdAlter := 0;
+  edtName.Text := '';
+  edtPrice.Text := '';
+  edtDate.Date := Now;
+end;
+
 procedure TMainView.ConfigScreen;
 begin
   btnDisconnect.Enabled := TMSFNCCloudStellarDataStoreDataSetFMX1.Active;
   btnConnect.Enabled := not btnDisconnect.Enabled;
 
   if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
-    lbCount.Text := '0';
+    lbCount.Text := 'Count: 0';
 end;
 
 procedure TMainView.DataSource1StateChange(Sender: TObject);
 begin
-  lbCount.Text := TMSFNCCloudStellarDataStoreDataSetFMX1.RecordCount.ToString;
+  lbCount.Text := 'Count: ' + TMSFNCCloudStellarDataStoreDataSetFMX1.RecordCount.ToString;
 end;
 
 procedure TMainView.btnConnectClick(Sender: TObject);
@@ -178,6 +203,7 @@ var
   LListBoxItem: TListBoxItem;
   LName: string;
   LPrice: Double;
+  LDate: string;
 begin
   ListBox1.Clear;
 
@@ -187,12 +213,13 @@ begin
   TMSFNCCloudStellarDataStoreDataSetFMX1.First;
   while not TMSFNCCloudStellarDataStoreDataSetFMX1.Eof do
   begin
-    LName := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Name').AsString;
-    LPrice := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Price').AsFloat;
+    LName := TMSFNCCloudStellarDataStoreDataSetFMX1Name.AsString;
+    LPrice := TMSFNCCloudStellarDataStoreDataSetFMX1Price.AsFloat;
+    LDate := TMSFNCCloudStellarDataStoreDataSetFMX1Date.AsString;
 
     LListBoxItem := TListBoxItem.Create(ListBox1);
-    LListBoxItem.Text := Format('%s | R$ %.2f', [LName, LPrice]);
-    LListBoxItem.Tag := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').Asinteger;
+    LListBoxItem.Text := Format('%s | %.2f | %s', [LName, LPrice, LDate]);
+    LListBoxItem.Tag := TMSFNCCloudStellarDataStoreDataSetFMX1Id.Asinteger;
     ListBox1.AddObject(LListBoxItem);
 
     TMSFNCCloudStellarDataStoreDataSetFMX1.Next;
@@ -216,11 +243,11 @@ begin
   if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
     Exit;
 
-  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
+  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1Id.AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
 
-  if TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') is TBlobField then
+  if TMSFNCCloudStellarDataStoreDataSetFMX1Image is TBlobField then
   begin
-    BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') as TBlobField;
+    BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField;
     Stream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(BlobField, bmRead);
     try
       if Stream.Size > 0 then
@@ -243,10 +270,10 @@ begin
   if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
     Exit;
 
-  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
+  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1Id.AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
 
   // Obtém o campo BLOB
-  BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') as TBlobField;
+  BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField;
 
   // Verifica se o campo não está vazio
   if not BlobField.IsNull then
@@ -271,8 +298,8 @@ begin
   if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
     Exit;
 
-  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
-  //if TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image').IsNull then
+  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1Id.AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
+  //if TMSFNCCloudStellarDataStoreDataSetFMX1Image.IsNull then
   if TMSFNCCloudStellarDataStoreDataSetFMX1Image.IsNull then
   begin
     imgProduct.Bitmap := nil;
@@ -312,9 +339,21 @@ begin
     Exit;
   end;
 
-  TMSFNCCloudStellarDataStoreDataSetFMX1.Append;
-  TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Name').AsString := edtName.Text;
-  TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Price').AsFloat := StrToFloatDef(edtPrice.Text, 0);
+  if FIdAlter > 0 then
+  begin
+    if not TMSFNCCloudStellarDataStoreDataSetFMX1.Locate('id', FIdAlter, [loCaseInsensitive]) then
+    begin
+      ShowMessage('Item not found for editing');
+      Exit
+    end;
+
+    TMSFNCCloudStellarDataStoreDataSetFMX1.Edit;
+  end
+  else
+    TMSFNCCloudStellarDataStoreDataSetFMX1.Append;
+
+  TMSFNCCloudStellarDataStoreDataSetFMX1Name.AsString := edtName.Text;
+  TMSFNCCloudStellarDataStoreDataSetFMX1Price.AsFloat := StrToFloatDef(edtPrice.Text, 0);
 
   if ImageLogo.Bitmap.IsEmpty then
   begin
@@ -328,11 +367,11 @@ begin
     ImageLogo.Bitmap.SaveToStream(LMemoryStream);
     LMemoryStream.Position := 0;
 
-    (TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') as TBlobField).LoadFromStream(LMemoryStream);
+    (TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField).LoadFromStream(LMemoryStream);
 
 
    { LBlobStream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(
-      TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image'), bmWrite);
+      TMSFNCCloudStellarDataStoreDataSetFMX1Image, bmWrite);
     try
       LBlobStream.CopyFrom(LMemoryStream, LMemoryStream.Size);
     finally
@@ -345,12 +384,14 @@ begin
   end;
 
   TabControlProducts.ActiveTab := tabList;
+  Self.ClearFieldsRegister;
   Self.RefreshProducts;
 end;
 
 procedure TMainView.btnCancelClick(Sender: TObject);
 begin
-  //
+  Self.ClearFieldsRegister;
+  TabControlProducts.ActiveTab := tabList;
 end;
 
 procedure TMainView.TMSFNCCloudStellarDataStoreDataSetFMX1GetBlobData(Sender: TObject; const AField, ARecordID: string;
@@ -374,9 +415,9 @@ begin
   if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
     Exit;
 
-  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
+  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1Id.AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
 
-  BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') as TBlobField;
+  BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField;
   if BlobField.IsNull then
     Exit;
 
@@ -390,6 +431,42 @@ begin
   finally
     Stream.Free;
   end;
+end;
+
+procedure TMainView.edtEditClick(Sender: TObject);
+begin
+  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
+  begin
+    ShowMessage('Select a record to continue');
+    Exit;
+  end;
+
+  FIdAlter := TMSFNCCloudStellarDataStoreDataSetFMX1id.AsInteger;
+  edtName.Text := TMSFNCCloudStellarDataStoreDataSetFMX1Name.AsString;
+  edtPrice.Text := TMSFNCCloudStellarDataStoreDataSetFMX1Price.AsString;
+  edtDate.Date := TMSFNCCloudStellarDataStoreDataSetFMX1Date.AsDateTime;
+  TabControlProducts.ActiveTab := tabRegister;
+  edtName.SetFocus;
+end;
+
+procedure TMainView.btnDeleteClick(Sender: TObject);
+begin
+  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
+  begin
+    ShowMessage('Select a record to continue');
+    Exit;
+  end;
+
+  TDialogService.MessageDialog('Confirm deletion?', TMsgDlgType.mtConfirmation,  [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], TMsgDlgBtn.mbNo,  0,
+    procedure(const AResult: TModalResult)
+    begin
+      if AResult = mrYes then
+      begin
+        TMSFNCCloudStellarDataStoreDataSetFMX1.Delete;
+        Self.RefreshProducts;
+      end;
+    end
+  );
 end;
 
 end.
