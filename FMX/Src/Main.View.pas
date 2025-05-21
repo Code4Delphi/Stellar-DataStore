@@ -24,7 +24,8 @@ uses
   System.Messaging,
   FMX.Objects,
   FMX.TabControl,
-  FMX.DateTimeCtrls;
+  FMX.DateTimeCtrls, FMX.TMSFNCCloudBase, FMX.TMSFNCCloudOAuth, FMX.TMSFNCCloudDataStore,
+  FMX.TMSFNCCloudStellarDataStore;
 
 type
   TMainView = class(TForm)
@@ -34,7 +35,6 @@ type
     pnHeader: TPanel;
     ImageLogo: TImage;
     Label2: TLabel;
-    Edit1: TEdit;
     TabControl1: TTabControl;
     tabAuthentication: TTabItem;
     gBoxAuthentication: TGroupBox;
@@ -75,6 +75,8 @@ type
     TMSFNCCloudStellarDataStoreDataSetFMX1Price: TFloatField;
     TMSFNCCloudStellarDataStoreDataSetFMX1Date: TDateTimeField;
     TMSFNCCloudStellarDataStoreDataSetFMX1Image: TBlobField;
+    Panel4: TPanel;
+    btnLoadImg: TButton;
     procedure btnConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
@@ -83,6 +85,9 @@ type
     procedure btnSaveClick(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure ListBox1ItemClick(const Sender: TCustomListBox; const Item: TListBoxItem);
+    procedure TMSFNCCloudStellarDataStoreDataSetFMX1GetBlobData(Sender: TObject; const AField, ARecordID: string;
+      var AAllow: Boolean);
+    procedure btnLoadImgClick(Sender: TObject);
   private
     procedure ConfigScreen;
     procedure FillListBox;
@@ -165,6 +170,7 @@ procedure TMainView.RefreshProducts;
 begin
   TMSFNCCloudStellarDataStoreDataSetFMX1.Refresh;
   Self.FillListBox;
+  imgProduct.Bitmap := nil;
 end;
 
 procedure TMainView.FillListBox;
@@ -197,7 +203,7 @@ procedure TMainView.ListBox1ItemClick(const Sender: TCustomListBox; const Item: 
 begin
   lbStatus.Text := 'Item id ' + Item.Tag.ToString;
   TMSFNCCloudStellarDataStoreDataSetFMX1.Locate('id', Item.Tag, [loCaseInsensitive]);
-  Self.CarregarImagemDoDataset;
+  //Self.CarregarImagemDoDataset;
 end;
 
 procedure TMainView.CarregarImagemDoDataset;
@@ -225,34 +231,6 @@ begin
     finally
       Stream.Free;
     end;
-  end;
-end;
-
-procedure TMainView.TentarCarregarImagem;
-var
-  BlobField: TBlobField;
-  Stream: TStream;
-begin
-  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
-    Exit;
-
-  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
-
-  try
-    BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') as TBlobField;
-    Stream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(BlobField, bmRead);
-    try
-      if Stream.Size > 0 then
-      begin
-        Stream.Position := 0;
-        imgProduct.Bitmap.LoadFromStream(Stream);
-      end;
-    finally
-      Stream.Free;
-    end;
-  except
-    on E: Exception do
-      ShowMessage('Erro ao carregar imagem: ' + E.Message);
   end;
 end;
 
@@ -373,6 +351,45 @@ end;
 procedure TMainView.btnCancelClick(Sender: TObject);
 begin
   //
+end;
+
+procedure TMainView.TMSFNCCloudStellarDataStoreDataSetFMX1GetBlobData(Sender: TObject; const AField, ARecordID: string;
+  var AAllow: Boolean);
+begin
+  AAllow := False;
+end;
+
+procedure TMainView.btnLoadImgClick(Sender: TObject);
+begin
+  Self.TentarCarregarImagem;
+end;
+
+procedure TMainView.TentarCarregarImagem;
+var
+  BlobField: TBlobField;
+  Stream: TStream;
+begin
+  imgProduct.Bitmap := nil;
+
+  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
+    Exit;
+
+  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
+
+  BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') as TBlobField;
+  if BlobField.IsNull then
+    Exit;
+
+  Stream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(BlobField, bmRead);
+  try
+    if Stream.Size > 0 then
+    begin
+      Stream.Position := 0;
+      imgProduct.Bitmap.LoadFromStream(Stream);
+    end;
+  finally
+    Stream.Free;
+  end;
 end;
 
 end.

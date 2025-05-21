@@ -85,10 +85,6 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
             inherited lbCount: TLabel
               Position.X = 441.000000000000000000
             end
-            inherited imgProduct: TImage
-              MultiResBitmap.Height = 48
-              MultiResBitmap.Width = 48
-            end
           end
         end
         inherited tabRegister: TTabItem
