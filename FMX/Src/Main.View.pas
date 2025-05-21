@@ -60,8 +60,8 @@ type
     btnRefresh: TButton;
     imgProduct: TImage;
     tabRegister: TTabItem;
-    Panel2: TPanel;
-    Panel3: TPanel;
+    pnRegisterBack: TPanel;
+    pnButtonsRegister: TPanel;
     btnSave: TButton;
     btnCancel: TButton;
     Label3: TLabel;
@@ -83,6 +83,7 @@ type
     btnDelete: TButton;
     pnCount: TPanel;
     lbCount: TLabel;
+    btnAdd: TButton;
     procedure btnConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
@@ -96,15 +97,13 @@ type
     procedure btnLoadImgClick(Sender: TObject);
     procedure edtEditClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
+    procedure btnAddClick(Sender: TObject);
   private
     FIdAlter: Integer;
     procedure ConfigScreen;
     procedure FillListBox;
-    procedure LoadImageToImage;
     procedure RefreshProducts;
-    procedure LoadImageToImage2;
-    procedure TentarCarregarImagem;
-    procedure CarregarImagemDoDataset;
+    procedure LoadImageFromDataset;
     procedure ClearOnCreate;
     procedure ClearFieldsRegister;
   public
@@ -129,6 +128,7 @@ begin
   edtAccessToken.Text := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2Nlc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6IjU5MjQzOWY2LThjYjYtNDhiZS0xMzM4LTA4ZGQ5MGZjZGQ4NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJhZGEiLCJleHAiOjE3NDgxMTY1NDAsImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLmlvIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.YDWuGl-Y7Cp3ThHRj0NtZxdpQikreNtDe7s0oOtJHHA';
   edtProjectID.Text := '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada';
   edtTableName.Text := 'products';
+  Panel4.Visible := False;
 end;
 
 procedure TMainView.ClearOnCreate;
@@ -188,12 +188,19 @@ end;
 
 procedure TMainView.btnRefreshClick(Sender: TObject);
 begin
+  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
+  begin
+    ShowMessage('Select a record to continue');
+    Exit;
+  end;
+
   Self.RefreshProducts;
 end;
 
 procedure TMainView.RefreshProducts;
 begin
   TMSFNCCloudStellarDataStoreDataSetFMX1.Refresh;
+  lbCount.Text := 'Count: ' + TMSFNCCloudStellarDataStoreDataSetFMX1.RecordCount.ToString;
   Self.FillListBox;
   imgProduct.Bitmap := nil;
 end;
@@ -228,94 +235,40 @@ end;
 
 procedure TMainView.ListBox1ItemClick(const Sender: TCustomListBox; const Item: TListBoxItem);
 begin
-  lbStatus.Text := 'Item id ' + Item.Tag.ToString;
+  lbStatus.Text := 'Item id: ' + Item.Tag.ToString;
   TMSFNCCloudStellarDataStoreDataSetFMX1.Locate('id', Item.Tag, [loCaseInsensitive]);
-  //Self.CarregarImagemDoDataset;
+  Self.LoadImageFromDataset;
 end;
 
-procedure TMainView.CarregarImagemDoDataset;
+procedure TMainView.btnLoadImgClick(Sender: TObject);
+begin
+  Self.LoadImageFromDataset;
+end;
+
+procedure TMainView.LoadImageFromDataset;
 var
-  BlobField: TBlobField;
-  Stream: TStream;
+  LBlobField: TBlobField;
+  LStream: TStream;
 begin
   imgProduct.Bitmap := nil;
 
   if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
     Exit;
 
-  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1Id.AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
-
-  if TMSFNCCloudStellarDataStoreDataSetFMX1Image is TBlobField then
-  begin
-    BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField;
-    Stream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(BlobField, bmRead);
-    try
-      if Stream.Size > 0 then
-      begin
-        Stream.Position := 0;
-        imgProduct.Bitmap.LoadFromStream(Stream);
-      end;
-    finally
-      Stream.Free;
-    end;
-  end;
-end;
-
-procedure TMainView.LoadImageToImage2;
-var
-  BlobField: TBlobField;
-  Stream: TStream;
-begin
-  // Verifica se o DataSet está ativo
-  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
+  if not (TMSFNCCloudStellarDataStoreDataSetFMX1Image is TBlobField) then
     Exit;
 
-  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1Id.AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
-
-  // Obtém o campo BLOB
-  BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField;
-
-  // Verifica se o campo não está vazio
-  if not BlobField.IsNull then
-  begin
-    // Cria um stream para ler os dados do BLOB
-    Stream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(BlobField, bmRead);
-    try
-      // Carrega a imagem do stream para o TImage
-      imgProduct.Bitmap.LoadFromStream(Stream);
-    finally
-      Stream.Free;
-    end;
-  end
-  else
-    imgProduct.Bitmap := nil;
-end;
-
-procedure TMainView.LoadImageToImage;
-var
-  LStream: TStream;
-begin
-  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
+  LBlobField := TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField;
+  if LBlobField.IsNull then
     Exit;
 
-  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1Id.AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
-  //if TMSFNCCloudStellarDataStoreDataSetFMX1Image.IsNull then
-  if TMSFNCCloudStellarDataStoreDataSetFMX1Image.IsNull then
-  begin
-    imgProduct.Bitmap := nil;
-    Exit;
-  end;
-
-  LStream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(
-    TMSFNCCloudStellarDataStoreDataSetFMX1Image, bmRead);
+  LStream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(LBlobField, bmRead);
   try
     if LStream.Size > 0 then
     begin
       LStream.Position := 0;
       imgProduct.Bitmap.LoadFromStream(LStream);
-    end
-    else
-      imgProduct.Bitmap := nil;
+    end;
   finally
     LStream.Free;
   end;
@@ -324,7 +277,6 @@ end;
 procedure TMainView.btnSaveClick(Sender: TObject);
 var
   LMemoryStream: TMemoryStream;
-  LBlobStream: TStream;
 begin
   if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
   begin
@@ -354,6 +306,7 @@ begin
 
   TMSFNCCloudStellarDataStoreDataSetFMX1Name.AsString := edtName.Text;
   TMSFNCCloudStellarDataStoreDataSetFMX1Price.AsFloat := StrToFloatDef(edtPrice.Text, 0);
+  TMSFNCCloudStellarDataStoreDataSetFMX1Date.AsDateTime := edtDate.Date;
 
   if ImageLogo.Bitmap.IsEmpty then
   begin
@@ -368,16 +321,6 @@ begin
     LMemoryStream.Position := 0;
 
     (TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField).LoadFromStream(LMemoryStream);
-
-
-   { LBlobStream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(
-      TMSFNCCloudStellarDataStoreDataSetFMX1Image, bmWrite);
-    try
-      LBlobStream.CopyFrom(LMemoryStream, LMemoryStream.Size);
-    finally
-      LBlobStream.Free;
-    end; }
-
     TMSFNCCloudStellarDataStoreDataSetFMX1.Post;
   finally
     LMemoryStream.Free;
@@ -386,6 +329,12 @@ begin
   TabControlProducts.ActiveTab := tabList;
   Self.ClearFieldsRegister;
   Self.RefreshProducts;
+end;
+
+procedure TMainView.btnAddClick(Sender: TObject);
+begin
+  TabControlProducts.ActiveTab := tabRegister;
+  edtName.SetFocus;
 end;
 
 procedure TMainView.btnCancelClick(Sender: TObject);
@@ -398,39 +347,6 @@ procedure TMainView.TMSFNCCloudStellarDataStoreDataSetFMX1GetBlobData(Sender: TO
   var AAllow: Boolean);
 begin
   AAllow := False;
-end;
-
-procedure TMainView.btnLoadImgClick(Sender: TObject);
-begin
-  Self.TentarCarregarImagem;
-end;
-
-procedure TMainView.TentarCarregarImagem;
-var
-  BlobField: TBlobField;
-  Stream: TStream;
-begin
-  imgProduct.Bitmap := nil;
-
-  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
-    Exit;
-
-  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1Id.AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
-
-  BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField;
-  if BlobField.IsNull then
-    Exit;
-
-  Stream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(BlobField, bmRead);
-  try
-    if Stream.Size > 0 then
-    begin
-      Stream.Position := 0;
-      imgProduct.Bitmap.LoadFromStream(Stream);
-    end;
-  finally
-    Stream.Free;
-  end;
 end;
 
 procedure TMainView.edtEditClick(Sender: TObject);

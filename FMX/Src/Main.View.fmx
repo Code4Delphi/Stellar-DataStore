@@ -143,7 +143,7 @@ object MainView: TMainView
       TabOrder = 1
     end
     object Panel4: TPanel
-      Position.X = -16.000000000000000000
+      Position.X = -9.000000000000000000
       Position.Y = -48.000000000000000000
       TabOrder = 2
     end
@@ -337,14 +337,14 @@ object MainView: TMainView
             Padding.Top = 25.000000000000000000
             Padding.Right = 15.000000000000000000
             Size.Width = 360.000000000000000000
-            Size.Height = 371.000000000000000000
+            Size.Height = 377.000000000000000000
             Size.PlatformDefault = False
             TextSettings.Font.Size = 11.000000000000000000
             TabOrder = 3
             object ListBox1: TListBox
               Align = Client
               Size.Width = 330.000000000000000000
-              Size.Height = 346.000000000000000000
+              Size.Height = 352.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 6
               ShowSizeGrip = True
@@ -359,25 +359,27 @@ object MainView: TMainView
               DefaultItemStyles.GroupFooterStyle = ''
               OnItemClick = ListBox1ItemClick
               Viewport.Width = 330.000000000000000000
-              Viewport.Height = 346.000000000000000000
+              Viewport.Height = 352.000000000000000000
             end
           end
           object btnFooter: TPanel
             Align = Bottom
             Padding.Left = 15.000000000000000000
             Padding.Right = 15.000000000000000000
-            Position.Y = 391.000000000000000000
+            Position.Y = 397.000000000000000000
             Size.Width = 360.000000000000000000
-            Size.Height = 80.000000000000000000
+            Size.Height = 74.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 5
             object btnRefresh: TButton
-              Align = Left
+              Align = MostLeft
               StyledSettings = [Family, Style, FontColor]
               Position.X = 15.000000000000000000
-              Size.Width = 59.000000000000000000
-              Size.Height = 80.000000000000000000
+              Position.Y = 13.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 48.000000000000000000
               Size.PlatformDefault = False
+              StyleLookup = 'refreshtoolbutton'
               TabOrder = 0
               Text = 'Refresh'
               TextSettings.Trimming = None
@@ -388,31 +390,35 @@ object MainView: TMainView
                 item
                 end>
               Align = Right
-              Position.X = 285.000000000000000000
-              Size.Width = 60.000000000000000000
-              Size.Height = 80.000000000000000000
+              Position.X = 271.000000000000000000
+              Size.Width = 74.000000000000000000
+              Size.Height = 74.000000000000000000
               Size.PlatformDefault = False
             end
             object btnLoadImg: TButton
-              Align = Left
+              Align = MostLeft
               StyledSettings = [Family, Style, FontColor]
-              Position.X = 74.000000000000000000
-              Size.Width = 57.000000000000000000
-              Size.Height = 80.000000000000000000
+              Position.X = 207.000000000000000000
+              Position.Y = 13.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 48.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 3
+              StyleLookup = 'cameratoolbutton'
+              TabOrder = 4
               Text = 'Load img'
               TextSettings.Font.Size = 11.000000000000000000
               TextSettings.Trimming = None
               OnClick = btnLoadImgClick
             end
             object edtEdit: TButton
-              Align = Left
+              Align = MostLeft
               StyledSettings = [Family, Style, FontColor]
-              Position.X = 131.000000000000000000
-              Size.Width = 49.000000000000000000
-              Size.Height = 80.000000000000000000
+              Position.X = 111.000000000000000000
+              Position.Y = 13.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 48.000000000000000000
               Size.PlatformDefault = False
+              StyleLookup = 'composetoolbutton'
               TabOrder = 2
               Text = 'Edit'
               TextSettings.Font.Size = 11.000000000000000000
@@ -420,22 +426,39 @@ object MainView: TMainView
               OnClick = edtEditClick
             end
             object btnDelete: TButton
-              Align = Left
+              Align = MostLeft
               StyledSettings = [Family, Style, FontColor]
-              Position.X = 180.000000000000000000
-              Size.Width = 49.000000000000000000
-              Size.Height = 80.000000000000000000
+              Position.X = 159.000000000000000000
+              Position.Y = 13.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 48.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 1
+              StyleLookup = 'trashtoolbutton'
+              TabOrder = 3
               Text = 'Delete'
               TextSettings.Font.Size = 11.000000000000000000
               TextSettings.Trimming = None
               OnClick = btnDeleteClick
             end
+            object btnAdd: TButton
+              Align = MostLeft
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 63.000000000000000000
+              Position.Y = 13.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 48.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'addtoolbutton'
+              TabOrder = 1
+              Text = 'Add'
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.Trimming = None
+              OnClick = btnAddClick
+            end
           end
           object pnCount: TPanel
             Align = Bottom
-            Position.Y = 371.000000000000000000
+            Position.Y = 377.000000000000000000
             Size.Width = 360.000000000000000000
             Size.Height = 20.000000000000000000
             Size.PlatformDefault = False
@@ -468,8 +491,8 @@ object MainView: TMainView
           Text = 'Register'
           ExplicitSize.cx = 180.000000000000000000
           ExplicitSize.cy = 49.000000000000000000
-          object Panel2: TPanel
-            Align = Client
+          object pnRegisterBack: TPanel
+            Align = Scale
             Padding.Left = 15.000000000000000000
             Padding.Top = 25.000000000000000000
             Padding.Right = 15.000000000000000000
@@ -477,33 +500,37 @@ object MainView: TMainView
             Size.Height = 471.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
-            object Panel3: TPanel
+            object pnButtonsRegister: TPanel
               Align = Top
               Margins.Top = 10.000000000000000000
               Position.X = 15.000000000000000000
               Position.Y = 207.000000000000000000
               Size.Width = 330.000000000000000000
-              Size.Height = 34.000000000000000000
+              Size.Height = 58.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 41
               object btnSave: TButton
-                Align = Left
+                Align = MostLeft
                 StyledSettings = [Family, Style, FontColor]
-                Size.Width = 164.000000000000000000
-                Size.Height = 34.000000000000000000
+                Position.X = 48.000000000000000000
+                Position.Y = 5.000000000000000000
+                Size.Width = 48.000000000000000000
+                Size.Height = 48.000000000000000000
                 Size.PlatformDefault = False
+                StyleLookup = 'donetoolbutton'
                 TabOrder = 1
                 Text = 'Save'
                 TextSettings.Trimming = None
                 OnClick = btnSaveClick
               end
               object btnCancel: TButton
-                Align = Left
+                Align = MostLeft
                 StyledSettings = [Family, Style, FontColor]
-                Position.X = 164.000000000000000000
-                Size.Width = 165.000000000000000000
-                Size.Height = 34.000000000000000000
+                Position.Y = 5.000000000000000000
+                Size.Width = 48.000000000000000000
+                Size.Height = 48.000000000000000000
                 Size.PlatformDefault = False
+                StyleLookup = 'stoptoolbutton'
                 TabOrder = 0
                 Text = 'Cancel'
                 TextSettings.Trimming = None
