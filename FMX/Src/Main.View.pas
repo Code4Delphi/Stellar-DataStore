@@ -68,6 +68,8 @@ type
     edtName: TEdit;
     Label5: TLabel;
     edtDate: TDateEdit;
+    pnStatus: TPanel;
+    lbStatus: TLabel;
     procedure btnConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
@@ -75,12 +77,11 @@ type
     procedure btnRefreshClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
-    procedure ListBox1ChangeCheck(Sender: TObject);
-    procedure ListBox1Click(Sender: TObject);
+    procedure ListBox1ItemClick(const Sender: TCustomListBox; const Item: TListBoxItem);
   private
     procedure ConfigScreen;
     procedure FillListBox;
-    procedure CarregarImagemParaTImage;
+    procedure LoadImageToImage;
     procedure RefreshProducts;
   public
 
@@ -97,6 +98,7 @@ implementation
 procedure TMainView.FormCreate(Sender: TObject);
 begin
   ListBox1.Clear;
+  lbStatus.Text := '';
   TabControlProducts.ActiveTab := tabList;
   TabControl1.ActiveTab := tabAuthentication;
   Self.ConfigScreen;
@@ -175,7 +177,7 @@ begin
     LPrice := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Price').AsFloat;
 
     LListBoxItem := TListBoxItem.Create(ListBox1);
-    LListBoxItem.Text := Format('%s - R$ %.2f', [LName, LPrice]);
+    LListBoxItem.Text := Format('%s | R$ %.2f', [LName, LPrice]);
     LListBoxItem.Tag := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').Asinteger;
     ListBox1.AddObject(LListBoxItem);
 
@@ -183,32 +185,21 @@ begin
   end;
 end;
 
-procedure TMainView.ListBox1ChangeCheck(Sender: TObject);
+procedure TMainView.ListBox1ItemClick(const Sender: TCustomListBox; const Item: TListBoxItem);
 begin
-  //
+  lbStatus.Text := 'Item id ' + Item.Tag.ToString;
+  TMSFNCCloudStellarDataStoreDataSetFMX1.Locate('id', Item.Tag, [loCaseInsensitive]);
+  Self.LoadImageToImage;
 end;
 
-procedure TMainView.ListBox1Click(Sender: TObject);
-var
-  LItem: TListBoxItem;
-begin
-  LItem := ListBox1.Selected;
-  if not Assigned(LItem) then
-    Exit;
-
-  ShowMessage('LItem.Tag: ' + LItem.Tag.ToString);
-  TMSFNCCloudStellarDataStoreDataSetFMX1.Locate('id', LItem.Tag, [loCaseInsensitive]);
-  ShowMessage(TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Name').AsString);
-  Self.CarregarImagemParaTImage;
-end;
-
-procedure TMainView.CarregarImagemParaTImage;
+procedure TMainView.LoadImageToImage;
 var
   LStream: TStream;
 begin
   if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
     Exit;
-    
+
+  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image').AsString;
   if TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image').IsNull then
   begin
     imgProduct.Bitmap := nil;
