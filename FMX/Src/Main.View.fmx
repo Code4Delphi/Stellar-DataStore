@@ -156,7 +156,7 @@ object MainView: TMainView
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
     TabIndex = 1
-    TabOrder = 8
+    TabOrder = 7
     TabPosition = PlatformDefault
     Sizes = (
       360s
@@ -175,6 +175,8 @@ object MainView: TMainView
       StyleLookup = ''
       TabOrder = 0
       Text = 'Authentication'
+      ExplicitSize.cx = 180.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
       object gBoxAuthentication: TGroupBox
         Align = Client
         StyledSettings = [Family, Style, FontColor, Other]
@@ -299,13 +301,15 @@ object MainView: TMainView
       StyleLookup = ''
       TabOrder = 0
       Text = 'Products'
+      ExplicitSize.cx = 180.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
       object TabControlProducts: TTabControl
         Align = Client
         Size.Width = 360.000000000000000000
         Size.Height = 540.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
-        TabIndex = 1
+        TabIndex = 0
         TabOrder = 5
         TabPosition = PlatformDefault
         Sizes = (
@@ -318,13 +322,15 @@ object MainView: TMainView
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = False
+          IsSelected = True
           Size.Width = 180.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
           Text = 'List'
+          ExplicitSize.cx = 180.000000000000000000
+          ExplicitSize.cy = 49.000000000000000000
           object gBoxProducts: TGroupBox
             Align = Client
             StyledSettings = [Family, Style, FontColor, Other]
@@ -342,6 +348,7 @@ object MainView: TMainView
               Size.Height = 386.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 6
+              OnClick = ListBox1Click
               ShowSizeGrip = True
               DisableFocusEffect = True
               Items.Strings = (
@@ -353,6 +360,7 @@ object MainView: TMainView
               DefaultItemStyles.GroupHeaderStyle = ''
               DefaultItemStyles.GroupFooterStyle = ''
               ShowCheckboxes = True
+              OnChangeCheck = ListBox1ChangeCheck
               Viewport.Width = 330.000000000000000000
               Viewport.Height = 386.000000000000000000
             end
@@ -390,17 +398,6 @@ object MainView: TMainView
               Text = '0'
               TabOrder = 0
             end
-            object btnAdd: TButton
-              Align = Left
-              StyledSettings = [Family, Style, FontColor]
-              Position.X = 88.000000000000000000
-              Size.Width = 73.000000000000000000
-              Size.Height = 80.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 2
-              Text = 'Add'
-              TextSettings.Trimming = None
-            end
             object btnRefresh: TButton
               Align = Left
               StyledSettings = [Family, Style, FontColor]
@@ -408,17 +405,17 @@ object MainView: TMainView
               Size.Width = 73.000000000000000000
               Size.Height = 80.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 3
+              TabOrder = 2
               Text = 'Refresh'
               TextSettings.Trimming = None
               OnClick = btnRefreshClick
             end
-            object Image2: TImage
+            object imgProduct: TImage
               MultiResBitmap = <
                 item
                 end>
               Align = Left
-              Position.X = 161.000000000000000000
+              Position.X = 88.000000000000000000
               Size.Width = 72.000000000000000000
               Size.Height = 80.000000000000000000
               Size.PlatformDefault = False
@@ -430,13 +427,15 @@ object MainView: TMainView
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 180.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
           Text = 'Register'
+          ExplicitSize.cx = 180.000000000000000000
+          ExplicitSize.cy = 49.000000000000000000
           object Panel2: TPanel
             Align = Client
             Padding.Left = 15.000000000000000000
@@ -574,7 +573,7 @@ object MainView: TMainView
   object DataSource1: TDataSource
     DataSet = TMSFNCCloudStellarDataStoreDataSetFMX1
     OnStateChange = DataSource1StateChange
-    Left = 118
+    Left = 110
     Top = 520
   end
 end
