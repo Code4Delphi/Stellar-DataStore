@@ -165,7 +165,7 @@ object MainView: TMainView
       OnClick = btnConnectClick
     end
     object btnDisconnect: TButton
-      Left = 177
+      Left = 180
       Top = 257
       Width = 75
       Height = 25
