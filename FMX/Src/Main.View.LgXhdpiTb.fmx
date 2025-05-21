@@ -8,7 +8,7 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
       MultiResBitmap.Height = 64
       MultiResBitmap.Width = 64
     end
-    inherited Label2: TLabel
+    inherited lbCaption: TLabel
       Size.Width = 390.000000000000000000
     end
   end
@@ -117,6 +117,9 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
               Size.Width = 450.000000000000000000
             end
             inherited edtDate: TDateEdit
+              Size.Width = 450.000000000000000000
+            end
+            inherited ckAddImage: TCheckBox
               Size.Width = 450.000000000000000000
             end
           end

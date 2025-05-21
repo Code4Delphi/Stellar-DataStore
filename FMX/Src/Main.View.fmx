@@ -133,7 +133,7 @@ object MainView: TMainView
       Size.Height = 41.000000000000000000
       Size.PlatformDefault = False
     end
-    object Label2: TLabel
+    object lbCaption: TLabel
       Align = Client
       Margins.Left = 10.000000000000000000
       Size.Width = 270.000000000000000000
@@ -308,7 +308,7 @@ object MainView: TMainView
         Size.Height = 520.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 5
         TabPosition = PlatformDefault
         Sizes = (
@@ -321,7 +321,7 @@ object MainView: TMainView
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 180.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
@@ -351,9 +351,7 @@ object MainView: TMainView
               DisableFocusEffect = True
               Items.Strings = (
                 'Item 01'
-                'Item 02'
-                'Item 03'
-                'Item 04')
+                'Item 02')
               DefaultItemStyles.ItemStyle = ''
               DefaultItemStyles.GroupHeaderStyle = ''
               DefaultItemStyles.GroupFooterStyle = ''
@@ -482,7 +480,7 @@ object MainView: TMainView
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = False
+          IsSelected = True
           Size.Width = 180.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
@@ -496,6 +494,7 @@ object MainView: TMainView
             Padding.Left = 15.000000000000000000
             Padding.Top = 25.000000000000000000
             Padding.Right = 15.000000000000000000
+            Position.Y = -8.000000000000000000
             Size.Width = 360.000000000000000000
             Size.Height = 471.000000000000000000
             Size.PlatformDefault = False
@@ -504,16 +503,15 @@ object MainView: TMainView
               Align = Top
               Margins.Top = 10.000000000000000000
               Position.X = 15.000000000000000000
-              Position.Y = 207.000000000000000000
+              Position.Y = 216.000000000000000000
               Size.Width = 330.000000000000000000
-              Size.Height = 58.000000000000000000
+              Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 41
               object btnSave: TButton
                 Align = MostLeft
                 StyledSettings = [Family, Style, FontColor]
                 Position.X = 48.000000000000000000
-                Position.Y = 5.000000000000000000
                 Size.Width = 48.000000000000000000
                 Size.Height = 48.000000000000000000
                 Size.PlatformDefault = False
@@ -526,7 +524,6 @@ object MainView: TMainView
               object btnCancel: TButton
                 Align = MostLeft
                 StyledSettings = [Family, Style, FontColor]
-                Position.Y = 5.000000000000000000
                 Size.Width = 48.000000000000000000
                 Size.Height = 48.000000000000000000
                 Size.PlatformDefault = False
@@ -541,7 +538,7 @@ object MainView: TMainView
               Align = Top
               StyledSettings = [Family, Style, FontColor]
               Position.X = 15.000000000000000000
-              Position.Y = 153.000000000000000000
+              Position.Y = 133.000000000000000000
               Size.Width = 330.000000000000000000
               Size.Height = 12.000000000000000000
               Size.PlatformDefault = False
@@ -554,8 +551,8 @@ object MainView: TMainView
               Align = Top
               TabOrder = 39
               Position.X = 15.000000000000000000
-              Position.Y = 101.000000000000000000
-              Margins.Bottom = 20.000000000000000000
+              Position.Y = 91.000000000000000000
+              Margins.Bottom = 10.000000000000000000
               Size.Width = 330.000000000000000000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
@@ -564,7 +561,7 @@ object MainView: TMainView
               Align = Top
               StyledSettings = [Family, Style, FontColor]
               Position.X = 15.000000000000000000
-              Position.Y = 89.000000000000000000
+              Position.Y = 79.000000000000000000
               Size.Width = 330.000000000000000000
               Size.Height = 12.000000000000000000
               Size.PlatformDefault = False
@@ -578,7 +575,7 @@ object MainView: TMainView
               TabOrder = 40
               Position.X = 15.000000000000000000
               Position.Y = 37.000000000000000000
-              Margins.Bottom = 20.000000000000000000
+              Margins.Bottom = 10.000000000000000000
               Size.Width = 330.000000000000000000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
@@ -598,12 +595,24 @@ object MainView: TMainView
             object edtDate: TDateEdit
               Date = 45797.000000000000000000
               Align = Top
+              Margins.Bottom = 10.000000000000000000
               Position.X = 15.000000000000000000
-              Position.Y = 165.000000000000000000
+              Position.Y = 145.000000000000000000
               Size.Width = 330.000000000000000000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 42
+            end
+            object ckAddImage: TCheckBox
+              Align = Top
+              IsChecked = True
+              Position.X = 15.000000000000000000
+              Position.Y = 187.000000000000000000
+              Size.Width = 330.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 43
+              Text = 'Add image'
             end
           end
         end
@@ -641,8 +650,7 @@ object MainView: TMainView
   end
   object TMSFNCCloudStellarDataStoreDataSetFMX1: TTMSFNCCloudStellarDataStoreDataSetFMX
     Connection = TMSFNCCloudStellarDataStoreConnection1
-    TableID = 348
-    ProjectID = 'c9f5ba50-1f75-4fd2-218c-08dd93291e5d'
+    TableID = 0
     SortOrder = <>
     Filter = <>
     OnGetBlobData = TMSFNCCloudStellarDataStoreDataSetFMX1GetBlobData
@@ -669,17 +677,6 @@ object MainView: TMainView
         DataType = ftBlob
       end>
     Authentication.CallBackURL = 'http://127.0.0.1:8888'
-    Authentication.Key = 
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWN' +
-      'yb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2N' +
-      'lc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA' +
-      '1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6IjM3YWE5ODY' +
-      '2LTkyMGYtNGYxOS1jNWZhLTA4ZGQ5MzY2YTAxNCIsImh0dHA6Ly9zY2hlbWFzLnh' +
-      'tbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGl' +
-      'maWVyLXByb2plY3QiOiJjOWY1YmE1MC0xZjc1LTRmZDItMjE4Yy0wOGRkOTMyOTF' +
-      'lNWQiLCJleHAiOjI2OTM5NjcxMTMsImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLml' +
-      'vIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.VSSFsHXn1scBSrl' +
-      'Kg4S7tGuFFv1AJuMPa4tNU_LN6NY'
     PersistTokens.Section = 'TTMSFNCCloudOAuthPersistTokens'
     PersistTokens.Key = 'C:\Users\Cesar\Documents\TTMSFNCCloudStellarDataStore.ini'
     PersistTokens.SaveClientID = True

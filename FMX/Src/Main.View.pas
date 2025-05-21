@@ -38,7 +38,7 @@ type
     DataSource1: TDataSource;
     pnHeader: TPanel;
     ImageLogo: TImage;
-    Label2: TLabel;
+    lbCaption: TLabel;
     TabControl1: TTabControl;
     tabAuthentication: TTabItem;
     gBoxAuthentication: TGroupBox;
@@ -84,6 +84,7 @@ type
     pnCount: TPanel;
     lbCount: TLabel;
     btnAdd: TButton;
+    ckAddImage: TCheckBox;
     procedure btnConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
@@ -308,22 +309,23 @@ begin
   TMSFNCCloudStellarDataStoreDataSetFMX1Price.AsFloat := StrToFloatDef(edtPrice.Text, 0);
   TMSFNCCloudStellarDataStoreDataSetFMX1Date.AsDateTime := edtDate.Date;
 
-  if ImageLogo.Bitmap.IsEmpty then
+  if ImageLogo.Bitmap.IsEmpty or (not ckAddImage.IsChecked) then
   begin
     TMSFNCCloudStellarDataStoreDataSetFMX1.Post;
-    Exit;
-  end;
+  end
+  else
+  begin
+    //RECORD IMAGE
+    LMemoryStream := TMemoryStream.Create;
+    try
+      ImageLogo.Bitmap.SaveToStream(LMemoryStream);
+      LMemoryStream.Position := 0;
 
-  //RECORD IMAGE
-  LMemoryStream := TMemoryStream.Create;
-  try
-    ImageLogo.Bitmap.SaveToStream(LMemoryStream);
-    LMemoryStream.Position := 0;
-
-    (TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField).LoadFromStream(LMemoryStream);
-    TMSFNCCloudStellarDataStoreDataSetFMX1.Post;
-  finally
-    LMemoryStream.Free;
+      (TMSFNCCloudStellarDataStoreDataSetFMX1Image as TBlobField).LoadFromStream(LMemoryStream);
+      TMSFNCCloudStellarDataStoreDataSetFMX1.Post;
+    finally
+      LMemoryStream.Free;
+    end;
   end;
 
   TabControlProducts.ActiveTab := tabList;
