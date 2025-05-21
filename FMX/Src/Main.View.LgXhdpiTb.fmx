@@ -2,27 +2,11 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
   ClientHeight = 829
   ClientWidth = 480
   DesignerMasterStyle = 3
-  inherited btnFooter: TPanel
-    Position.Y = 749.000000000000000000
-    Size.Width = 480.000000000000000000
-    inherited Label1: TLabel
-      Position.X = 378.000000000000000000
-    end
-    inherited lbCount: TLabel
-      Position.X = 441.000000000000000000
-    end
-    inherited btnAdd: TButton
-      Position.X = 15.000000000000000000
-      TextSettings.Font.Size = 11.000000000000000000
-    end
-    inherited btnRefresh: TButton
-      Position.X = 88.000000000000000000
-      TextSettings.Font.Size = 11.000000000000000000
-    end
+  inherited TMSFNCCloudStellarDataStoreConnection1: TTMSFNCCloudStellarDataStoreConnection [0]
   end
-  inherited pnHeader: TPanel
+  inherited pnHeader: TPanel [1]
     Size.Width = 480.000000000000000000
-    inherited Image1: TImage
+    inherited ImageLogo: TImage
       MultiResBitmap.Height = 64
       MultiResBitmap.Width = 64
     end
@@ -30,47 +14,116 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
       Size.Width = 390.000000000000000000
     end
   end
-  inherited pnBody: TPanel
+  inherited TabControl1: TTabControl [2]
     Size.Width = 480.000000000000000000
-    Size.Height = 698.000000000000000000
-    inherited gBoxAuthentication: TGroupBox
-      Size.Width = 480.000000000000000000
-      inherited lbAccessToken: TLabel
-        Size.Width = 450.000000000000000000
-      end
-      inherited edtAccessToken: TEdit
-        Size.Width = 450.000000000000000000
-      end
-      inherited lbProjectID: TLabel
-        Size.Width = 450.000000000000000000
-      end
-      inherited edtProjectID: TEdit
-        Size.Width = 450.000000000000000000
-      end
-      inherited lbTableName: TLabel
-        Size.Width = 450.000000000000000000
-      end
-      inherited edtTableName: TEdit
-        Size.Width = 450.000000000000000000
-      end
-      inherited Panel1: TPanel
-        Size.Width = 450.000000000000000000
-        inherited btnConnect: TButton
-          TextSettings.Font.Size = 11.000000000000000000
+    Size.Height = 778.000000000000000000
+    Sizes = (
+      480s
+      729s
+      480s
+      729s)
+    inherited tabAuthentication: TTabItem
+      Size.Width = 107.000000000000000000
+      ExplicitSize.cx = 64.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited gBoxAuthentication: TGroupBox
+        Size.Width = 480.000000000000000000
+        Size.Height = 729.000000000000000000
+        inherited lbAccessToken: TLabel
+          Size.Width = 450.000000000000000000
         end
-        inherited btnDisconnect: TButton
-          TextSettings.Font.Size = 11.000000000000000000
+        inherited edtAccessToken: TEdit
+          Size.Width = 450.000000000000000000
+        end
+        inherited lbProjectID: TLabel
+          Size.Width = 450.000000000000000000
+        end
+        inherited edtProjectID: TEdit
+          Size.Width = 450.000000000000000000
+        end
+        inherited lbTableName: TLabel
+          Size.Width = 450.000000000000000000
+        end
+        inherited edtTableName: TEdit
+          Size.Width = 450.000000000000000000
+        end
+        inherited Panel1: TPanel
+          Size.Width = 450.000000000000000000
         end
       end
     end
-    inherited gBoxProducts: TGroupBox
-      Size.Width = 480.000000000000000000
-      Size.Height = 497.000000000000000000
-      inherited ListBox1: TListBox
-        Size.Width = 450.000000000000000000
-        Size.Height = 472.000000000000000000
-        Viewport.Width = 296.300000000000000000
-        Viewport.Height = 97.400000000000000000
+    inherited tabProducts: TTabItem
+      Size.Width = 70.000000000000000000
+      ExplicitSize.cx = 64.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited TabControlProducts: TTabControl
+        Scale.X = 5.000000000000000000
+        Scale.Y = 4.000000000000000000
+        Size.Width = 96.000000000000000000
+        Size.Height = 182.250000000000000000
+        TouchTargetExpansion.Top = 50.000000000000000000
+        Sizes = (
+          96s
+          133.25s
+          480s
+          533s)
+        inherited tabList: TTabItem
+          Size.Width = 33.000000000000000000
+          ExplicitSize.cx = 64.000000000000000000
+          ExplicitSize.cy = 49.000000000000000000
+          inherited gBoxProducts: TGroupBox
+            Size.Width = 96.000000000000000000
+            Size.Height = 53.250000000000000000
+            inherited ListBox1: TListBox
+              Size.Width = 66.000000000000000000
+              Size.Height = 28.250000000000000000
+              Viewport.Width = 330.000000000000000000
+              Viewport.Height = 435.000000000000000000
+            end
+          end
+          inherited btnFooter: TPanel
+            Position.Y = 53.250000000000000000
+            Size.Width = 96.000000000000000000
+            inherited Label1: TLabel
+              Position.X = 18.000000000000000000
+            end
+            inherited lbCount: TLabel
+              Position.X = -6.000000000000000000
+            end
+          end
+        end
+        inherited tabRegister: TTabItem
+          Scale.X = 0.000000000000000000
+          Scale.Y = 0.000000000000000000
+          Size.Width = 63.000000000000000000
+          ExplicitSize.cx = 64.000000000000000000
+          ExplicitSize.cy = 49.000000000000000000
+          inherited Panel2: TPanel
+            Size.Width = 480.000000000000000000
+            Size.Height = 533.000000000000000000
+            inherited Panel3: TPanel
+              Size.Width = 450.000000000000000000
+            end
+            inherited Label3: TLabel
+              Size.Width = 450.000000000000000000
+            end
+            inherited edtPrice: TEdit
+              Size.Width = 450.000000000000000000
+            end
+            inherited Label4: TLabel
+              Size.Width = 450.000000000000000000
+            end
+            inherited edtName: TEdit
+              Size.Width = 450.000000000000000000
+            end
+            inherited Label5: TLabel
+              Size.Width = 450.000000000000000000
+            end
+            inherited edtDate: TDateEdit
+              Size.Width = 450.000000000000000000
+            end
+          end
+        end
       end
     end
   end

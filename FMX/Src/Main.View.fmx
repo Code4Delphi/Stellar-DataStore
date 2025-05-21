@@ -9,84 +9,6 @@ object MainView: TMainView
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 3
-  object TMSFNCCloudStellarDataStoreConnection1: TTMSFNCCloudStellarDataStoreConnection
-    Size.Width = 26.000000000000000000
-    Size.Height = 26.000000000000000000
-    Size.PlatformDefault = False
-    Position.X = 153.000000000000000000
-    Position.Y = 344.000000000000000000
-    Authentication.CallBackURL = 'http://127.0.0.1:8888'
-    Left = 592
-    Top = 36
-  end
-  object btnFooter: TPanel
-    Align = Bottom
-    Padding.Left = 15.000000000000000000
-    Padding.Right = 15.000000000000000000
-    Position.Y = 560.000000000000000000
-    Size.Width = 360.000000000000000000
-    Size.Height = 80.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 4
-    object Label1: TLabel
-      Align = Right
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 258.000000000000000000
-      Size.Width = 63.000000000000000000
-      Size.Height = 80.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.HorzAlign = Center
-      Text = 'Count:'
-      TabOrder = 1
-    end
-    object lbCount: TLabel
-      Align = Right
-      AutoSize = True
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 321.000000000000000000
-      Size.Width = 24.000000000000000000
-      Size.Height = 80.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = '0'
-      TabOrder = 0
-    end
-    object btnAdd: TButton
-      Align = Left
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 88.000000000000000000
-      Size.Width = 73.000000000000000000
-      Size.Height = 80.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 2
-      Text = 'Add'
-      TextSettings.Trimming = None
-      OnClick = btnAddClick
-    end
-    object btnRefresh: TButton
-      Align = Left
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 15.000000000000000000
-      Size.Width = 73.000000000000000000
-      Size.Height = 80.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 3
-      Text = 'Refresh'
-      TextSettings.Trimming = None
-      OnClick = btnRefreshClick
-    end
-    object Image2: TImage
-      MultiResBitmap = <
-        item
-        end>
-      Align = Left
-      Position.X = 161.000000000000000000
-      Size.Width = 72.000000000000000000
-      Size.Height = 80.000000000000000000
-      Size.PlatformDefault = False
-    end
-  end
   object pnHeader: TPanel
     Align = Top
     Padding.Left = 15.000000000000000000
@@ -97,7 +19,7 @@ object MainView: TMainView
     Size.Height = 51.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object Image1: TImage
+    object ImageLogo: TImage
       MultiResBitmap.Height = 64
       MultiResBitmap.Width = 64
       MultiResBitmap = <
@@ -210,6 +132,12 @@ object MainView: TMainView
       Size.Width = 50.000000000000000000
       Size.Height = 41.000000000000000000
       Size.PlatformDefault = False
+      object Edit1: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 0
+        Position.X = 24.000000000000000000
+        Position.Y = 32.000000000000000000
+      end
     end
     object Label2: TLabel
       Align = Client
@@ -221,156 +149,418 @@ object MainView: TMainView
       TabOrder = 1
     end
   end
-  object pnBody: TPanel
+  object TabControl1: TTabControl
     Align = Client
     Size.Width = 360.000000000000000000
-    Size.Height = 509.000000000000000000
+    Size.Height = 589.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 7
-    object gBoxAuthentication: TGroupBox
-      Align = Top
-      StyledSettings = [Family, Style, FontColor, Other]
-      Padding.Left = 15.000000000000000000
-      Padding.Top = 25.000000000000000000
-      Padding.Right = 15.000000000000000000
-      Size.Width = 360.000000000000000000
-      Size.Height = 201.000000000000000000
+    TabHeight = 49.000000000000000000
+    TabIndex = 1
+    TabOrder = 8
+    TabPosition = PlatformDefault
+    Sizes = (
+      360s
+      540s
+      360s
+      540s)
+    object tabAuthentication: TTabItem
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = False
+      Size.Width = 180.000000000000000000
+      Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
-      Text = 'Authentication'
-      TextSettings.Font.Size = 11.000000000000000000
+      StyleLookup = ''
       TabOrder = 0
-      object lbAccessToken: TLabel
-        Align = Top
-        StyledSettings = [Family, Style, FontColor]
-        Position.X = 15.000000000000000000
-        Position.Y = 25.000000000000000000
-        Size.Width = 330.000000000000000000
-        Size.Height = 12.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 10.000000000000000000
-        Text = 'Access token'
-        TabOrder = 39
-      end
-      object edtAccessToken: TEdit
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Align = Top
-        TabOrder = 42
-        Position.X = 15.000000000000000000
-        Position.Y = 37.000000000000000000
-        Size.Width = 330.000000000000000000
-        Size.Height = 32.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object lbProjectID: TLabel
-        Align = Top
-        StyledSettings = [Family, Style, FontColor]
-        Position.X = 15.000000000000000000
-        Position.Y = 69.000000000000000000
-        Size.Width = 330.000000000000000000
-        Size.Height = 12.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 10.000000000000000000
-        Text = 'Project ID'
-        TabOrder = 38
-      end
-      object edtProjectID: TEdit
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Align = Top
-        TabOrder = 41
-        Position.X = 15.000000000000000000
-        Position.Y = 81.000000000000000000
-        Size.Width = 330.000000000000000000
-        Size.Height = 32.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object lbTableName: TLabel
-        Align = Top
-        StyledSettings = [Family, Style, FontColor]
-        Position.X = 15.000000000000000000
-        Position.Y = 113.000000000000000000
-        Size.Width = 330.000000000000000000
-        Size.Height = 12.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 10.000000000000000000
-        Text = 'Table name'
-        TabOrder = 37
-      end
-      object edtTableName: TEdit
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Align = Top
-        TabOrder = 40
-        Position.X = 15.000000000000000000
-        Position.Y = 125.000000000000000000
-        Size.Width = 330.000000000000000000
-        Size.Height = 32.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object Panel1: TPanel
-        Align = Top
-        Position.X = 15.000000000000000000
-        Position.Y = 157.000000000000000000
-        Size.Width = 330.000000000000000000
-        Size.Height = 34.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 43
-        object btnConnect: TButton
-          Align = Left
-          StyledSettings = [Family, Style, FontColor]
-          Size.Width = 164.000000000000000000
-          Size.Height = 34.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 1
-          Text = 'Connect'
-          TextSettings.Trimming = None
-          OnClick = btnConnectClick
-        end
-        object btnDisconnect: TButton
-          Align = Left
-          StyledSettings = [Family, Style, FontColor]
-          Position.X = 164.000000000000000000
-          Size.Width = 165.000000000000000000
-          Size.Height = 34.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          Text = 'Disconnect'
-          TextSettings.Trimming = None
-          OnClick = btnDisconnectClick
-        end
-      end
-    end
-    object gBoxProducts: TGroupBox
-      Align = Client
-      StyledSettings = [Family, Style, FontColor, Other]
-      Padding.Left = 15.000000000000000000
-      Padding.Top = 25.000000000000000000
-      Padding.Right = 15.000000000000000000
-      Size.Width = 360.000000000000000000
-      Size.Height = 308.000000000000000000
-      Size.PlatformDefault = False
-      Text = 'Products'
-      TextSettings.Font.Size = 11.000000000000000000
-      TabOrder = 4
-      object ListBox1: TListBox
+      Text = 'Authentication'
+      object gBoxAuthentication: TGroupBox
         Align = Client
-        Size.Width = 330.000000000000000000
-        Size.Height = 283.000000000000000000
+        StyledSettings = [Family, Style, FontColor, Other]
+        Padding.Left = 15.000000000000000000
+        Padding.Top = 25.000000000000000000
+        Padding.Right = 15.000000000000000000
+        Size.Width = 360.000000000000000000
+        Size.Height = 540.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 6
-        ShowSizeGrip = True
-        DisableFocusEffect = True
-        Items.Strings = (
-          'Item 01'
-          'Item 02'
-          'Item 03'
-          'Item 04')
-        DefaultItemStyles.ItemStyle = ''
-        DefaultItemStyles.GroupHeaderStyle = ''
-        DefaultItemStyles.GroupFooterStyle = ''
-        ShowCheckboxes = True
-        Viewport.Width = 330.000000000000000000
-        Viewport.Height = 283.000000000000000000
+        TextSettings.Font.Size = 11.000000000000000000
+        TabOrder = 0
+        object lbAccessToken: TLabel
+          Align = Top
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 15.000000000000000000
+          Position.Y = 25.000000000000000000
+          Size.Width = 330.000000000000000000
+          Size.Height = 12.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 11.000000000000000000
+          Text = 'Access token'
+          TabOrder = 39
+        end
+        object edtAccessToken: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 42
+          Position.X = 15.000000000000000000
+          Position.Y = 37.000000000000000000
+          Size.Width = 330.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lbProjectID: TLabel
+          Align = Top
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 15.000000000000000000
+          Position.Y = 69.000000000000000000
+          Size.Width = 330.000000000000000000
+          Size.Height = 12.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 11.000000000000000000
+          Text = 'Project ID'
+          TabOrder = 38
+        end
+        object edtProjectID: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 41
+          Position.X = 15.000000000000000000
+          Position.Y = 81.000000000000000000
+          Size.Width = 330.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lbTableName: TLabel
+          Align = Top
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 15.000000000000000000
+          Position.Y = 113.000000000000000000
+          Size.Width = 330.000000000000000000
+          Size.Height = 12.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 11.000000000000000000
+          Text = 'Table name'
+          TabOrder = 37
+        end
+        object edtTableName: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 40
+          Position.X = 15.000000000000000000
+          Position.Y = 125.000000000000000000
+          Size.Width = 330.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Panel1: TPanel
+          Align = Top
+          Margins.Top = 10.000000000000000000
+          Position.X = 15.000000000000000000
+          Position.Y = 167.000000000000000000
+          Size.Width = 330.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 43
+          object btnConnect: TButton
+            Align = Left
+            StyledSettings = [Family, Style, FontColor]
+            Size.Width = 164.000000000000000000
+            Size.Height = 34.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            Text = 'Connect'
+            TextSettings.Trimming = None
+            OnClick = btnConnectClick
+          end
+          object btnDisconnect: TButton
+            Align = Left
+            StyledSettings = [Family, Style, FontColor]
+            Position.X = 164.000000000000000000
+            Size.Width = 165.000000000000000000
+            Size.Height = 34.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Disconnect'
+            TextSettings.Trimming = None
+            OnClick = btnDisconnectClick
+          end
+        end
       end
     end
+    object tabProducts: TTabItem
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = True
+      Size.Width = 180.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Products'
+      object TabControlProducts: TTabControl
+        Align = Client
+        Size.Width = 360.000000000000000000
+        Size.Height = 540.000000000000000000
+        Size.PlatformDefault = False
+        TabHeight = 49.000000000000000000
+        TabIndex = 1
+        TabOrder = 5
+        TabPosition = PlatformDefault
+        Sizes = (
+          360s
+          491s
+          360s
+          491s)
+        object tabList: TTabItem
+          CustomIcon = <
+            item
+            end>
+          TextSettings.Trimming = None
+          IsSelected = False
+          Size.Width = 180.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'List'
+          object gBoxProducts: TGroupBox
+            Align = Client
+            StyledSettings = [Family, Style, FontColor, Other]
+            Padding.Left = 15.000000000000000000
+            Padding.Top = 25.000000000000000000
+            Padding.Right = 15.000000000000000000
+            Size.Width = 360.000000000000000000
+            Size.Height = 411.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 11.000000000000000000
+            TabOrder = 3
+            object ListBox1: TListBox
+              Align = Client
+              Size.Width = 330.000000000000000000
+              Size.Height = 386.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 6
+              ShowSizeGrip = True
+              DisableFocusEffect = True
+              Items.Strings = (
+                'Item 01'
+                'Item 02'
+                'Item 03'
+                'Item 04')
+              DefaultItemStyles.ItemStyle = ''
+              DefaultItemStyles.GroupHeaderStyle = ''
+              DefaultItemStyles.GroupFooterStyle = ''
+              ShowCheckboxes = True
+              Viewport.Width = 330.000000000000000000
+              Viewport.Height = 386.000000000000000000
+            end
+          end
+          object btnFooter: TPanel
+            Align = Bottom
+            Padding.Left = 15.000000000000000000
+            Padding.Right = 15.000000000000000000
+            Position.Y = 411.000000000000000000
+            Size.Width = 360.000000000000000000
+            Size.Height = 80.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 5
+            object Label1: TLabel
+              Align = Right
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 258.000000000000000000
+              Size.Width = 63.000000000000000000
+              Size.Height = 80.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 11.000000000000000000
+              TextSettings.HorzAlign = Center
+              Text = 'Count:'
+              TabOrder = 1
+            end
+            object lbCount: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 321.000000000000000000
+              Size.Width = 24.000000000000000000
+              Size.Height = 80.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 11.000000000000000000
+              Text = '0'
+              TabOrder = 0
+            end
+            object btnAdd: TButton
+              Align = Left
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 88.000000000000000000
+              Size.Width = 73.000000000000000000
+              Size.Height = 80.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              Text = 'Add'
+              TextSettings.Trimming = None
+            end
+            object btnRefresh: TButton
+              Align = Left
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 15.000000000000000000
+              Size.Width = 73.000000000000000000
+              Size.Height = 80.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+              Text = 'Refresh'
+              TextSettings.Trimming = None
+              OnClick = btnRefreshClick
+            end
+            object Image2: TImage
+              MultiResBitmap = <
+                item
+                end>
+              Align = Left
+              Position.X = 161.000000000000000000
+              Size.Width = 72.000000000000000000
+              Size.Height = 80.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+        object tabRegister: TTabItem
+          CustomIcon = <
+            item
+            end>
+          TextSettings.Trimming = None
+          IsSelected = True
+          Size.Width = 180.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'Register'
+          object Panel2: TPanel
+            Align = Client
+            Padding.Left = 15.000000000000000000
+            Padding.Top = 25.000000000000000000
+            Padding.Right = 15.000000000000000000
+            Size.Width = 360.000000000000000000
+            Size.Height = 491.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Panel3: TPanel
+              Align = Top
+              Margins.Top = 10.000000000000000000
+              Position.X = 15.000000000000000000
+              Position.Y = 207.000000000000000000
+              Size.Width = 330.000000000000000000
+              Size.Height = 34.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 41
+              object btnSave: TButton
+                Align = Left
+                StyledSettings = [Family, Style, FontColor]
+                Size.Width = 164.000000000000000000
+                Size.Height = 34.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                Text = 'Save'
+                TextSettings.Trimming = None
+                OnClick = btnSaveClick
+              end
+              object btnCancel: TButton
+                Align = Left
+                StyledSettings = [Family, Style, FontColor]
+                Position.X = 164.000000000000000000
+                Size.Width = 165.000000000000000000
+                Size.Height = 34.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                Text = 'Cancel'
+                TextSettings.Trimming = None
+                OnClick = btnCancelClick
+              end
+            end
+            object Label3: TLabel
+              Align = Top
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 15.000000000000000000
+              Position.Y = 153.000000000000000000
+              Size.Width = 330.000000000000000000
+              Size.Height = 12.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 11.000000000000000000
+              Text = 'Date'
+              TabOrder = 36
+            end
+            object edtPrice: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Top
+              TabOrder = 39
+              Position.X = 15.000000000000000000
+              Position.Y = 101.000000000000000000
+              Margins.Bottom = 20.000000000000000000
+              Size.Width = 330.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+            end
+            object Label4: TLabel
+              Align = Top
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 15.000000000000000000
+              Position.Y = 89.000000000000000000
+              Size.Width = 330.000000000000000000
+              Size.Height = 12.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 11.000000000000000000
+              Text = 'Price'
+              TabOrder = 37
+            end
+            object edtName: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Top
+              TabOrder = 40
+              Position.X = 15.000000000000000000
+              Position.Y = 37.000000000000000000
+              Margins.Bottom = 20.000000000000000000
+              Size.Width = 330.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+            end
+            object Label5: TLabel
+              Align = Top
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 15.000000000000000000
+              Position.Y = 25.000000000000000000
+              Size.Width = 330.000000000000000000
+              Size.Height = 12.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 11.000000000000000000
+              Text = 'Name'
+              TabOrder = 38
+            end
+            object edtDate: TDateEdit
+              Date = 45797.000000000000000000
+              Align = Top
+              Position.X = 15.000000000000000000
+              Position.Y = 165.000000000000000000
+              Size.Width = 330.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 42
+            end
+          end
+        end
+      end
+    end
+  end
+  object TMSFNCCloudStellarDataStoreConnection1: TTMSFNCCloudStellarDataStoreConnection
+    Size.Width = 26.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    Position.X = 111.000000000000000000
+    Position.Y = 408.000000000000000000
+    Authentication.CallBackURL = 'http://127.0.0.1:8888'
+    Left = 592
+    Top = 36
   end
   object TMSFNCCloudStellarDataStoreDataSetFMX1: TTMSFNCCloudStellarDataStoreDataSetFMX
     Connection = TMSFNCCloudStellarDataStoreConnection1
@@ -378,13 +568,13 @@ object MainView: TMainView
     SortOrder = <>
     Filter = <>
     FieldDefs = <>
-    Left = 152
-    Top = 416
+    Left = 110
+    Top = 464
   end
   object DataSource1: TDataSource
     DataSet = TMSFNCCloudStellarDataStoreDataSetFMX1
     OnStateChange = DataSource1StateChange
-    Left = 144
-    Top = 480
+    Left = 118
+    Top = 520
   end
 end
