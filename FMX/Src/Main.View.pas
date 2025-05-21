@@ -70,6 +70,11 @@ type
     edtDate: TDateEdit;
     pnStatus: TPanel;
     lbStatus: TLabel;
+    TMSFNCCloudStellarDataStoreDataSetFMX1id: TIntegerField;
+    TMSFNCCloudStellarDataStoreDataSetFMX1Name: TStringField;
+    TMSFNCCloudStellarDataStoreDataSetFMX1Price: TFloatField;
+    TMSFNCCloudStellarDataStoreDataSetFMX1Date: TDateTimeField;
+    TMSFNCCloudStellarDataStoreDataSetFMX1Image: TBlobField;
     procedure btnConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
@@ -83,6 +88,9 @@ type
     procedure FillListBox;
     procedure LoadImageToImage;
     procedure RefreshProducts;
+    procedure LoadImageToImage2;
+    procedure TentarCarregarImagem;
+    procedure CarregarImagemDoDataset;
   public
 
   end;
@@ -189,7 +197,93 @@ procedure TMainView.ListBox1ItemClick(const Sender: TCustomListBox; const Item: 
 begin
   lbStatus.Text := 'Item id ' + Item.Tag.ToString;
   TMSFNCCloudStellarDataStoreDataSetFMX1.Locate('id', Item.Tag, [loCaseInsensitive]);
-  Self.LoadImageToImage;
+  Self.CarregarImagemDoDataset;
+end;
+
+procedure TMainView.CarregarImagemDoDataset;
+var
+  BlobField: TBlobField;
+  Stream: TStream;
+begin
+  imgProduct.Bitmap := nil;
+
+  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
+    Exit;
+
+  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
+
+  if TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') is TBlobField then
+  begin
+    BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') as TBlobField;
+    Stream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(BlobField, bmRead);
+    try
+      if Stream.Size > 0 then
+      begin
+        Stream.Position := 0;
+        imgProduct.Bitmap.LoadFromStream(Stream);
+      end;
+    finally
+      Stream.Free;
+    end;
+  end;
+end;
+
+procedure TMainView.TentarCarregarImagem;
+var
+  BlobField: TBlobField;
+  Stream: TStream;
+begin
+  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
+    Exit;
+
+  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
+
+  try
+    BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') as TBlobField;
+    Stream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(BlobField, bmRead);
+    try
+      if Stream.Size > 0 then
+      begin
+        Stream.Position := 0;
+        imgProduct.Bitmap.LoadFromStream(Stream);
+      end;
+    finally
+      Stream.Free;
+    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro ao carregar imagem: ' + E.Message);
+  end;
+end;
+
+procedure TMainView.LoadImageToImage2;
+var
+  BlobField: TBlobField;
+  Stream: TStream;
+begin
+  // Verifica se o DataSet está ativo
+  if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
+    Exit;
+
+  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
+
+  // Obtém o campo BLOB
+  BlobField := TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') as TBlobField;
+
+  // Verifica se o campo não está vazio
+  if not BlobField.IsNull then
+  begin
+    // Cria um stream para ler os dados do BLOB
+    Stream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(BlobField, bmRead);
+    try
+      // Carrega a imagem do stream para o TImage
+      imgProduct.Bitmap.LoadFromStream(Stream);
+    finally
+      Stream.Free;
+    end;
+  end
+  else
+    imgProduct.Bitmap := nil;
 end;
 
 procedure TMainView.LoadImageToImage;
@@ -199,15 +293,16 @@ begin
   if not TMSFNCCloudStellarDataStoreDataSetFMX1.Active then
     Exit;
 
-  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image').AsString;
-  if TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image').IsNull then
+  lbStatus.Text := 'Item id ' + TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Id').AsString + ' - Img: ' + TMSFNCCloudStellarDataStoreDataSetFMX1Image.AsString;
+  //if TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image').IsNull then
+  if TMSFNCCloudStellarDataStoreDataSetFMX1Image.IsNull then
   begin
     imgProduct.Bitmap := nil;
     Exit;
   end;
 
   LStream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(
-    TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image'), bmRead);
+    TMSFNCCloudStellarDataStoreDataSetFMX1Image, bmRead);
   try
     if LStream.Size > 0 then
     begin
@@ -255,13 +350,16 @@ begin
     ImageLogo.Bitmap.SaveToStream(LMemoryStream);
     LMemoryStream.Position := 0;
 
-    LBlobStream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(
+    (TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image') as TBlobField).LoadFromStream(LMemoryStream);
+
+
+   { LBlobStream := TMSFNCCloudStellarDataStoreDataSetFMX1.CreateBlobStream(
       TMSFNCCloudStellarDataStoreDataSetFMX1.FieldByName('Image'), bmWrite);
     try
       LBlobStream.CopyFrom(LMemoryStream, LMemoryStream.Size);
     finally
       LBlobStream.Free;
-    end;
+    end; }
 
     TMSFNCCloudStellarDataStoreDataSetFMX1.Post;
   finally
