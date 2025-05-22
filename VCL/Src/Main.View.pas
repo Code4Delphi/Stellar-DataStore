@@ -8,6 +8,7 @@ uses
   System.SysUtils,
   System.Variants,
   System.Classes,
+  System.TypInfo,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
@@ -15,13 +16,14 @@ uses
   Vcl.StdCtrls,
   Vcl.ExtCtrls,
   Data.DB,
-  VCL.TMSFNCCloudStellarDataStoreDataSet,
-  VCL.TMSFNCCustomComponent,
   Vcl.Buttons,
   Vcl.DBCtrls,
   Vcl.Grids,
   Vcl.DBGrids,
-  IniFiles;
+  IniFiles,
+  VCL.TMSFNCCloudStellarDataStoreDataSet,
+  VCL.TMSFNCCustomComponent,
+  VCL.TMSFNCCloudDataStore;
 
 type
   TMainView = class(TForm)
@@ -53,16 +55,30 @@ type
     Label10: TLabel;
     rdDirectAccessToken: TRadioButton;
     rdOAuth2: TRadioButton;
+    cBoxSortOrder: TComboBox;
+    Label5: TLabel;
+    btnRefresh: TBitBtn;
+    cBoxFilter: TComboBox;
+    Label6: TLabel;
+    edtFilter: TEdit;
+    cBoxComparisonOperator: TComboBox;
+    Label11: TLabel;
+    Label12: TLabel;
+    Shape1: TShape;
     procedure btnConnectClick(Sender: TObject);
     procedure btnDisconnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
     procedure rdDirectAccessTokenClick(Sender: TObject);
     procedure rdOAuth2Click(Sender: TObject);
+    procedure btnRefreshClick(Sender: TObject);
   private
     procedure SaveSettingsIni;
     procedure LoadSettingsIni;
     procedure ConfigScreen;
+    procedure ProcessOrder;
+    procedure ProcessFilters;
+    procedure FillcBoxComparisonOperator;
   public
 
   end;
@@ -76,8 +92,22 @@ implementation
 
 procedure TMainView.FormCreate(Sender: TObject);
 begin
+  ReportMemoryLeaksOnShutdown := True;
   Self.LoadSettingsIni;
   Self.ConfigScreen;
+
+  Self.FillcBoxComparisonOperator;
+end;
+
+procedure TMainView.FillcBoxComparisonOperator;
+var
+  i: Integer;
+begin
+  cBoxComparisonOperator.Items.Clear;
+  for i := Ord(Low(TTMSFNCCloudComparisonOperator)) to Ord(High(TTMSFNCCloudComparisonOperator)) do
+    cBoxComparisonOperator.Items.Add(GetEnumName(TypeInfo(TTMSFNCCloudComparisonOperator), i));
+
+  cBoxComparisonOperator.ItemIndex := Integer(coLike);
 end;
 
 procedure TMainView.SaveSettingsIni;
@@ -167,6 +197,41 @@ procedure TMainView.btnDisconnectClick(Sender: TObject);
 begin
   TMSFNCCloudStellarDataStoreDataSetVCL1.Active := False;
   Self.ConfigScreen;
+end;
+
+procedure TMainView.ProcessOrder;
+var
+  LSort: TTMSFNCCloudDataStoreSortOrderItem;
+begin
+  TMSFNCCloudStellarDataStoreDataSetVCL1.SortOrder.Clear;
+  LSort := TMSFNCCloudStellarDataStoreDataSetVCL1.SortOrder.Add;
+  LSort.FieldName := cBoxSortOrder.Text;
+  LSort.SortOrder := soAscending;
+end;
+
+procedure TMainView.ProcessFilters;
+var
+  LFilter: TTMSFNCCloudDataStoreFilter;
+begin
+  TMSFNCCloudStellarDataStoreDataSetVCL1.Filter.Clear;
+  LFilter := TMSFNCCloudStellarDataStoreDataSetVCL1.Filter.Add;
+
+  LFilter.FieldName := cBoxFilter.Text;
+  LFilter.ComparisonOperator := TTMSFNCCloudComparisonOperator(cBoxComparisonOperator.ItemIndex);
+
+  LFilter.FieldValue := edtFilter.Text;
+  if LFilter.ComparisonOperator = coLike then
+    LFilter.FieldValue := '%' + LFilter.FieldValue + '%';
+
+  LFilter.LogicalOperator := loOr;
+end;
+
+procedure TMainView.btnRefreshClick(Sender: TObject);
+begin
+  TMSFNCCloudStellarDataStoreDataSetVCL1.Active := False;
+  Self.ProcessOrder;
+  Self.ProcessFilters;
+  TMSFNCCloudStellarDataStoreDataSetVCL1.Active := True;
 end;
 
 end.
