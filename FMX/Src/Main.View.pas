@@ -75,7 +75,6 @@ type
     TMSFNCCloudStellarDataStoreDataSetFMX1Price: TFloatField;
     TMSFNCCloudStellarDataStoreDataSetFMX1Date: TDateTimeField;
     TMSFNCCloudStellarDataStoreDataSetFMX1Image: TBlobField;
-    Panel4: TPanel;
     btnLoadImg: TButton;
     edtEdit: TButton;
     btnDelete: TButton;
@@ -100,7 +99,6 @@ type
     procedure btnAddClick(Sender: TObject);
   private
     FIdAlter: Integer;
-    FIdFoco: Integer;
     procedure ConfigScreen;
     procedure FillListBox;
     procedure RefreshProducts;
@@ -129,7 +127,6 @@ begin
   edtAccessToken.Text := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2Nlc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6IjU5MjQzOWY2LThjYjYtNDhiZS0xMzM4LTA4ZGQ5MGZjZGQ4NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJhZGEiLCJleHAiOjE3NDgxMTY1NDAsImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLmlvIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.YDWuGl-Y7Cp3ThHRj0NtZxdpQikreNtDe7s0oOtJHHA';
   edtProjectID.Text := '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada';
   edtTableName.Text := 'products';
-  Panel4.Visible := False;
 end;
 
 procedure TMainView.ClearOnCreate;
@@ -228,10 +225,6 @@ begin
     LListBoxItem := TListBoxItem.Create(ListBox1);
     LListBoxItem.Text := Format('%s | %.2f | %s', [LName, LPrice, LDate]);
     LListBoxItem.Tag := TMSFNCCloudStellarDataStoreDataSetFMX1Id.Asinteger;
-
-    if LListBoxItem.Tag = FIdFoco then
-      LListBoxItem.IsSelected := True;
-
     ListBox1.AddObject(LListBoxItem);
 
     TMSFNCCloudStellarDataStoreDataSetFMX1.Next;
@@ -331,8 +324,6 @@ begin
       LMemoryStream.Free;
     end;
   end;
-
-  FIdFoco := TMSFNCCloudStellarDataStoreDataSetFMX1id.AsInteger;
 
   TabControlProducts.ActiveTab := tabList;
   Self.ClearFieldsRegister;

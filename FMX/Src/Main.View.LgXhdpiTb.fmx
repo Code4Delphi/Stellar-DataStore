@@ -70,7 +70,9 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
             Size.Width = 480.000000000000000000
             Size.Height = 576.000000000000000000
             inherited ListBox1: TListBox
-              Size.Width = 450.000000000000000000
+              Position.X = 15.000003814697270000
+              Position.Y = 24.370277404785160000
+              Size.Width = 450.000122070312500000
               Size.Height = 551.426635742187500000
               Viewport.Width = 330.000000000000000000
               Viewport.Height = 435.000000000000000000
@@ -79,8 +81,23 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
           inherited btnFooter: TPanel
             Position.Y = 596.000000000000000000
             Size.Width = 480.000000000000000000
+            inherited btnRefresh: TButton
+              Size.Height = 74.000000000000000000
+            end
             inherited imgProduct: TImage
               Position.X = 391.000000000000000000
+            end
+            inherited btnLoadImg: TButton
+              Size.Height = 74.000000000000000000
+            end
+            inherited edtEdit: TButton
+              Size.Height = 74.000000000000000000
+            end
+            inherited btnDelete: TButton
+              Size.Height = 74.000000000000000000
+            end
+            inherited btnAdd: TButton
+              Size.Height = 74.000000000000000000
             end
           end
           inherited pnCount: TPanel
@@ -98,31 +115,38 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
           ExplicitSize.cx = 180.000000000000000000
           ExplicitSize.cy = 49.000000000000000000
           inherited pnRegisterBack: TPanel
-            Size.Width = 480.000000000000000000
-            Size.Height = 680.000000000000000000
+            Position.Y = -11.549894332885740000
+            Size.Width = 640.000122070312500000
+            Size.Height = 941.751586914062500000
             inherited pnButtonsRegister: TPanel
-              Size.Width = 450.000000000000000000
+              Size.Width = 610.000122070312500000
+              inherited btnSave: TButton
+                Size.Height = 49.000000000000000000
+              end
+              inherited btnCancel: TButton
+                Size.Height = 49.000000000000000000
+              end
             end
             inherited Label3: TLabel
-              Size.Width = 450.000000000000000000
+              Size.Width = 610.000122070312500000
             end
             inherited edtPrice: TEdit
-              Size.Width = 450.000000000000000000
+              Size.Width = 610.000122070312500000
             end
             inherited Label4: TLabel
-              Size.Width = 450.000000000000000000
+              Size.Width = 610.000122070312500000
             end
             inherited edtName: TEdit
-              Size.Width = 450.000000000000000000
+              Size.Width = 610.000122070312500000
             end
             inherited Label5: TLabel
-              Size.Width = 450.000000000000000000
+              Size.Width = 610.000122070312500000
             end
             inherited edtDate: TDateEdit
-              Size.Width = 450.000000000000000000
+              Size.Width = 610.000122070312500000
             end
             inherited ckAddImage: TCheckBox
-              Size.Width = 450.000000000000000000
+              Size.Width = 610.000122070312500000
             end
           end
         end

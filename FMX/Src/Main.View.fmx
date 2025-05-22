@@ -142,11 +142,6 @@ object MainView: TMainView
       Text = 'StellarDS with Delphi'
       TabOrder = 1
     end
-    object Panel4: TPanel
-      Position.X = -9.000000000000000000
-      Position.Y = -48.000000000000000000
-      TabOrder = 2
-    end
   end
   object TabControl1: TTabControl
     Align = Client
@@ -154,7 +149,7 @@ object MainView: TMainView
     Size.Height = 589.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 6
     TabPosition = PlatformDefault
     Sizes = (
@@ -167,7 +162,7 @@ object MainView: TMainView
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 180.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
@@ -293,7 +288,7 @@ object MainView: TMainView
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 180.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
@@ -308,7 +303,7 @@ object MainView: TMainView
         Size.Height = 540.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
-        TabIndex = 1
+        TabIndex = 0
         TabOrder = 5
         TabPosition = PlatformDefault
         Sizes = (
@@ -321,7 +316,7 @@ object MainView: TMainView
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = False
+          IsSelected = True
           Size.Width = 180.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
@@ -343,10 +338,10 @@ object MainView: TMainView
             TabOrder = 3
             object ListBox1: TListBox
               Align = Scale
-              Position.X = 15.000000000000000000
-              Position.Y = 24.370277404785160000
+              Position.X = 15.000000953674320000
+              Position.Y = 24.370275497436520000
               Size.Width = 330.000000000000000000
-              Size.Height = 362.629699707031300000
+              Size.Height = 362.629669189453100000
               Size.PlatformDefault = False
               TabOrder = 6
               ShowSizeGrip = True
@@ -497,7 +492,7 @@ object MainView: TMainView
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 180.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
@@ -512,7 +507,7 @@ object MainView: TMainView
             Padding.Top = 25.000000000000000000
             Padding.Right = 15.000000000000000000
             Position.Y = -8.339702606201172000
-            Size.Width = 360.000000000000000000
+            Size.Width = 360.000030517578100000
             Size.Height = 491.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
@@ -521,7 +516,7 @@ object MainView: TMainView
               Margins.Top = 10.000000000000000000
               Position.X = 15.000000000000000000
               Position.Y = 216.000000000000000000
-              Size.Width = 330.000000000000000000
+              Size.Width = 330.000030517578100000
               Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 41
@@ -556,7 +551,7 @@ object MainView: TMainView
               StyledSettings = [Family, Style, FontColor]
               Position.X = 15.000000000000000000
               Position.Y = 133.000000000000000000
-              Size.Width = 330.000000000000000000
+              Size.Width = 330.000030517578100000
               Size.Height = 12.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 11.000000000000000000
@@ -570,7 +565,7 @@ object MainView: TMainView
               Position.X = 15.000000000000000000
               Position.Y = 91.000000000000000000
               Margins.Bottom = 10.000000000000000000
-              Size.Width = 330.000000000000000000
+              Size.Width = 330.000030517578100000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
             end
@@ -579,7 +574,7 @@ object MainView: TMainView
               StyledSettings = [Family, Style, FontColor]
               Position.X = 15.000000000000000000
               Position.Y = 79.000000000000000000
-              Size.Width = 330.000000000000000000
+              Size.Width = 330.000030517578100000
               Size.Height = 12.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 11.000000000000000000
@@ -593,7 +588,7 @@ object MainView: TMainView
               Position.X = 15.000000000000000000
               Position.Y = 37.000000000000000000
               Margins.Bottom = 10.000000000000000000
-              Size.Width = 330.000000000000000000
+              Size.Width = 330.000030517578100000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
             end
@@ -602,7 +597,7 @@ object MainView: TMainView
               StyledSettings = [Family, Style, FontColor]
               Position.X = 15.000000000000000000
               Position.Y = 25.000000000000000000
-              Size.Width = 330.000000000000000000
+              Size.Width = 330.000030517578100000
               Size.Height = 12.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 11.000000000000000000
@@ -615,7 +610,7 @@ object MainView: TMainView
               Margins.Bottom = 10.000000000000000000
               Position.X = 15.000000000000000000
               Position.Y = 145.000000000000000000
-              Size.Width = 330.000000000000000000
+              Size.Width = 330.000030517578100000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 42
@@ -625,7 +620,7 @@ object MainView: TMainView
               IsChecked = True
               Position.X = 15.000000000000000000
               Position.Y = 187.000000000000000000
-              Size.Width = 330.000000000000000000
+              Size.Width = 330.000030517578100000
               Size.Height = 19.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 43
