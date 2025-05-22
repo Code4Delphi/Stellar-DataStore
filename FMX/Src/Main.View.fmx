@@ -149,7 +149,7 @@ object MainView: TMainView
     Size.Height = 589.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 6
     TabPosition = PlatformDefault
     Sizes = (
@@ -162,7 +162,7 @@ object MainView: TMainView
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 180.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
@@ -288,7 +288,7 @@ object MainView: TMainView
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 180.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
@@ -303,7 +303,7 @@ object MainView: TMainView
         Size.Height = 540.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 5
         TabPosition = PlatformDefault
         Sizes = (
@@ -316,7 +316,7 @@ object MainView: TMainView
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 180.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
@@ -338,10 +338,10 @@ object MainView: TMainView
             TabOrder = 3
             object ListBox1: TListBox
               Align = Scale
-              Position.X = 15.000000953674320000
-              Position.Y = 24.370275497436520000
+              Position.X = 11.000001907348630000
+              Position.Y = 15.999999046325680000
               Size.Width = 330.000000000000000000
-              Size.Height = 362.629669189453100000
+              Size.Height = 362.999969482421900000
               Size.PlatformDefault = False
               TabOrder = 6
               ShowSizeGrip = True
@@ -354,7 +354,7 @@ object MainView: TMainView
               DefaultItemStyles.GroupFooterStyle = ''
               OnItemClick = ListBox1ItemClick
               Viewport.Width = 330.000000000000000000
-              Viewport.Height = 362.600000000000000000
+              Viewport.Height = 363.000000000000000000
             end
           end
           object btnFooter: TPanel
@@ -492,7 +492,7 @@ object MainView: TMainView
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = False
+          IsSelected = True
           Size.Width = 180.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
@@ -694,11 +694,5 @@ object MainView: TMainView
     object TMSFNCCloudStellarDataStoreDataSetFMX1Image: TBlobField
       FieldName = 'Image'
     end
-  end
-  object DataSource1: TDataSource
-    DataSet = TMSFNCCloudStellarDataStoreDataSetFMX1
-    OnStateChange = DataSource1StateChange
-    Left = 110
-    Top = 520
   end
 end

@@ -253,21 +253,19 @@ object MainView: TMainView
       Left = 765
       Top = 1
       Width = 6
-      Height = 24
+      Height = 15
       Align = alRight
       Caption = '0'
       Layout = tlCenter
-      ExplicitHeight = 15
     end
     object Label10: TLabel
       Left = 726
       Top = 1
       Width = 39
-      Height = 24
+      Height = 15
       Align = alRight
       Caption = 'Count: '
       Layout = tlCenter
-      ExplicitHeight = 15
     end
   end
   object TMSFNCCloudStellarDataStoreDataSetVCL1: TTMSFNCCloudStellarDataStoreDataSetVCL
