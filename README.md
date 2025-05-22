@@ -19,6 +19,7 @@ Além disso, o Stellar DataStore oferece suporte nativo e descomplicado a **API 
 ## ▶️ Vídeos de demonstração dos projetos no Youtube
 - [Stellar DataStore com Delphi #01: Demonstração prática com VCL](https://www.youtube.com/watch?v=8we50_Hjtuo&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
 - [Stellar DataStore com Delphi #02: Aplicações Web](https://www.youtube.com/watch?v=gwuBX6iVXn0&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
+- [Stellar DataStore com Delphi #03: Aplicações Mobile FMX](https://www.youtube.com/watch?v=D_jLlOIIr-A&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
 
 ## 📝 Postagem completa
 [Acessar postagem completo com informações sobre Stellar DataStore com Delphi](https://code4delphi.com.br/blog/stellar-datastore-com-delphi/)
