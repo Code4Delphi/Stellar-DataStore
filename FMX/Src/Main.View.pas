@@ -82,6 +82,8 @@ type
     btnAdd: TButton;
     ckAddImage: TCheckBox;
     lbStatus: TLabel;
+    lbTableId: TLabel;
+    edtTableId: TEdit;
     procedure btnConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DataSource1StateChange(Sender: TObject);
@@ -161,6 +163,7 @@ begin
   //Others
   TMSFNCCloudStellarDataStoreDataSetFMX1.ProjectID := edtProjectID.Text;
   TMSFNCCloudStellarDataStoreDataSetFMX1.Table := edtTableName.Text;
+  TMSFNCCloudStellarDataStoreDataSetFMX1.TableID := StrToIntDef(edtTableId.Text, -1);
 
   TMSFNCCloudStellarDataStoreDataSetFMX1.Active := True;
 

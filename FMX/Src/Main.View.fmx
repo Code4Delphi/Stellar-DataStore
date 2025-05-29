@@ -180,11 +180,13 @@ object MainView: TMainView
         Size.Width = 360.000000000000000000
         Size.Height = 540.000000000000000000
         Size.PlatformDefault = False
+        Text = 'Authentication'
         TextSettings.Font.Size = 11.000000000000000000
         TabOrder = 0
         object lbAccessToken: TLabel
           Align = Top
           StyledSettings = [Family, Style, FontColor]
+          FocusControl = edtAccessToken
           Position.X = 15.000000000000000000
           Position.Y = 25.000000000000000000
           Size.Width = 330.000000000000000000
@@ -192,12 +194,12 @@ object MainView: TMainView
           Size.PlatformDefault = False
           TextSettings.Font.Size = 11.000000000000000000
           Text = 'Access token'
-          TabOrder = 39
+          TabOrder = 40
         end
         object edtAccessToken: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
-          TabOrder = 42
+          TabOrder = 44
           Position.X = 15.000000000000000000
           Position.Y = 37.000000000000000000
           Size.Width = 330.000000000000000000
@@ -207,6 +209,7 @@ object MainView: TMainView
         object lbProjectID: TLabel
           Align = Top
           StyledSettings = [Family, Style, FontColor]
+          FocusControl = edtProjectID
           Position.X = 15.000000000000000000
           Position.Y = 69.000000000000000000
           Size.Width = 330.000000000000000000
@@ -214,12 +217,12 @@ object MainView: TMainView
           Size.PlatformDefault = False
           TextSettings.Font.Size = 11.000000000000000000
           Text = 'Project ID'
-          TabOrder = 38
+          TabOrder = 39
         end
         object edtProjectID: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
-          TabOrder = 41
+          TabOrder = 43
           Position.X = 15.000000000000000000
           Position.Y = 81.000000000000000000
           Size.Width = 330.000000000000000000
@@ -229,6 +232,7 @@ object MainView: TMainView
         object lbTableName: TLabel
           Align = Top
           StyledSettings = [Family, Style, FontColor]
+          FocusControl = lbTableName
           Position.X = 15.000000000000000000
           Position.Y = 113.000000000000000000
           Size.Width = 330.000000000000000000
@@ -236,12 +240,12 @@ object MainView: TMainView
           Size.PlatformDefault = False
           TextSettings.Font.Size = 11.000000000000000000
           Text = 'Table name'
-          TabOrder = 37
+          TabOrder = 38
         end
         object edtTableName: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
-          TabOrder = 40
+          TabOrder = 42
           Position.X = 15.000000000000000000
           Position.Y = 125.000000000000000000
           Size.Width = 330.000000000000000000
@@ -252,11 +256,11 @@ object MainView: TMainView
           Align = Top
           Margins.Top = 10.000000000000000000
           Position.X = 15.000000000000000000
-          Position.Y = 167.000000000000000000
+          Position.Y = 211.000000000000000000
           Size.Width = 330.000000000000000000
           Size.Height = 34.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 43
+          TabOrder = 45
           object btnConnect: TButton
             Align = Left
             StyledSettings = [Family, Style, FontColor]
@@ -281,6 +285,29 @@ object MainView: TMainView
             OnClick = btnDisconnectClick
           end
         end
+        object lbTableId: TLabel
+          Align = Top
+          StyledSettings = [Family, Style, FontColor]
+          FocusControl = lbTableId
+          Position.X = 15.000000000000000000
+          Position.Y = 157.000000000000000000
+          Size.Width = 330.000000000000000000
+          Size.Height = 12.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 11.000000000000000000
+          Text = 'Table ID'
+          TabOrder = 37
+        end
+        object edtTableId: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 41
+          Position.X = 15.000000000000000000
+          Position.Y = 169.000000000000000000
+          Size.Width = 330.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+        end
       end
     end
     object tabProducts: TTabItem
@@ -303,7 +330,7 @@ object MainView: TMainView
         Size.Height = 540.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
-        TabIndex = 1
+        TabIndex = 0
         TabOrder = 5
         TabPosition = PlatformDefault
         Sizes = (
@@ -316,7 +343,7 @@ object MainView: TMainView
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = False
+          IsSelected = True
           Size.Width = 180.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
@@ -339,9 +366,9 @@ object MainView: TMainView
             object ListBox1: TListBox
               Align = Scale
               Position.X = 11.000001907348630000
-              Position.Y = 15.999999046325680000
+              Position.Y = 15.999998092651370000
               Size.Width = 330.000000000000000000
-              Size.Height = 362.999969482421900000
+              Size.Height = 362.999938964843800000
               Size.PlatformDefault = False
               TabOrder = 6
               ShowSizeGrip = True
@@ -492,7 +519,7 @@ object MainView: TMainView
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 180.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
@@ -549,6 +576,7 @@ object MainView: TMainView
             object Label3: TLabel
               Align = Top
               StyledSettings = [Family, Style, FontColor]
+              FocusControl = edtDate
               Position.X = 15.000000000000000000
               Position.Y = 133.000000000000000000
               Size.Width = 330.000030517578100000
@@ -572,6 +600,7 @@ object MainView: TMainView
             object Label4: TLabel
               Align = Top
               StyledSettings = [Family, Style, FontColor]
+              FocusControl = edtPrice
               Position.X = 15.000000000000000000
               Position.Y = 79.000000000000000000
               Size.Width = 330.000030517578100000
@@ -595,6 +624,7 @@ object MainView: TMainView
             object Label5: TLabel
               Align = Top
               StyledSettings = [Family, Style, FontColor]
+              FocusControl = edtName
               Position.X = 15.000000000000000000
               Position.Y = 25.000000000000000000
               Size.Width = 330.000030517578100000

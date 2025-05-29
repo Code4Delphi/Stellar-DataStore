@@ -48,6 +48,12 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
         inherited Panel1: TPanel
           Size.Width = 450.000000000000000000
         end
+        inherited lbTableId: TLabel
+          Size.Width = 450.000000000000000000
+        end
+        inherited edtTableId: TEdit
+          Size.Width = 450.000000000000000000
+        end
       end
     end
     inherited tabProducts: TTabItem
@@ -70,9 +76,9 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
             Size.Width = 480.000000000000000000
             Size.Height = 576.000000000000000000
             inherited ListBox1: TListBox
-              Position.X = 15.000006675720210000
+              Position.X = 15.000008583068850000
               Position.Y = 24.370277404785160000
-              Size.Width = 450.000213623046900000
+              Size.Width = 450.000274658203100000
               Size.Height = 551.426635742187500000
               Viewport.Width = 330.000000000000000000
               Viewport.Height = 435.000000000000000000
@@ -115,11 +121,11 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
           ExplicitSize.cx = 180.000000000000000000
           ExplicitSize.cy = 49.000000000000000000
           inherited pnRegisterBack: TPanel
-            Position.Y = -15.995781898498540000
-            Size.Width = 853.333618164062500000
-            Size.Height = 1304.258911132813000000
+            Position.Y = -22.153018951416020000
+            Size.Width = 1137.778198242188000000
+            Size.Height = 1806.305664062500000000
             inherited pnButtonsRegister: TPanel
-              Size.Width = 823.333618164062500000
+              Size.Width = 1107.778198242188000000
               inherited btnSave: TButton
                 Size.Height = 49.000000000000000000
               end
@@ -128,25 +134,25 @@ inherited MainView_LgXhdpiTb: TMainView_LgXhdpiTb
               end
             end
             inherited Label3: TLabel
-              Size.Width = 823.333618164062500000
+              Size.Width = 1107.778198242188000000
             end
             inherited edtPrice: TEdit
-              Size.Width = 823.333618164062500000
+              Size.Width = 1107.778198242188000000
             end
             inherited Label4: TLabel
-              Size.Width = 823.333618164062500000
+              Size.Width = 1107.778198242188000000
             end
             inherited edtName: TEdit
-              Size.Width = 823.333618164062500000
+              Size.Width = 1107.778198242188000000
             end
             inherited Label5: TLabel
-              Size.Width = 823.333618164062500000
+              Size.Width = 1107.778198242188000000
             end
             inherited edtDate: TDateEdit
-              Size.Width = 823.333618164062500000
+              Size.Width = 1107.778198242188000000
             end
             inherited ckAddImage: TCheckBox
-              Size.Width = 823.333618164062500000
+              Size.Width = 1107.778198242188000000
             end
           end
         end
