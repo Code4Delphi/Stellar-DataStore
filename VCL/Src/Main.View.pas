@@ -65,6 +65,8 @@ type
     Label11: TLabel;
     Label12: TLabel;
     Shape1: TShape;
+    Label13: TLabel;
+    edtTableID: TEdit;
     procedure btnConnectClick(Sender: TObject);
     procedure btnDisconnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -122,6 +124,7 @@ begin
     LIni.WriteString('Config', 'CallbackURL', edtCallbackURL.Text);
     LIni.WriteString('Config', 'ProjectID', edtProjectID.Text);
     LIni.WriteString('Config', 'TableName', edtTableName.Text);
+    LIni.WriteString('Config', 'TableID', edtTableID.Text);
   finally
     LIni.Free;
   end;
@@ -139,6 +142,7 @@ begin
     edtCallbackURL.Text := LIni.ReadString('Config', 'CallbackURL', '');
     edtProjectID.Text := LIni.ReadString('Config', 'ProjectID', '');
     edtTableName.Text := LIni.ReadString('Config', 'TableName', '');
+    edtTableID.Text := LIni.ReadString('Config', 'TableID', '');
   finally
     LIni.Free;
   end;
@@ -157,6 +161,18 @@ begin
   //Others
   TMSFNCCloudStellarDataStoreDataSetVCL1.ProjectID := edtProjectID.Text;
   TMSFNCCloudStellarDataStoreDataSetVCL1.Table := edtTableName.Text;
+  TMSFNCCloudStellarDataStoreDataSetVCL1.TableID := StrToInt64Def(edtTableID.Text, -1);
+
+  //**
+  //JOIN
+  //TMSFNCCloudStellarDataStoreDataSetVCL1.JoinQuery := 'products%3Bid_group%3Dgroups%3Bid';
+  //TMSFNCCloudStellarDataStoreDataSetVCL1.JoinQuery := 'products;id_group;groups;id';
+  //TMSFNCCloudStellarDataStoreDataSetVCL1.JoinQuery := '345;id_group;374;id';
+  //**
+
+  //**
+
+  //**
 
   TMSFNCCloudStellarDataStoreDataSetVCL1.Active := True;
 

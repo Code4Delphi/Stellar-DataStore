@@ -2,7 +2,7 @@ object MainView: TMainView
   Left = 0
   Top = 0
   Caption = 'Stellar DataStore - VCL'
-  ClientHeight = 656
+  ClientHeight = 696
   ClientWidth = 965
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,16 +15,18 @@ object MainView: TMainView
   TextHeight = 15
   object Panel2: TPanel
     Left = 0
-    Top = 331
+    Top = 365
     Width = 965
-    Height = 245
+    Height = 251
     Align = alClient
     TabOrder = 0
+    ExplicitTop = 331
+    ExplicitHeight = 245
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1
       Width = 963
-      Height = 243
+      Height = 249
       Align = alClient
       BorderStyle = bsNone
       DataSource = DataSource1
@@ -40,13 +42,13 @@ object MainView: TMainView
     Left = 0
     Top = 0
     Width = 965
-    Height = 297
+    Height = 331
     Align = alTop
     Caption = ' Authentication '
     TabOrder = 1
     DesignSize = (
       965
-      297)
+      331)
     object Label1: TLabel
       Left = 24
       Top = 100
@@ -114,6 +116,15 @@ object MainView: TMainView
       AutoSize = False
       Caption = 'Table name'
     end
+    object Label13: TLabel
+      Left = 24
+      Top = 259
+      Width = 69
+      Height = 15
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = 'Table ID'
+    end
     object edtAccessToken: TEdit
       Left = 99
       Top = 39
@@ -156,7 +167,7 @@ object MainView: TMainView
     end
     object btnConnect: TButton
       Left = 99
-      Top = 257
+      Top = 289
       Width = 75
       Height = 25
       Cursor = crHandPoint
@@ -166,7 +177,7 @@ object MainView: TMainView
     end
     object btnDisconnect: TButton
       Left = 180
-      Top = 257
+      Top = 289
       Width = 75
       Height = 25
       Cursor = crHandPoint
@@ -222,14 +233,24 @@ object MainView: TMainView
       TabOrder = 10
       OnClick = rdOAuth2Click
     end
+    object edtTableID: TEdit
+      Left = 99
+      Top = 256
+      Width = 840
+      Height = 23
+      Anchors = [akLeft, akTop, akRight]
+      NumbersOnly = True
+      TabOrder = 11
+    end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 297
+    Top = 331
     Width = 965
     Height = 34
     Align = alTop
     TabOrder = 3
+    ExplicitTop = 297
     object DBNavigator1: TDBNavigator
       Left = 1
       Top = 1
@@ -243,12 +264,13 @@ object MainView: TMainView
   end
   object Panel3: TPanel
     Left = 0
-    Top = 576
+    Top = 616
     Width = 965
     Height = 80
     Align = alBottom
     Padding.Right = 10
     TabOrder = 4
+    ExplicitTop = 576
     object lbCount: TLabel
       Left = 948
       Top = 1
@@ -370,22 +392,8 @@ object MainView: TMainView
         FieldValue = '0'
       end>
     FieldDefs = <>
-    Authentication.Key = 
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWN' +
-      'yb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2N' +
-      'lc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA' +
-      '1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6IjU5MjQzOWY' +
-      '2LThjYjYtNDhiZS0xMzM4LTA4ZGQ5MGZjZGQ4NCIsImh0dHA6Ly9zY2hlbWFzLnh' +
-      'tbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGl' +
-      'maWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJ' +
-      'hZGEiLCJleHAiOjI2OTM3MDE3ODcsImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLml' +
-      'vIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.9PLh0iN2ScNckRc' +
-      'Bs3axgDxik4Spu5g94xxXzc7WklQ'
-    PersistTokens.Key = 'C:\Users\Cesar\Documents\TTMSFNCCloudStellarDataStore.ini'
-    PersistTokens.SaveClientID = True
-    PersistTokens.SaveSecret = True
-    PersistTokens.SaveKey = True
-    PersistTokens.SaveCallBack = True
+    Authentication.CallBackURL = 'http://127.0.0.1:8888'
+    PersistTokens.Section = 'TTMSFNCCloudOAuthPersistTokens'
     Left = 592
     Top = 88
   end

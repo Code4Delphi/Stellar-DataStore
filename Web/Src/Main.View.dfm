@@ -343,6 +343,8 @@ object MainView: TMainView
       'Cancel')
   end
   object WebStellarDataStoreClientDataset1: TWebStellarDataStoreClientDataset
+    App.Key = '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada'
+    TableName = 'products'
     TableId = 0
     AfterScroll = WebStellarDataStoreClientDataset1AfterScroll
     Left = 480
