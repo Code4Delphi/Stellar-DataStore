@@ -11,7 +11,7 @@ object MainView: TMainView
     Align = alTop
     BorderColor = clSilver
     Caption = '  Authentication  '
-    ExplicitTop = -6
+    ExplicitLeft = 8
     DesignSize = (
       1236
       369)
@@ -216,8 +216,8 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object btnConnect: TWebButton
-      Left = 129
-      Top = 318
+      Left = 50
+      Top = 315
       Width = 96
       Height = 25
       Caption = 'Connect'
@@ -227,8 +227,8 @@ object MainView: TMainView
       OnClick = btnConnectClick
     end
     object btnDisconnect: TWebButton
-      Left = 231
-      Top = 318
+      Left = 152
+      Top = 315
       Width = 96
       Height = 25
       Caption = 'Disconnect'
@@ -238,28 +238,28 @@ object MainView: TMainView
       OnClick = btnDisconnectClick
     end
     object edtTableSelectQuery: TWebEdit
-      Left = 134
-      Top = 254
+      Left = 50
+      Top = 229
       Width = 250
       Height = 22
-      Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
+      Text = 'id;name'
       WidthPercent = 100.000000000000000000
     end
     object ckTableSelectQuery: TWebCheckBox
-      Left = 15
-      Top = 254
+      Left = 50
+      Top = 209
       Width = 113
-      Height = 22
+      Height = 20
       Caption = 'TableSelectQuery'
       ChildOrder = 21
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
     end
     object gBoxTableWhereQuery: TWebGroupBox
-      Left = 709
-      Top = 206
+      Left = 306
+      Top = 217
       Width = 362
       Height = 123
       BorderColor = clSilver
@@ -448,6 +448,7 @@ object MainView: TMainView
       TabOrder = 0
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
+      ExplicitTop = 6
       ColWidths = (
         24)
     end
@@ -499,6 +500,30 @@ object MainView: TMainView
     AfterScroll = WebStellarDataStoreClientDataset1AfterScroll
     Left = 480
     Top = 360
+    object WebStellarDataStoreClientDataset1id: TIntegerField
+      FieldName = 'id'
+    end
+    object WebStellarDataStoreClientDataset1Name: TStringField
+      FieldName = 'Name'
+      Size = 60
+    end
+    object WebStellarDataStoreClientDataset1Price: TFloatField
+      FieldName = 'Price'
+    end
+    object WebStellarDataStoreClientDataset1Date: TDateTimeField
+      FieldName = 'Date'
+    end
+    object WebStellarDataStoreClientDataset1Image: TMemoField
+      FieldName = 'Image'
+      BlobType = ftMemo
+    end
+    object WebStellarDataStoreClientDataset1id_group: TIntegerField
+      FieldName = 'id_group'
+    end
+    object WebStellarDataStoreClientDataset1groupsname: TStringField
+      FieldName = 'groupsname'
+      Size = 80
+    end
   end
   object WebDataSource1: TWebDataSource
     DataSet = WebStellarDataStoreClientDataset1

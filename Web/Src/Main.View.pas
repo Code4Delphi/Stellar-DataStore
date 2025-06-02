@@ -53,6 +53,13 @@ type
     edtTableWhereQueryComplete: TWebEdit;
     WebLabel7: TWebLabel;
     cBoxTableWhereQueryField: TWebComboBox;
+    WebStellarDataStoreClientDataset1id: TIntegerField;
+    WebStellarDataStoreClientDataset1Name: TStringField;
+    WebStellarDataStoreClientDataset1Price: TFloatField;
+    WebStellarDataStoreClientDataset1Date: TDateTimeField;
+    WebStellarDataStoreClientDataset1Image: TMemoField;
+    WebStellarDataStoreClientDataset1id_group: TIntegerField;
+    WebStellarDataStoreClientDataset1groupsname: TStringField;
     procedure WebFormCreate(Sender: TObject);
     [Async]
     procedure btnConnectClick(Sender: TObject);
@@ -128,23 +135,22 @@ begin
   WebStellarDataStoreClientDataset1.TableName := edtTableName.Text;
   WebStellarDataStoreClientDataset1.TableId := StrToInt64Def(edtTableID.Text, 0);
 
-  //**         ckTableSelectQuer
+  //**
   //JOIN
   //WebStellarDataStoreClientDataset1.TableJoinQuery := 'products%3Bid_group%3Dgroups%3Bid';
+  WebStellarDataStoreClientDataset1.TableJoinQuery := 'products;id_group;groups;id';
   //WebStellarDataStoreClientDataset1.TableJoinQuery := '{products;id_group;groups;id}';
   //**
 
-  //**
+  //TableSelectQuery
   WebStellarDataStoreClientDataset1.TableSelectQuery := '';
   if ckTableSelectQuery.Checked then
     WebStellarDataStoreClientDataset1.TableSelectQuery := edtTableSelectQuery.Text;
-  //**
 
   //TableWhereQuery
   WebStellarDataStoreClientDataset1.TableWhereQuery := '';
   if ckTableWhereQuery.Checked then
     WebStellarDataStoreClientDataset1.TableWhereQuery := edtTableWhereQueryComplete.Text;
-  //
 
   await(WebStellarDataStoreClientDataset1.OpenAsync);
 
