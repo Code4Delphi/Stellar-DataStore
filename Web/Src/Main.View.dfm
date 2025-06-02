@@ -11,7 +11,6 @@ object MainView: TMainView
     Align = alTop
     BorderColor = clSilver
     Caption = '  Authentication  '
-    ExplicitLeft = 8
     DesignSize = (
       1236
       369)
@@ -377,12 +376,108 @@ object MainView: TMainView
           'Date')
       end
     end
+    object WebGroupBox2: TWebGroupBox
+      Left = 674
+      Top = 217
+      Width = 319
+      Height = 123
+      BorderColor = clSilver
+      Caption = ' SortOrder '
+      ChildOrder = 22
+      object WebLabel8: TWebLabel
+        Left = 16
+        Top = 16
+        Width = 51
+        Height = 15
+        Caption = 'SortOrder'
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object WebLabel12: TWebLabel
+        Left = 16
+        Top = 59
+        Width = 74
+        Height = 15
+        Caption = 'SortOrder ALL'
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object cBoxSortOrder: TWebComboBox
+        Left = 16
+        Top = 32
+        Width = 104
+        Height = 23
+        HeightPercent = 100.000000000000000000
+        Style = csDropDown
+        Text = 'Id'
+        WidthPercent = 100.000000000000000000
+        ItemIndex = 0
+        Items.Strings = (
+          'Id'
+          'Name'
+          'Price'
+          'Date')
+      end
+      object cBoxSortOrderAscOuDesc: TWebComboBox
+        Left = 122
+        Top = 32
+        Width = 66
+        Height = 23
+        HeightPercent = 100.000000000000000000
+        Text = 'asc'
+        WidthPercent = 100.000000000000000000
+        ItemIndex = 0
+        Items.Strings = (
+          'asc'
+          'desc')
+      end
+      object btnSortOrderAdd: TWebButton
+        Left = 191
+        Top = 32
+        Width = 42
+        Height = 25
+        Caption = 'Add'
+        ChildOrder = 7
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+        OnClick = btnSortOrderAddClick
+      end
+      object edtSortOrderAll: TWebEdit
+        Left = 16
+        Top = 74
+        Width = 217
+        Height = 22
+        ChildOrder = 14
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+    end
+    object edtTableJoinQuery: TWebEdit
+      Left = 50
+      Top = 275
+      Width = 250
+      Height = 22
+      ChildOrder = 2
+      HeightPercent = 100.000000000000000000
+      Text = 'products;id_group=groups;id'
+      WidthPercent = 100.000000000000000000
+    end
+    object ckTableJoinQuery: TWebCheckBox
+      Left = 50
+      Top = 255
+      Width = 113
+      Height = 20
+      Caption = 'TableJoinQuery'
+      ChildOrder = 21
+      HeightPercent = 100.000000000000000000
+      WidthPercent = 100.000000000000000000
+    end
   end
   object WebPanel1: TWebPanel
     Left = 0
-    Top = 737
+    Top = 736
     Width = 1236
-    Height = 26
+    Height = 27
     Align = alBottom
     ChildOrder = 1
     Padding.Right = 10
@@ -391,7 +486,7 @@ object MainView: TMainView
       Left = 1181
       Top = 0
       Width = 39
-      Height = 26
+      Height = 27
       Align = alRight
       Caption = 'Count: '
       HeightPercent = 100.000000000000000000
@@ -403,7 +498,7 @@ object MainView: TMainView
       Left = 1220
       Top = 0
       Width = 6
-      Height = 26
+      Height = 27
       Align = alRight
       Caption = '0'
       HeightPercent = 100.000000000000000000
@@ -416,7 +511,7 @@ object MainView: TMainView
     Left = 0
     Top = 401
     Width = 1236
-    Height = 336
+    Height = 335
     Align = alClient
     ChildOrder = 2
     TabOrder = 2
@@ -434,7 +529,7 @@ object MainView: TMainView
       Left = 0
       Top = 0
       Width = 968
-      Height = 336
+      Height = 335
       Align = alLeft
       Columns = <>
       DataSource = WebDataSource1
@@ -448,9 +543,9 @@ object MainView: TMainView
       TabOrder = 0
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
-      ExplicitTop = 6
+      ExplicitTop = -6
       ColWidths = (
-        24)
+        64)
     end
     object WebFileUpload1: TWebFileUpload
       Left = 974
@@ -500,30 +595,6 @@ object MainView: TMainView
     AfterScroll = WebStellarDataStoreClientDataset1AfterScroll
     Left = 480
     Top = 360
-    object WebStellarDataStoreClientDataset1id: TIntegerField
-      FieldName = 'id'
-    end
-    object WebStellarDataStoreClientDataset1Name: TStringField
-      FieldName = 'Name'
-      Size = 60
-    end
-    object WebStellarDataStoreClientDataset1Price: TFloatField
-      FieldName = 'Price'
-    end
-    object WebStellarDataStoreClientDataset1Date: TDateTimeField
-      FieldName = 'Date'
-    end
-    object WebStellarDataStoreClientDataset1Image: TMemoField
-      FieldName = 'Image'
-      BlobType = ftMemo
-    end
-    object WebStellarDataStoreClientDataset1id_group: TIntegerField
-      FieldName = 'id_group'
-    end
-    object WebStellarDataStoreClientDataset1groupsname: TStringField
-      FieldName = 'groupsname'
-      Size = 80
-    end
   end
   object WebDataSource1: TWebDataSource
     DataSet = WebStellarDataStoreClientDataset1

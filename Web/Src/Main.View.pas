@@ -3,9 +3,29 @@ unit Main.View;
 interface
 
 uses
-  System.SysUtils, System.Classes, JS, Web, WEBLib.Graphics, WEBLib.Controls,
-  WEBLib.Forms, WEBLib.Dialogs, Vcl.Controls, Vcl.StdCtrls, WEBLib.StdCtrls, WEBLib.ExtCtrls, WEBLib.Grids, Vcl.Grids,
-  WEBLib.DBCtrls, Data.DB, WEBLib.DB, WEBLib.StellarDataStoreCDS, WEBLib.REST, WEBLib.StellarDataStore, WEBLib.WebCtrls;
+  System.SysUtils,
+  System.Classes,
+  System.TypInfo,
+  JS,
+  Web,
+  WEBLib.Graphics,
+  WEBLib.Controls,
+  WEBLib.Forms,
+  WEBLib.Dialogs,
+  Vcl.Controls,
+  Vcl.StdCtrls,
+  WEBLib.StdCtrls,
+  WEBLib.ExtCtrls,
+  WEBLib.Grids,
+  Vcl.Grids,
+  WEBLib.DBCtrls,
+  Data.DB,
+  WEBLib.DB,
+  WEBLib.StellarDataStoreCDS,
+  WEBLib.REST,
+  WEBLib.StellarDataStore,
+  WEBLib.WebCtrls,
+  VCL.TMSFNCCloudDataStore;
 
 type
   TMainView = class(TWebForm)
@@ -53,13 +73,15 @@ type
     edtTableWhereQueryComplete: TWebEdit;
     WebLabel7: TWebLabel;
     cBoxTableWhereQueryField: TWebComboBox;
-    WebStellarDataStoreClientDataset1id: TIntegerField;
-    WebStellarDataStoreClientDataset1Name: TStringField;
-    WebStellarDataStoreClientDataset1Price: TFloatField;
-    WebStellarDataStoreClientDataset1Date: TDateTimeField;
-    WebStellarDataStoreClientDataset1Image: TMemoField;
-    WebStellarDataStoreClientDataset1id_group: TIntegerField;
-    WebStellarDataStoreClientDataset1groupsname: TStringField;
+    WebGroupBox2: TWebGroupBox;
+    WebLabel8: TWebLabel;
+    cBoxSortOrder: TWebComboBox;
+    cBoxSortOrderAscOuDesc: TWebComboBox;
+    btnSortOrderAdd: TWebButton;
+    edtSortOrderAll: TWebEdit;
+    WebLabel12: TWebLabel;
+    edtTableJoinQuery: TWebEdit;
+    ckTableJoinQuery: TWebCheckBox;
     procedure WebFormCreate(Sender: TObject);
     [Async]
     procedure btnConnectClick(Sender: TObject);
@@ -73,6 +95,7 @@ type
     procedure WebStellarDataStoreClientDataset1AfterScroll(DataSet: TDataSet);
     procedure btnClearImageClick(Sender: TObject);
     procedure btnTableWhereQueryAddClick(Sender: TObject);
+    procedure btnSortOrderAddClick(Sender: TObject);
   private
     procedure ConfigScreen;
     procedure ClearConfigConnection;
@@ -124,7 +147,6 @@ end;
 procedure TMainView.ClearConfigConnection;
 begin
   WebStellarDataStoreClientDataset1.Active := False;
-  WebStellarDataStoreClientDataset1.AccessToken := '';
 end;
 
 procedure TMainView.btnConnectClick(Sender: TObject);
@@ -135,12 +157,10 @@ begin
   WebStellarDataStoreClientDataset1.TableName := edtTableName.Text;
   WebStellarDataStoreClientDataset1.TableId := StrToInt64Def(edtTableID.Text, 0);
 
-  //**
-  //JOIN
-  //WebStellarDataStoreClientDataset1.TableJoinQuery := 'products%3Bid_group%3Dgroups%3Bid';
-  WebStellarDataStoreClientDataset1.TableJoinQuery := 'products;id_group;groups;id';
-  //WebStellarDataStoreClientDataset1.TableJoinQuery := '{products;id_group;groups;id}';
-  //**
+  //JOIN  {TableName1;JoinField1=TableName2;JoinField2}
+  WebStellarDataStoreClientDataset1.TableJoinQuery := '';
+  if ckTableJoinQuery.Checked then
+    WebStellarDataStoreClientDataset1.TableJoinQuery := edtTableJoinQuery.Text;
 
   //TableSelectQuery
   WebStellarDataStoreClientDataset1.TableSelectQuery := '';
@@ -152,7 +172,14 @@ begin
   if ckTableWhereQuery.Checked then
     WebStellarDataStoreClientDataset1.TableWhereQuery := edtTableWhereQueryComplete.Text;
 
-  await(WebStellarDataStoreClientDataset1.OpenAsync);
+  //ORDER
+  WebStellarDataStoreClientDataset1.TableSortQuery := edtSortOrderAll.Text;
+
+  //PAGINACAO
+  //WebStellarDataStoreClientDataset1.Offset := 5;
+  //WebStellarDataStoreClientDataset1.Take := 3;
+
+  Await(WebStellarDataStoreClientDataset1.OpenAsync);
 
   if not WebStellarDataStoreClientDataset1.Active then
     ShowMessage('Not connected. Check the information provided.');
@@ -187,9 +214,19 @@ begin
   if WebStellarDataStoreClientDataset1.State in [dsEdit, dsInsert] then
     Exit;
 
-  LArrayBuffer := await(TJSArrayBuffer, WebStellarDataStoreClientDataset1.ReadBlobAsArrayBuffer('Image'));
-  if LArrayBuffer.byteLength > 0 then
-    WebImageControl1.LoadFromArrayBuffer(LArrayBuffer);
+  if not (WebStellarDataStoreClientDataset1.FieldByName('Image') is TBlobField) then
+    Exit;
+
+  if (WebStellarDataStoreClientDataset1.FieldByName('Image') as TBlobField).IsNull then
+    Exit;
+
+  try
+    LArrayBuffer := await(TJSArrayBuffer, WebStellarDataStoreClientDataset1.ReadBlobAsArrayBuffer('Image'));
+    if LArrayBuffer.byteLength > 0 then
+      WebImageControl1.LoadFromArrayBuffer(LArrayBuffer);
+  except
+    WebImageControl1.URL := '';
+  end;
 end;
 
 procedure TMainView.btnClearImageClick(Sender: TObject);
@@ -210,6 +247,19 @@ begin
     LCondicao := edtTableWhereQueryComplete.Text + '&' + LCondicao;
 
   edtTableWhereQueryComplete.Text := LCondicao;
+end;
+
+procedure TMainView.btnSortOrderAddClick(Sender: TObject);
+var
+  LOrders: string;
+begin
+  LOrders := Format('%s;%s', [cBoxSortOrder.Text, cBoxSortOrderAscOuDesc.Text]);
+
+  edtSortOrderAll.Text := Trim(edtSortOrderAll.Text);
+  if edtSortOrderAll.Text <> '' then
+    edtSortOrderAll.Text := edtSortOrderAll.Text + '&';
+
+  edtSortOrderAll.Text := edtSortOrderAll.Text + LOrders;
 end;
 
 end.
