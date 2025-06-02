@@ -42,8 +42,17 @@ type
     btnDisconnect: TWebButton;
     edtTableSelectQuery: TWebEdit;
     ckTableSelectQuery: TWebCheckBox;
-    edtTableWhereQuery: TWebEdit;
+    gBoxTableWhereQuery: TWebGroupBox;
     ckTableWhereQuery: TWebCheckBox;
+    cBoxTableWhereQueryCondition: TWebComboBox;
+    WebLabel4: TWebLabel;
+    WebLabel5: TWebLabel;
+    edtTableWhereQueryValue: TWebEdit;
+    WebLabel6: TWebLabel;
+    btnTableWhereQueryAdd: TWebButton;
+    edtTableWhereQueryComplete: TWebEdit;
+    WebLabel7: TWebLabel;
+    cBoxTableWhereQueryField: TWebComboBox;
     procedure WebFormCreate(Sender: TObject);
     [Async]
     procedure btnConnectClick(Sender: TObject);
@@ -56,6 +65,7 @@ type
     [Async]
     procedure WebStellarDataStoreClientDataset1AfterScroll(DataSet: TDataSet);
     procedure btnClearImageClick(Sender: TObject);
+    procedure btnTableWhereQueryAddClick(Sender: TObject);
   private
     procedure ConfigScreen;
     procedure ClearConfigConnection;
@@ -130,11 +140,11 @@ begin
     WebStellarDataStoreClientDataset1.TableSelectQuery := edtTableSelectQuery.Text;
   //**
 
-  //**
+  //TableWhereQuery
   WebStellarDataStoreClientDataset1.TableWhereQuery := '';
   if ckTableWhereQuery.Checked then
-    WebStellarDataStoreClientDataset1.TableWhereQuery := edtTableWhereQuery.Text;
-  //**
+    WebStellarDataStoreClientDataset1.TableWhereQuery := edtTableWhereQueryComplete.Text;
+  //
 
   await(WebStellarDataStoreClientDataset1.OpenAsync);
 
@@ -180,6 +190,20 @@ procedure TMainView.btnClearImageClick(Sender: TObject);
 begin
   WebImageControl1.URL := '';
   WebStellarDataStoreClientDataset1.WriteBlob('Image', '');
+end;
+
+procedure TMainView.btnTableWhereQueryAddClick(Sender: TObject);
+var
+  LCondicao: string;
+begin
+  LCondicao := format('%s;%s;%s', [cBoxTableWhereQueryField.Text,
+    Trim(cBoxTableWhereQueryCondition.Text).Replace('&equals;', '=', []), edtTableWhereQueryValue.Text]);
+
+  edtTableWhereQueryComplete.Text := Trim(edtTableWhereQueryComplete.Text);
+  if edtTableWhereQueryComplete.Text <> '' then
+    LCondicao := edtTableWhereQueryComplete.Text + '&' + LCondicao;
+
+  edtTableWhereQueryComplete.Text := LCondicao;
 end;
 
 end.

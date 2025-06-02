@@ -11,6 +11,7 @@ object MainView: TMainView
     Align = alTop
     BorderColor = clSilver
     Caption = '  Authentication  '
+    ExplicitTop = -6
     DesignSize = (
       1236
       369)
@@ -37,8 +38,8 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object lbSecret: TWebLabel
-      Left = 48
-      Top = 129
+      Left = 382
+      Top = 104
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -48,8 +49,8 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object lbCallbackURL: TWebLabel
-      Left = 48
-      Top = 154
+      Left = 709
+      Top = 104
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -60,7 +61,7 @@ object MainView: TMainView
     end
     object WebLabel2: TWebLabel
       Left = 44
-      Top = 179
+      Top = 131
       Width = 38
       Height = 15
       Caption = 'Others'
@@ -75,7 +76,7 @@ object MainView: TMainView
     end
     object lbProjectID: TWebLabel
       Left = 48
-      Top = 203
+      Top = 155
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -86,7 +87,7 @@ object MainView: TMainView
     end
     object WebLabel3: TWebLabel
       Left = 50
-      Top = 230
+      Top = 182
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -97,7 +98,7 @@ object MainView: TMainView
     end
     object lbTableName: TWebLabel
       Left = 382
-      Top = 230
+      Top = 182
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -157,7 +158,7 @@ object MainView: TMainView
     object edtClientID: TWebEdit
       Left = 134
       Top = 101
-      Width = 1079
+      Width = 250
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
@@ -165,9 +166,9 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object edtSecret: TWebEdit
-      Left = 134
-      Top = 126
-      Width = 1079
+      Left = 455
+      Top = 101
+      Width = 250
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
@@ -175,6 +176,16 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object edtCallbackURL: TWebEdit
+      Left = 782
+      Top = 101
+      Width = 431
+      Height = 22
+      Anchors = [akLeft, akTop, akRight]
+      ChildOrder = 2
+      HeightPercent = 100.000000000000000000
+      WidthPercent = 100.000000000000000000
+    end
+    object edtProjectID: TWebEdit
       Left = 134
       Top = 151
       Width = 1079
@@ -184,19 +195,9 @@ object MainView: TMainView
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
     end
-    object edtProjectID: TWebEdit
-      Left = 134
-      Top = 199
-      Width = 1079
-      Height = 22
-      Anchors = [akLeft, akTop, akRight]
-      ChildOrder = 2
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-    end
     object edtTableID: TWebEdit
       Left = 134
-      Top = 226
+      Top = 178
       Width = 250
       Height = 22
       ChildOrder = 2
@@ -206,7 +207,7 @@ object MainView: TMainView
     end
     object edtTableName: TWebEdit
       Left = 455
-      Top = 226
+      Top = 178
       Width = 758
       Height = 22
       Anchors = [akLeft, akTop, akRight]
@@ -256,26 +257,125 @@ object MainView: TMainView
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
     end
-    object edtTableWhereQuery: TWebEdit
-      Left = 134
-      Top = 282
-      Width = 250
-      Height = 22
-      Anchors = [akLeft, akTop, akRight]
-      ChildOrder = 2
-      HeightPercent = 100.000000000000000000
-      Text = 'Name;like;test'
-      WidthPercent = 100.000000000000000000
-    end
-    object ckTableWhereQuery: TWebCheckBox
-      Left = 15
-      Top = 282
-      Width = 113
-      Height = 22
-      Caption = 'TableWhereQuery'
-      ChildOrder = 21
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
+    object gBoxTableWhereQuery: TWebGroupBox
+      Left = 709
+      Top = 206
+      Width = 362
+      Height = 123
+      BorderColor = clSilver
+      Caption = '                                      '
+      ChildOrder = 23
+      object WebLabel4: TWebLabel
+        Left = 13
+        Top = 27
+        Width = 25
+        Height = 15
+        Caption = 'Field'
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object WebLabel5: TWebLabel
+        Left = 96
+        Top = 26
+        Width = 53
+        Height = 15
+        Caption = 'Condition'
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object WebLabel6: TWebLabel
+        Left = 166
+        Top = 26
+        Width = 28
+        Height = 15
+        Caption = 'Value'
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object WebLabel7: TWebLabel
+        Left = 13
+        Top = 67
+        Width = 100
+        Height = 15
+        Caption = 'Complete filtration'
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object ckTableWhereQuery: TWebCheckBox
+        Left = 7
+        Top = 2
+        Width = 115
+        Height = 22
+        Caption = 'TableWhereQuery'
+        ChildOrder = 21
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object cBoxTableWhereQueryCondition: TWebComboBox
+        Left = 96
+        Top = 42
+        Width = 70
+        Height = 23
+        HeightPercent = 100.000000000000000000
+        Text = 'like'
+        WidthPercent = 100.000000000000000000
+        ItemIndex = 6
+        Items.Strings = (
+          '>'
+          '>&equals;'
+          '<'
+          '<&equals;'
+          '&equals;'
+          '!&equals;'
+          'like'
+          'in')
+      end
+      object edtTableWhereQueryValue: TWebEdit
+        Left = 168
+        Top = 42
+        Width = 135
+        Height = 22
+        ChildOrder = 2
+        HeightPercent = 100.000000000000000000
+        Text = '%Test%'
+        WidthPercent = 100.000000000000000000
+      end
+      object btnTableWhereQueryAdd: TWebButton
+        Left = 309
+        Top = 40
+        Width = 42
+        Height = 25
+        Caption = 'Add'
+        ChildOrder = 7
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+        OnClick = btnTableWhereQueryAddClick
+      end
+      object edtTableWhereQueryComplete: TWebEdit
+        Left = 13
+        Top = 84
+        Width = 335
+        Height = 22
+        ChildOrder = 2
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object cBoxTableWhereQueryField: TWebComboBox
+        Left = 13
+        Top = 43
+        Width = 81
+        Height = 23
+        HeightPercent = 100.000000000000000000
+        Style = csDropDown
+        Text = 'Name'
+        WidthPercent = 100.000000000000000000
+        ItemIndex = 1
+        Items.Strings = (
+          'Id'
+          'Name'
+          'Price'
+          'Date')
+      end
     end
   end
   object WebPanel1: TWebPanel
@@ -320,8 +420,6 @@ object MainView: TMainView
     Align = alClient
     ChildOrder = 2
     TabOrder = 2
-    ExplicitTop = 449
-    ExplicitHeight = 288
     object WebImageControl1: TWebImageControl
       Left = 977
       Top = 179
@@ -338,33 +436,20 @@ object MainView: TMainView
       Width = 968
       Height = 336
       Align = alLeft
-      Columns = <
-        item
-        end
-        item
-        end
-        item
-        end
-        item
-        end>
+      Columns = <>
       DataSource = WebDataSource1
       FixedFont.Charset = DEFAULT_CHARSET
       FixedFont.Color = clWindowText
       FixedFont.Height = -12
       FixedFont.Name = 'Segoe UI'
       FixedFont.Style = []
-      FixedCols = 1
-      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
+      FixedCols = 0
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goFixedRowDefAlign]
       TabOrder = 0
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
-      ExplicitHeight = 288
       ColWidths = (
-        24
-        64
-        64
-        64
-        64)
+        24)
     end
     object WebFileUpload1: TWebFileUpload
       Left = 974
@@ -406,7 +491,6 @@ object MainView: TMainView
       'Insert'
       'Delete'
       'Cancel')
-    ExplicitTop = 417
   end
   object WebStellarDataStoreClientDataset1: TWebStellarDataStoreClientDataset
     App.Key = '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada'
