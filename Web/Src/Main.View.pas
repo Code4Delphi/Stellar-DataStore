@@ -29,15 +29,21 @@ type
     WebLabel2: TWebLabel;
     lbProjectID: TWebLabel;
     edtProjectID: TWebEdit;
-    lbTableName: TWebLabel;
-    edtTableName: TWebEdit;
-    btnConnect: TWebButton;
-    btnDisconnect: TWebButton;
     WebStellarDataStoreClientDataset1: TWebStellarDataStoreClientDataset;
     WebDataSource1: TWebDataSource;
     WebFileUpload1: TWebFileUpload;
     WebImageControl1: TWebImageControl;
     btnClearImage: TWebButton;
+    WebLabel3: TWebLabel;
+    edtTableID: TWebEdit;
+    lbTableName: TWebLabel;
+    edtTableName: TWebEdit;
+    btnConnect: TWebButton;
+    btnDisconnect: TWebButton;
+    edtTableSelectQuery: TWebEdit;
+    ckTableSelectQuery: TWebCheckBox;
+    edtTableWhereQuery: TWebEdit;
+    ckTableWhereQuery: TWebCheckBox;
     procedure WebFormCreate(Sender: TObject);
     [Async]
     procedure btnConnectClick(Sender: TObject);
@@ -110,16 +116,24 @@ begin
   WebStellarDataStoreClientDataset1.AccessToken := edtAccessToken.Text;
   WebStellarDataStoreClientDataset1.ProjectID := edtProjectID.Text;
   WebStellarDataStoreClientDataset1.TableName := edtTableName.Text;
-  WebStellarDataStoreClientDataset1.TableId := 345;
+  WebStellarDataStoreClientDataset1.TableId := StrToInt64Def(edtTableID.Text, 0);
 
-  //**
+  //**         ckTableSelectQuer
   //JOIN
   //WebStellarDataStoreClientDataset1.TableJoinQuery := 'products%3Bid_group%3Dgroups%3Bid';
   //WebStellarDataStoreClientDataset1.TableJoinQuery := '{products;id_group;groups;id}';
   //**
 
   //**
-  WebStellarDataStoreClientDataset1.TableSelectQuery := 'Id;Date';
+  WebStellarDataStoreClientDataset1.TableSelectQuery := '';
+  if ckTableSelectQuery.Checked then
+    WebStellarDataStoreClientDataset1.TableSelectQuery := edtTableSelectQuery.Text;
+  //**
+
+  //**
+  WebStellarDataStoreClientDataset1.TableWhereQuery := '';
+  if ckTableWhereQuery.Checked then
+    WebStellarDataStoreClientDataset1.TableWhereQuery := edtTableWhereQuery.Text;
   //**
 
   await(WebStellarDataStoreClientDataset1.OpenAsync);

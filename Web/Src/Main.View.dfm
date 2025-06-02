@@ -7,15 +7,15 @@ object MainView: TMainView
     Left = 0
     Top = 0
     Width = 1236
-    Height = 292
+    Height = 369
     Align = alTop
     BorderColor = clSilver
     Caption = '  Authentication  '
     DesignSize = (
       1236
-      292)
+      369)
     object lbAccessToken: TWebLabel
-      Left = 23
+      Left = 48
       Top = 48
       Width = 69
       Height = 15
@@ -26,7 +26,7 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object lbClientID: TWebLabel
-      Left = 23
+      Left = 48
       Top = 104
       Width = 69
       Height = 15
@@ -37,7 +37,7 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object lbSecret: TWebLabel
-      Left = 23
+      Left = 48
       Top = 129
       Width = 69
       Height = 15
@@ -48,7 +48,7 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object lbCallbackURL: TWebLabel
-      Left = 23
+      Left = 48
       Top = 154
       Width = 69
       Height = 15
@@ -59,7 +59,7 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object WebLabel2: TWebLabel
-      Left = 23
+      Left = 44
       Top = 179
       Width = 38
       Height = 15
@@ -74,8 +74,8 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object lbProjectID: TWebLabel
-      Left = 23
-      Top = 202
+      Left = 48
+      Top = 203
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -84,9 +84,20 @@ object MainView: TMainView
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
     end
+    object WebLabel3: TWebLabel
+      Left = 50
+      Top = 230
+      Width = 69
+      Height = 15
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = 'Table ID'
+      HeightPercent = 100.000000000000000000
+      WidthPercent = 100.000000000000000000
+    end
     object lbTableName: TWebLabel
-      Left = 23
-      Top = 227
+      Left = 382
+      Top = 230
       Width = 69
       Height = 15
       Alignment = taRightJustify
@@ -96,7 +107,7 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object rdDirectAccessToken: TWebRadioButton
-      Left = 22
+      Left = 43
       Top = 20
       Width = 155
       Height = 22
@@ -114,9 +125,9 @@ object MainView: TMainView
       OnClick = rdDirectAccessTokenClick
     end
     object edtAccessToken: TWebEdit
-      Left = 98
-      Top = 48
-      Width = 1104
+      Left = 134
+      Top = 46
+      Width = 1079
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
@@ -124,7 +135,7 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object rdOAuth2: TWebRadioButton
-      Left = 22
+      Left = 43
       Top = 76
       Width = 129
       Height = 22
@@ -144,9 +155,9 @@ object MainView: TMainView
       OnClick = rdOAuth2Click
     end
     object edtClientID: TWebEdit
-      Left = 100
+      Left = 134
       Top = 101
-      Width = 1104
+      Width = 1079
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
@@ -154,9 +165,9 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object edtSecret: TWebEdit
-      Left = 100
+      Left = 134
       Top = 126
-      Width = 1104
+      Width = 1079
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
@@ -164,9 +175,9 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object edtCallbackURL: TWebEdit
-      Left = 100
+      Left = 134
       Top = 151
-      Width = 1104
+      Width = 1079
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
@@ -174,19 +185,29 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object edtProjectID: TWebEdit
-      Left = 100
+      Left = 134
       Top = 199
-      Width = 1104
+      Width = 1079
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
     end
+    object edtTableID: TWebEdit
+      Left = 134
+      Top = 226
+      Width = 250
+      Height = 22
+      ChildOrder = 2
+      HeightPercent = 100.000000000000000000
+      Text = '345'
+      WidthPercent = 100.000000000000000000
+    end
     object edtTableName: TWebEdit
-      Left = 98
-      Top = 224
-      Width = 1104
+      Left = 455
+      Top = 226
+      Width = 758
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
@@ -194,8 +215,8 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object btnConnect: TWebButton
-      Left = 99
-      Top = 252
+      Left = 129
+      Top = 318
       Width = 96
       Height = 25
       Caption = 'Connect'
@@ -205,8 +226,8 @@ object MainView: TMainView
       OnClick = btnConnectClick
     end
     object btnDisconnect: TWebButton
-      Left = 198
-      Top = 252
+      Left = 231
+      Top = 318
       Width = 96
       Height = 25
       Caption = 'Disconnect'
@@ -214,6 +235,47 @@ object MainView: TMainView
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
       OnClick = btnDisconnectClick
+    end
+    object edtTableSelectQuery: TWebEdit
+      Left = 134
+      Top = 254
+      Width = 250
+      Height = 22
+      Anchors = [akLeft, akTop, akRight]
+      ChildOrder = 2
+      HeightPercent = 100.000000000000000000
+      WidthPercent = 100.000000000000000000
+    end
+    object ckTableSelectQuery: TWebCheckBox
+      Left = 15
+      Top = 254
+      Width = 113
+      Height = 22
+      Caption = 'TableSelectQuery'
+      ChildOrder = 21
+      HeightPercent = 100.000000000000000000
+      WidthPercent = 100.000000000000000000
+    end
+    object edtTableWhereQuery: TWebEdit
+      Left = 134
+      Top = 282
+      Width = 250
+      Height = 22
+      Anchors = [akLeft, akTop, akRight]
+      ChildOrder = 2
+      HeightPercent = 100.000000000000000000
+      Text = 'Name;like;test'
+      WidthPercent = 100.000000000000000000
+    end
+    object ckTableWhereQuery: TWebCheckBox
+      Left = 15
+      Top = 282
+      Width = 113
+      Height = 22
+      Caption = 'TableWhereQuery'
+      ChildOrder = 21
+      HeightPercent = 100.000000000000000000
+      WidthPercent = 100.000000000000000000
     end
   end
   object WebPanel1: TWebPanel
@@ -252,12 +314,14 @@ object MainView: TMainView
   end
   object WebPanel2: TWebPanel
     Left = 0
-    Top = 324
+    Top = 401
     Width = 1236
-    Height = 413
+    Height = 336
     Align = alClient
     ChildOrder = 2
     TabOrder = 2
+    ExplicitTop = 449
+    ExplicitHeight = 288
     object WebImageControl1: TWebImageControl
       Left = 977
       Top = 179
@@ -272,7 +336,7 @@ object MainView: TMainView
       Left = 0
       Top = 0
       Width = 968
-      Height = 413
+      Height = 336
       Align = alLeft
       Columns = <
         item
@@ -294,6 +358,7 @@ object MainView: TMainView
       TabOrder = 0
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
+      ExplicitHeight = 288
       ColWidths = (
         24
         64
@@ -326,7 +391,7 @@ object MainView: TMainView
   end
   object WebDBNavigator1: TWebDBNavigator
     Left = 0
-    Top = 292
+    Top = 369
     Width = 1236
     Height = 32
     Align = alTop
@@ -341,6 +406,7 @@ object MainView: TMainView
       'Insert'
       'Delete'
       'Cancel')
+    ExplicitTop = 417
   end
   object WebStellarDataStoreClientDataset1: TWebStellarDataStoreClientDataset
     App.Key = '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada'
