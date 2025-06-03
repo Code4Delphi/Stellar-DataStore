@@ -16,21 +16,6 @@ type
     lbCount: TWebLabel;
     WebDBNavigator1: TWebDBNavigator;
     WebDBGrid1: TWebDBGrid;
-    rdDirectAccessToken: TWebRadioButton;
-    lbAccessToken: TWebLabel;
-    edtAccessToken: TWebEdit;
-    rdOAuth2: TWebRadioButton;
-    lbClientID: TWebLabel;
-    edtClientID: TWebEdit;
-    lbSecret: TWebLabel;
-    edtSecret: TWebEdit;
-    lbCallbackURL: TWebLabel;
-    edtCallbackURL: TWebEdit;
-    WebLabel2: TWebLabel;
-    lbProjectID: TWebLabel;
-    edtProjectID: TWebEdit;
-    lbTableName: TWebLabel;
-    edtTableName: TWebEdit;
     btnConnect: TWebButton;
     btnDisconnect: TWebButton;
     WebStellarDataStoreClientDataset1: TWebStellarDataStoreClientDataset;
@@ -38,6 +23,43 @@ type
     WebFileUpload1: TWebFileUpload;
     WebImageControl1: TWebImageControl;
     btnClearImage: TWebButton;
+    lbAccessToken: TWebLabel;
+    lbClientID: TWebLabel;
+    lbSecret: TWebLabel;
+    lbCallbackURL: TWebLabel;
+    WebLabel2: TWebLabel;
+    lbProjectID: TWebLabel;
+    WebLabel3: TWebLabel;
+    lbTableName: TWebLabel;
+    rdDirectAccessToken: TWebRadioButton;
+    edtAccessToken: TWebEdit;
+    rdOAuth2: TWebRadioButton;
+    edtClientID: TWebEdit;
+    edtSecret: TWebEdit;
+    edtCallbackURL: TWebEdit;
+    edtProjectID: TWebEdit;
+    edtTableID: TWebEdit;
+    edtTableName: TWebEdit;
+    WebGroupBox2: TWebGroupBox;
+    WebLabel8: TWebLabel;
+    WebLabel12: TWebLabel;
+    cBoxSortOrder: TWebComboBox;
+    cBoxSortOrderAscOuDesc: TWebComboBox;
+    btnSortOrderAdd: TWebButton;
+    edtSortOrderAll: TWebEdit;
+    ckTableSelectQuery: TWebCheckBox;
+    edtTableSelectQuery: TWebEdit;
+    gBoxTableWhereQuery: TWebGroupBox;
+    WebLabel4: TWebLabel;
+    WebLabel5: TWebLabel;
+    WebLabel6: TWebLabel;
+    WebLabel7: TWebLabel;
+    ckTableWhereQuery: TWebCheckBox;
+    cBoxTableWhereQueryCondition: TWebComboBox;
+    edtTableWhereQueryValue: TWebEdit;
+    btnTableWhereQueryAdd: TWebButton;
+    edtTableWhereQueryComplete: TWebEdit;
+    cBoxTableWhereQueryField: TWebComboBox;
     procedure WebFormCreate(Sender: TObject);
     [Async]
     procedure btnConnectClick(Sender: TObject);
@@ -50,6 +72,8 @@ type
     [Async]
     procedure WebStellarDataStoreClientDataset1AfterScroll(DataSet: TDataSet);
     procedure btnClearImageClick(Sender: TObject);
+    procedure btnSortOrderAddClick(Sender: TObject);
+    procedure btnTableWhereQueryAddClick(Sender: TObject);
   private
     procedure ConfigScreen;
     procedure ClearConfigConnection;
@@ -66,6 +90,9 @@ implementation
 procedure TMainView.WebFormCreate(Sender: TObject);
 begin
   Self.ConfigScreen;
+
+  edtAccessToken.Text := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2Nlc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6ImI3YzhjNGFhLTFjN2QtNDExNC0zYzEwLTA4ZGQ5ZWMzMzZmZiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJhZGEiLCJleHAiOjE3NDk4Mjg0MDIsImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLmlvIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.yCWGdZEi9hW4tkqoXz0m2VhJtwtEEnKDM3-Jcjn_qdw';
+  edtProjectID.Text := '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada';
 end;
 
 procedure TMainView.ConfigScreen;
@@ -97,7 +124,6 @@ end;
 procedure TMainView.ClearConfigConnection;
 begin
   WebStellarDataStoreClientDataset1.Active := False;
-  WebStellarDataStoreClientDataset1.AccessToken := '';
 end;
 
 procedure TMainView.btnConnectClick(Sender: TObject);
@@ -106,6 +132,20 @@ begin
   WebStellarDataStoreClientDataset1.AccessToken := edtAccessToken.Text;
   WebStellarDataStoreClientDataset1.ProjectID := edtProjectID.Text;
   WebStellarDataStoreClientDataset1.TableName := edtTableName.Text;
+  WebStellarDataStoreClientDataset1.TableId := StrToInt64Def(edtTableID.Text, 0);
+
+  //TableSelectQuery
+  WebStellarDataStoreClientDataset1.TableSelectQuery := '';
+  if ckTableSelectQuery.Checked then
+    WebStellarDataStoreClientDataset1.TableSelectQuery := edtTableSelectQuery.Text;
+
+  //TableWhereQuery
+  WebStellarDataStoreClientDataset1.TableWhereQuery := '';
+  if ckTableWhereQuery.Checked then
+    WebStellarDataStoreClientDataset1.TableWhereQuery := edtTableWhereQueryComplete.Text;
+
+  //ORDER
+  WebStellarDataStoreClientDataset1.TableSortQuery := edtSortOrderAll.Text;
 
   await(WebStellarDataStoreClientDataset1.OpenAsync);
 
@@ -151,6 +191,33 @@ procedure TMainView.btnClearImageClick(Sender: TObject);
 begin
   WebImageControl1.URL := '';
   WebStellarDataStoreClientDataset1.WriteBlob('Image', '');
+end;
+
+procedure TMainView.btnSortOrderAddClick(Sender: TObject);
+var
+  LOrders: string;
+begin
+  LOrders := Format('%s;%s', [cBoxSortOrder.Text, cBoxSortOrderAscOuDesc.Text]);
+
+  edtSortOrderAll.Text := Trim(edtSortOrderAll.Text);
+  if edtSortOrderAll.Text <> '' then
+    edtSortOrderAll.Text := edtSortOrderAll.Text + '&';
+
+  edtSortOrderAll.Text := edtSortOrderAll.Text + LOrders;
+end;
+
+procedure TMainView.btnTableWhereQueryAddClick(Sender: TObject);
+var
+  LCondicao: string;
+begin
+  LCondicao := format('%s;%s;%s', [cBoxTableWhereQueryField.Text,
+    Trim(cBoxTableWhereQueryCondition.Text).Replace('&equals;', '=', []), edtTableWhereQueryValue.Text]);
+
+  edtTableWhereQueryComplete.Text := Trim(edtTableWhereQueryComplete.Text);
+  if edtTableWhereQueryComplete.Text <> '' then
+    LCondicao := edtTableWhereQueryComplete.Text + '&' + LCondicao;
+
+  edtTableWhereQueryComplete.Text := LCondicao;
 end;
 
 end.
