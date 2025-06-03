@@ -11,7 +11,6 @@ object MainView: TMainView
     Align = alTop
     BorderColor = clSilver
     Caption = '  Authentication  '
-    ExplicitTop = -6
     DesignSize = (
       1236
       373)
@@ -109,7 +108,7 @@ object MainView: TMainView
     end
     object btnConnect: TWebButton
       Left = 28
-      Top = 332
+      Top = 331
       Width = 96
       Height = 25
       Caption = 'Connect'
@@ -495,8 +494,6 @@ object MainView: TMainView
     Align = alClient
     ChildOrder = 2
     TabOrder = 2
-    ExplicitTop = 324
-    ExplicitHeight = 413
     object WebImageControl1: TWebImageControl
       Left = 974
       Top = 167
@@ -533,8 +530,6 @@ object MainView: TMainView
       TabOrder = 0
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
-      ExplicitTop = -6
-      ExplicitHeight = 358
       ColWidths = (
         24
         64
@@ -582,7 +577,6 @@ object MainView: TMainView
       'Insert'
       'Delete'
       'Cancel')
-    ExplicitTop = 370
   end
   object WebStellarDataStoreClientDataset1: TWebStellarDataStoreClientDataset
     TableId = 0

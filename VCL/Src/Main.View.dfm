@@ -363,24 +363,12 @@ object MainView: TMainView
   object TMSFNCCloudStellarDataStoreDataSetVCL1: TTMSFNCCloudStellarDataStoreDataSetVCL
     Connection = TMSFNCCloudStellarDataStoreConnection1
     TableID = 345
-    ProjectID = '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada'
     SortOrder = <>
     Filter = <
       item
         FieldValue = '0'
       end>
     FieldDefs = <>
-    Authentication.Key = 
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWN' +
-      'yb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2N' +
-      'lc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA' +
-      '1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6IjU5MjQzOWY' +
-      '2LThjYjYtNDhiZS0xMzM4LTA4ZGQ5MGZjZGQ4NCIsImh0dHA6Ly9zY2hlbWFzLnh' +
-      'tbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGl' +
-      'maWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJ' +
-      'hZGEiLCJleHAiOjI2OTM3MDE3ODcsImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLml' +
-      'vIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.9PLh0iN2ScNckRc' +
-      'Bs3axgDxik4Spu5g94xxXzc7WklQ'
     PersistTokens.Key = 'C:\Users\Cesar\Documents\TTMSFNCCloudStellarDataStore.ini'
     PersistTokens.SaveClientID = True
     PersistTokens.SaveSecret = True
