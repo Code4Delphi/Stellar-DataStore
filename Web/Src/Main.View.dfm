@@ -1,18 +1,19 @@
 object MainView: TMainView
-  Width = 1236
-  Height = 763
+  Width = 1231
+  Height = 773
   Caption = 'Stellar DataStore'
   OnCreate = WebFormCreate
   object WebGroupBox1: TWebGroupBox
     Left = 0
     Top = 0
-    Width = 1236
+    Width = 1231
     Height = 373
     Align = alTop
     BorderColor = clSilver
     Caption = '  Authentication  '
+    ExplicitTop = -6
     DesignSize = (
-      1236
+      1231
       373)
     object lbAccessToken: TWebLabel
       Left = 32
@@ -107,8 +108,8 @@ object MainView: TMainView
       WidthPercent = 100.000000000000000000
     end
     object btnConnect: TWebButton
-      Left = 28
-      Top = 331
+      Left = 27
+      Top = 329
       Width = 96
       Height = 25
       Caption = 'Connect'
@@ -118,7 +119,7 @@ object MainView: TMainView
       OnClick = btnConnectClick
     end
     object btnDisconnect: TWebButton
-      Left = 126
+      Left = 129
       Top = 331
       Width = 96
       Height = 25
@@ -150,12 +151,13 @@ object MainView: TMainView
     object edtAccessToken: TWebEdit
       Left = 118
       Top = 46
-      Width = 1091
+      Width = 1086
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
+      ExplicitWidth = 1091
     end
     object rdOAuth2: TWebRadioButton
       Left = 27
@@ -198,22 +200,24 @@ object MainView: TMainView
     object edtCallbackURL: TWebEdit
       Left = 766
       Top = 101
-      Width = 443
+      Width = 438
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
+      ExplicitWidth = 443
     end
     object edtProjectID: TWebEdit
       Left = 118
       Top = 151
-      Width = 1091
+      Width = 1086
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
+      ExplicitWidth = 1091
     end
     object edtTableID: TWebEdit
       Left = 118
@@ -222,18 +226,18 @@ object MainView: TMainView
       Height = 22
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
-      Text = '345'
       WidthPercent = 100.000000000000000000
     end
     object edtTableName: TWebEdit
       Left = 439
       Top = 178
-      Width = 770
+      Width = 765
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
+      ExplicitWidth = 770
     end
     object WebGroupBox2: TWebGroupBox
       Left = 28
@@ -451,18 +455,40 @@ object MainView: TMainView
           'Date')
       end
     end
+    object ckTableJoinQuery: TWebCheckBox
+      Left = 649
+      Top = 268
+      Width = 113
+      Height = 22
+      Caption = 'TableJoinQuery'
+      ChildOrder = 23
+      HeightPercent = 100.000000000000000000
+      WidthPercent = 100.000000000000000000
+    end
+    object edtTableJoinQuery: TWebEdit
+      Left = 649
+      Top = 296
+      Width = 240
+      Height = 22
+      ChildOrder = 24
+      HeightPercent = 100.000000000000000000
+      Text = 'products;id_group=groups;id'
+      WidthPercent = 100.000000000000000000
+    end
   end
   object WebPanel1: TWebPanel
     Left = 0
-    Top = 737
-    Width = 1236
+    Top = 747
+    Width = 1231
     Height = 26
     Align = alBottom
     ChildOrder = 1
     Padding.Right = 10
     TabOrder = 1
+    ExplicitTop = 737
+    ExplicitWidth = 1236
     object WebLabel1: TWebLabel
-      Left = 1181
+      Left = 1176
       Top = 0
       Width = 39
       Height = 26
@@ -471,10 +497,11 @@ object MainView: TMainView
       HeightPercent = 100.000000000000000000
       Layout = tlCenter
       WidthPercent = 100.000000000000000000
+      ExplicitLeft = 1181
       ExplicitHeight = 15
     end
     object lbCount: TWebLabel
-      Left = 1220
+      Left = 1215
       Top = 0
       Width = 6
       Height = 26
@@ -483,20 +510,23 @@ object MainView: TMainView
       HeightPercent = 100.000000000000000000
       Layout = tlCenter
       WidthPercent = 100.000000000000000000
+      ExplicitLeft = 1220
       ExplicitHeight = 15
     end
   end
   object WebPanel2: TWebPanel
     Left = 0
     Top = 405
-    Width = 1236
-    Height = 332
+    Width = 1231
+    Height = 342
     Align = alClient
     ChildOrder = 2
     TabOrder = 2
+    ExplicitWidth = 1236
+    ExplicitHeight = 332
     object WebImageControl1: TWebImageControl
       Left = 974
-      Top = 167
+      Top = 143
       Width = 249
       Height = 162
       WidthStyle = ssAuto
@@ -508,7 +538,7 @@ object MainView: TMainView
       Left = 0
       Top = 0
       Width = 968
-      Height = 332
+      Height = 342
       Align = alLeft
       Columns = <
         item
@@ -530,6 +560,7 @@ object MainView: TMainView
       TabOrder = 0
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
+      ExplicitTop = -6
       ColWidths = (
         24
         64
@@ -541,7 +572,7 @@ object MainView: TMainView
       Left = 974
       Top = 3
       Width = 249
-      Height = 158
+      Height = 134
       Caption = 'Choose a file'
       ChildOrder = 3
       DragCaption = 'or drag it here'
@@ -550,7 +581,7 @@ object MainView: TMainView
     end
     object btnClearImage: TWebButton
       Left = 974
-      Top = 335
+      Top = 311
       Width = 248
       Height = 25
       Caption = 'Clear image'
@@ -563,7 +594,7 @@ object MainView: TMainView
   object WebDBNavigator1: TWebDBNavigator
     Left = 0
     Top = 373
-    Width = 1236
+    Width = 1231
     Height = 32
     Align = alTop
     DataSource = WebDataSource1
@@ -577,6 +608,7 @@ object MainView: TMainView
       'Insert'
       'Delete'
       'Cancel')
+    ExplicitWidth = 1236
   end
   object WebStellarDataStoreClientDataset1: TWebStellarDataStoreClientDataset
     TableId = 0

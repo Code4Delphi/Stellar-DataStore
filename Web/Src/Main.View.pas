@@ -60,6 +60,8 @@ type
     btnTableWhereQueryAdd: TWebButton;
     edtTableWhereQueryComplete: TWebEdit;
     cBoxTableWhereQueryField: TWebComboBox;
+    ckTableJoinQuery: TWebCheckBox;
+    edtTableJoinQuery: TWebEdit;
     procedure WebFormCreate(Sender: TObject);
     [Async]
     procedure btnConnectClick(Sender: TObject);
@@ -90,6 +92,9 @@ implementation
 procedure TMainView.WebFormCreate(Sender: TObject);
 begin
   Self.ConfigScreen;
+  edtAccessToken.Text := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2Nlc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6ImI3YzhjNGFhLTFjN2QtNDExNC0zYzEwLTA4ZGQ5ZWMzMzZmZiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJhZGEiLCJleHAiOjE3NDk4Mjg0MDIsImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLmlvIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.yCWGdZEi9hW4tkqoXz0m2VhJtwtEEnKDM3-Jcjn_qdw';
+  edtProjectID.Text := '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada';
+  edtTableName.Text := 'products';
 end;
 
 procedure TMainView.ConfigScreen;
@@ -131,6 +136,11 @@ begin
   WebStellarDataStoreClientDataset1.TableName := edtTableName.Text;
   WebStellarDataStoreClientDataset1.TableId := StrToInt64Def(edtTableID.Text, 0);
 
+  //TableJoinQuery TableName1;JoinField1=TableName2;JoinField2
+  WebStellarDataStoreClientDataset1.TableJoinQuery := '';
+  if ckTableJoinQuery.Checked then
+    WebStellarDataStoreClientDataset1.TableJoinQuery := edtTableJoinQuery.Text;;
+
   //TableSelectQuery
   WebStellarDataStoreClientDataset1.TableSelectQuery := '';
   if ckTableSelectQuery.Checked then
@@ -155,6 +165,7 @@ end;
 procedure TMainView.btnDisconnectClick(Sender: TObject);
 begin
   WebStellarDataStoreClientDataset1.Active := False;
+  WebImageControl1.URL := '';
   Self.ConfigScreen;
 end;
 
