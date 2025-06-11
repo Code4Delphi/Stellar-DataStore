@@ -1,6 +1,6 @@
 object MainView: TMainView
   Width = 1231
-  Height = 773
+  Height = 745
   Caption = 'Stellar DataStore'
   OnCreate = WebFormCreate
   object WebGroupBox1: TWebGroupBox
@@ -11,7 +11,6 @@ object MainView: TMainView
     Align = alTop
     BorderColor = clSilver
     Caption = '  Authentication  '
-    ExplicitTop = -6
     DesignSize = (
       1231
       373)
@@ -119,8 +118,8 @@ object MainView: TMainView
       OnClick = btnConnectClick
     end
     object btnDisconnect: TWebButton
-      Left = 129
-      Top = 331
+      Left = 125
+      Top = 329
       Width = 96
       Height = 25
       Caption = 'Disconnect'
@@ -157,7 +156,6 @@ object MainView: TMainView
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
-      ExplicitWidth = 1091
     end
     object rdOAuth2: TWebRadioButton
       Left = 27
@@ -206,7 +204,6 @@ object MainView: TMainView
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
-      ExplicitWidth = 443
     end
     object edtProjectID: TWebEdit
       Left = 118
@@ -217,7 +214,6 @@ object MainView: TMainView
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
-      ExplicitWidth = 1091
     end
     object edtTableID: TWebEdit
       Left = 118
@@ -237,7 +233,6 @@ object MainView: TMainView
       ChildOrder = 2
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
-      ExplicitWidth = 770
     end
     object WebGroupBox2: TWebGroupBox
       Left = 28
@@ -318,7 +313,7 @@ object MainView: TMainView
     object ckTableSelectQuery: TWebCheckBox
       Left = 649
       Top = 208
-      Width = 113
+      Width = 115
       Height = 20
       Caption = 'TableSelectQuery'
       ChildOrder = 21
@@ -457,8 +452,8 @@ object MainView: TMainView
     end
     object ckTableJoinQuery: TWebCheckBox
       Left = 649
-      Top = 268
-      Width = 113
+      Top = 275
+      Width = 105
       Height = 22
       Caption = 'TableJoinQuery'
       ChildOrder = 23
@@ -478,55 +473,124 @@ object MainView: TMainView
   end
   object WebPanel1: TWebPanel
     Left = 0
-    Top = 747
+    Top = 672
     Width = 1231
-    Height = 26
+    Height = 73
     Align = alBottom
     ChildOrder = 1
     Padding.Right = 10
     TabOrder = 1
-    ExplicitTop = 737
-    ExplicitWidth = 1236
     object WebLabel1: TWebLabel
       Left = 1176
       Top = 0
       Width = 39
-      Height = 26
+      Height = 73
       Align = alRight
       Caption = 'Count: '
       HeightPercent = 100.000000000000000000
       Layout = tlCenter
       WidthPercent = 100.000000000000000000
-      ExplicitLeft = 1181
       ExplicitHeight = 15
     end
     object lbCount: TWebLabel
       Left = 1215
       Top = 0
       Width = 6
-      Height = 26
+      Height = 73
       Align = alRight
       Caption = '0'
       HeightPercent = 100.000000000000000000
       Layout = tlCenter
       WidthPercent = 100.000000000000000000
-      ExplicitLeft = 1220
       ExplicitHeight = 15
+    end
+    object gBoxPagination: TWebGroupBox
+      Left = 0
+      Top = 0
+      Width = 445
+      Height = 73
+      Align = alLeft
+      BorderColor = clSilver
+      Caption = ' Pagination '
+      ChildOrder = 8
+      object lbPagination: TWebLabel
+        Left = 187
+        Top = 30
+        Width = 67
+        Height = 15
+        Caption = 'lbPagination'
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object lbPaginationCount: TWebLabel
+        Left = 187
+        Top = 46
+        Width = 100
+        Height = 15
+        Caption = 'lbPaginationCount'
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object WebLabel9: TWebLabel
+        Left = 8
+        Top = 17
+        Width = 59
+        Height = 15
+        Caption = 'Take (limit)'
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+      end
+      object btnPrevious: TWebButton
+        Left = 85
+        Top = 33
+        Width = 96
+        Height = 25
+        Cursor = crHandPoint
+        Caption = 'Previous'
+        ChildOrder = 8
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+        OnClick = btnPreviousClick
+      end
+      object btnNext: TWebButton
+        Left = 336
+        Top = 33
+        Width = 96
+        Height = 25
+        Cursor = crHandPoint
+        Caption = 'Next'
+        ChildOrder = 8
+        HeightPercent = 100.000000000000000000
+        WidthPercent = 100.000000000000000000
+        OnClick = btnNextClick
+      end
+      object edtTakeLimit: TWebEdit
+        Left = 8
+        Top = 34
+        Width = 73
+        Height = 22
+        ChildOrder = 4
+        HeightPercent = 100.000000000000000000
+        Text = '5'
+        WidthPercent = 100.000000000000000000
+      end
     end
   end
   object WebPanel2: TWebPanel
     Left = 0
     Top = 405
     Width = 1231
-    Height = 342
+    Height = 267
     Align = alClient
     ChildOrder = 2
     TabOrder = 2
-    ExplicitWidth = 1236
-    ExplicitHeight = 332
+    ExplicitHeight = 279
+    DesignSize = (
+      1231
+      267)
     object WebImageControl1: TWebImageControl
       Left = 974
-      Top = 143
+      Top = 111
       Width = 249
       Height = 162
       WidthStyle = ssAuto
@@ -538,7 +602,8 @@ object MainView: TMainView
       Left = 0
       Top = 0
       Width = 968
-      Height = 342
+      Height = 267
+      Cursor = crHandPoint
       Align = alLeft
       Columns = <
         item
@@ -572,7 +637,7 @@ object MainView: TMainView
       Left = 974
       Top = 3
       Width = 249
-      Height = 134
+      Height = 102
       Caption = 'Choose a file'
       ChildOrder = 3
       DragCaption = 'or drag it here'
@@ -581,14 +646,16 @@ object MainView: TMainView
     end
     object btnClearImage: TWebButton
       Left = 974
-      Top = 311
+      Top = 236
       Width = 248
       Height = 25
+      Anchors = [akLeft, akBottom]
       Caption = 'Clear image'
       ChildOrder = 3
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
       OnClick = btnClearImageClick
+      ExplicitTop = 248
     end
   end
   object WebDBNavigator1: TWebDBNavigator
@@ -608,18 +675,22 @@ object MainView: TMainView
       'Insert'
       'Delete'
       'Cancel')
-    ExplicitWidth = 1236
   end
   object WebStellarDataStoreClientDataset1: TWebStellarDataStoreClientDataset
     TableId = 0
     AfterScroll = WebStellarDataStoreClientDataset1AfterScroll
     Left = 480
-    Top = 360
+    Top = 432
   end
   object WebDataSource1: TWebDataSource
     DataSet = WebStellarDataStoreClientDataset1
     OnStateChange = WebDataSource1StateChange
     Left = 480
-    Top = 416
+    Top = 496
+  end
+  object DatasetCount: TWebStellarDataStoreClientDataset
+    TableId = 0
+    Left = 656
+    Top = 437
   end
 end

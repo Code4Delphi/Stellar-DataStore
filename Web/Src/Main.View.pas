@@ -3,9 +3,28 @@ unit Main.View;
 interface
 
 uses
-  System.SysUtils, System.Classes, JS, Web, WEBLib.Graphics, WEBLib.Controls,
-  WEBLib.Forms, WEBLib.Dialogs, Vcl.Controls, Vcl.StdCtrls, WEBLib.StdCtrls, WEBLib.ExtCtrls, WEBLib.Grids, Vcl.Grids,
-  WEBLib.DBCtrls, Data.DB, WEBLib.DB, WEBLib.StellarDataStoreCDS, WEBLib.REST, WEBLib.StellarDataStore, WEBLib.WebCtrls;
+  System.SysUtils,
+  System.Classes,
+  JS,
+  Web,
+  WEBLib.Graphics,
+  WEBLib.Controls,
+  WEBLib.Forms,
+  WEBLib.Dialogs,
+  Vcl.Controls,
+  Vcl.StdCtrls,
+  WEBLib.StdCtrls,
+  WEBLib.ExtCtrls,
+  WEBLib.Grids,
+  Vcl.Grids,
+  WEBLib.DBCtrls,
+  Data.DB,
+  WEBLib.DB,
+  WEBLib.StellarDataStoreCDS,
+  WEBLib.REST,
+  WEBLib.StellarDataStore,
+  WEBLib.WebCtrls,
+  System.Math;
 
 type
   TMainView = class(TWebForm)
@@ -62,8 +81,15 @@ type
     cBoxTableWhereQueryField: TWebComboBox;
     ckTableJoinQuery: TWebCheckBox;
     edtTableJoinQuery: TWebEdit;
+    WebLabel9: TWebLabel;
+    edtTakeLimit: TWebEdit;
+    DatasetCount: TWebStellarDataStoreClientDataset;
+    gBoxPagination: TWebGroupBox;
+    lbPagination: TWebLabel;
+    lbPaginationCount: TWebLabel;
+    btnPrevious: TWebButton;
+    btnNext: TWebButton;
     procedure WebFormCreate(Sender: TObject);
-    [Async]
     procedure btnConnectClick(Sender: TObject);
     procedure rdDirectAccessTokenClick(Sender: TObject);
     procedure rdOAuth2Click(Sender: TObject);
@@ -76,9 +102,19 @@ type
     procedure btnClearImageClick(Sender: TObject);
     procedure btnSortOrderAddClick(Sender: TObject);
     procedure btnTableWhereQueryAddClick(Sender: TObject);
+    [Async]
+    procedure btnPreviousClick(Sender: TObject);
+    procedure btnNextClick(Sender: TObject);
   private
+    FOffset: Integer;
     procedure ConfigScreen;
-    procedure ClearConfigConnection;
+    [Async]
+    function GetTotalRegistros: Integer;
+    [Async]
+    procedure ProcessarPaginacao;
+    [Async]
+    procedure BuscarDados;
+    procedure ClearPagination;
   public
   end;
 
@@ -92,9 +128,17 @@ implementation
 procedure TMainView.WebFormCreate(Sender: TObject);
 begin
   Self.ConfigScreen;
-  edtAccessToken.Text := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2Nlc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6ImI3YzhjNGFhLTFjN2QtNDExNC0zYzEwLTA4ZGQ5ZWMzMzZmZiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJhZGEiLCJleHAiOjE3NDk4Mjg0MDIsImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLmlvIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.yCWGdZEi9hW4tkqoXz0m2VhJtwtEEnKDM3-Jcjn_qdw';
+  Self.ClearPagination;
+  edtAccessToken.Text := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2Nlc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6ImE3ZTYyMjc0LTZiNGMtNGZmMS1hZDEwLTA4ZGRhN2JjODU3NiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJhZGEiLCJleHAiOjE3NDk3Nzc0MjksImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLmlvIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.eCyePdM0Bu96LdX10Wkq2V4BXCVGuM8vQTs6E2J6mww';
   edtProjectID.Text := '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada';
   edtTableName.Text := 'products';
+end;
+
+procedure TMainView.ClearPagination;
+begin
+  FOffset := 0;
+  lbPagination.Caption := '';
+  lbPaginationCount.Caption := '';
 end;
 
 procedure TMainView.ConfigScreen;
@@ -123,14 +167,14 @@ begin
   lbCount.Caption := WebStellarDataStoreClientDataset1.RecordCount.ToString;
 end;
 
-procedure TMainView.ClearConfigConnection;
-begin
-  WebStellarDataStoreClientDataset1.Active := False;
-end;
-
 procedure TMainView.btnConnectClick(Sender: TObject);
 begin
-  Self.ClearConfigConnection;
+  Self.BuscarDados;
+end;
+
+procedure TMainView.BuscarDados;
+begin
+  WebStellarDataStoreClientDataset1.Active := False;
   WebStellarDataStoreClientDataset1.AccessToken := edtAccessToken.Text;
   WebStellarDataStoreClientDataset1.ProjectID := edtProjectID.Text;
   WebStellarDataStoreClientDataset1.TableName := edtTableName.Text;
@@ -154,18 +198,26 @@ begin
   //ORDER
   WebStellarDataStoreClientDataset1.TableSortQuery := edtSortOrderAll.Text;
 
+  //NUMERO DE REGISTROS CONSULTAR (Limit)
+  WebStellarDataStoreClientDataset1.Take := StrToInt64Def(edtTakeLimit.Text, 0);
+
+  //NUMERO DE REGISTROS IGNORAR
+  WebStellarDataStoreClientDataset1.Offset := FOffset;
+
   await(WebStellarDataStoreClientDataset1.OpenAsync);
 
   if not WebStellarDataStoreClientDataset1.Active then
     ShowMessage('Not connected. Check the information provided.');
 
   Self.ConfigScreen;
+  Self.ProcessarPaginacao;
 end;
 
 procedure TMainView.btnDisconnectClick(Sender: TObject);
 begin
   WebStellarDataStoreClientDataset1.Active := False;
   WebImageControl1.URL := '';
+  Self.ClearPagination;
   Self.ConfigScreen;
 end;
 
@@ -226,6 +278,78 @@ begin
     LCondicao := edtTableWhereQueryComplete.Text + '&' + LCondicao;
 
   edtTableWhereQueryComplete.Text := LCondicao;
+end;
+
+function TMainView.GetTotalRegistros: Integer;
+begin
+  DatasetCount.Active := False;
+  DatasetCount.AccessToken := edtAccessToken.Text;
+  DatasetCount.ProjectID := edtProjectID.Text;
+  DatasetCount.TableName := edtTableName.Text;
+  DatasetCount.TableId := StrToInt64Def(edtTableID.Text, 0);
+  DatasetCount.TableSelectQuery := 'Id';
+
+  //TableJoinQuery TableName1;JoinField1=TableName2;JoinField2
+  DatasetCount.TableJoinQuery := '';
+  if ckTableJoinQuery.Checked then
+    DatasetCount.TableJoinQuery := edtTableJoinQuery.Text;;
+
+  //TableWhereQuery
+  DatasetCount.TableWhereQuery := '';
+  if ckTableWhereQuery.Checked then
+    DatasetCount.TableWhereQuery := edtTableWhereQueryComplete.Text;
+
+  await(DatasetCount.OpenAsync);
+  try
+    Result := DatasetCount.RecordCount;
+  finally
+    DatasetCount.Active := False;
+  end;
+end;
+
+procedure TMainView.ProcessarPaginacao;
+var
+  LLimit: Integer;
+  LTotalRegistros: Integer;
+  LCurrentPage: Integer;
+  LTotalPages: Integer;
+begin
+  LTotalRegistros := Await(Integer, Self.GetTotalRegistros);
+  LLimit := StrToIntDef(edtTakeLimit.Text, 0);
+
+  LCurrentPage := 1;
+  LTotalPages := 1;
+  if LLimit > 0 then
+  begin
+    LCurrentPage := (FOffset div LLimit) + 1;
+    LTotalPages := (LTotalRegistros + LLimit - 1) div LLimit;
+  end;
+
+  lbPagination.Caption := Format('Page %d of %d', [LCurrentPage, LTotalPages]);
+  lbPaginationCount.Caption := Format('Displaying %d to %d of %d',
+    [FOffset + 1, Min(FOffset + LLimit, LTotalRegistros), LTotalRegistros]);
+
+  btnPrevious.Enabled := LCurrentPage > 1;
+  btnNext.Enabled := LCurrentPage < LTotalPages;
+end;
+
+procedure TMainView.btnPreviousClick(Sender: TObject);
+begin
+  if FOffset >= StrToIntDef(edtTakeLimit.Text, 0) then
+    FOffset := FOffset - StrToIntDef(edtTakeLimit.Text, 0);
+
+  btnPrevious.Enabled := False;
+  btnNext.Enabled := False;
+  Self.BuscarDados;
+end;
+
+procedure TMainView.btnNextClick(Sender: TObject);
+begin
+  FOffset := FOffset + StrToIntDef(edtTakeLimit.Text, 0);
+
+  btnPrevious.Enabled := False;
+  btnNext.Enabled := False;
+  Self.BuscarDados;
 end;
 
 end.
