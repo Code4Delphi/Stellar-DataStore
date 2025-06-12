@@ -23,6 +23,7 @@ Além disso, o Stellar DataStore oferece suporte nativo e descomplicado a **API 
 - [Stellar DataStore com Delphi #04: Ordenação e Filtros](https://www.youtube.com/watch?v=uIPWuiFAge0&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
 - [Stellar DataStore com Delphi #05: Filtro de campos e dados (TableSelectQuery e TableWhereQuery)](https://www.youtube.com/watch?v=AroUFBBDBeM&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
 - [Stellar DataStore com Delphi #06: Join entre tabelas (TableJoinQuery)](https://www.youtube.com/watch?v=DLm266TbvKY&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
+- [Stellar DataStore com Delphi #07:  Paginando dados](https://www.youtube.com/watch?v=mJN1ohcrvLA&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
 
 ## 📝 Postagem completa
 [Acessar postagem completo com informações sobre Stellar DataStore com Delphi](https://code4delphi.com.br/blog/stellar-datastore-com-delphi/)
