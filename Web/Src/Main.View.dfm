@@ -118,7 +118,7 @@ object MainView: TMainView
       OnClick = btnConnectClick
     end
     object btnDisconnect: TWebButton
-      Left = 125
+      Left = 129
       Top = 329
       Width = 96
       Height = 25
@@ -462,7 +462,7 @@ object MainView: TMainView
     end
     object edtTableJoinQuery: TWebEdit
       Left = 649
-      Top = 296
+      Top = 297
       Width = 240
       Height = 22
       ChildOrder = 24
@@ -573,6 +573,8 @@ object MainView: TMainView
         HeightPercent = 100.000000000000000000
         Text = '5'
         WidthPercent = 100.000000000000000000
+        OnChange = edtTakeLimitChange
+        OnExit = edtTakeLimitExit
       end
     end
   end
@@ -584,7 +586,6 @@ object MainView: TMainView
     Align = alClient
     ChildOrder = 2
     TabOrder = 2
-    ExplicitHeight = 279
     DesignSize = (
       1231
       267)
@@ -625,7 +626,7 @@ object MainView: TMainView
       TabOrder = 0
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
-      ExplicitTop = -6
+      ExplicitTop = 6
       ColWidths = (
         24
         64
@@ -655,7 +656,6 @@ object MainView: TMainView
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
       OnClick = btnClearImageClick
-      ExplicitTop = 248
     end
   end
   object WebDBNavigator1: TWebDBNavigator

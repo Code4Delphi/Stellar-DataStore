@@ -105,6 +105,8 @@ type
     [Async]
     procedure btnPreviousClick(Sender: TObject);
     procedure btnNextClick(Sender: TObject);
+    procedure edtTakeLimitChange(Sender: TObject);
+    procedure edtTakeLimitExit(Sender: TObject);
   private
     FOffset: Integer;
     procedure ConfigScreen;
@@ -132,13 +134,6 @@ begin
   edtAccessToken.Text := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2Nlc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6ImE3ZTYyMjc0LTZiNGMtNGZmMS1hZDEwLTA4ZGRhN2JjODU3NiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJhZGEiLCJleHAiOjE3NDk3Nzc0MjksImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLmlvIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.eCyePdM0Bu96LdX10Wkq2V4BXCVGuM8vQTs6E2J6mww';
   edtProjectID.Text := '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada';
   edtTableName.Text := 'products';
-end;
-
-procedure TMainView.ClearPagination;
-begin
-  FOffset := 0;
-  lbPagination.Caption := '';
-  lbPaginationCount.Caption := '';
 end;
 
 procedure TMainView.ConfigScreen;
@@ -280,6 +275,32 @@ begin
   edtTableWhereQueryComplete.Text := LCondicao;
 end;
 
+procedure TMainView.ProcessarPaginacao;
+var
+  LLimit: Integer;
+  LTotalRegistros: Integer;
+  LCurrentPage: Integer;
+  LTotalPages: Integer;
+begin
+  LTotalRegistros := Await(Integer, Self.GetTotalRegistros);
+  LLimit := StrToIntDef(edtTakeLimit.Text, 0);
+
+  LCurrentPage := 1;
+  LTotalPages := 1;
+  if LLimit > 0 then
+  begin
+    LCurrentPage := (FOffset div LLimit) + 1;
+    LTotalPages := (LTotalRegistros + LLimit - 1) div LLimit;
+  end;
+
+  lbPagination.Caption := Format('Page %d of %d', [LCurrentPage, LTotalPages]);
+  lbPaginationCount.Caption := Format('Displaying %d to %d of %d',
+    [FOffset + 1, Min(FOffset + LLimit, LTotalRegistros), LTotalRegistros]);
+
+  btnPrevious.Enabled := LCurrentPage > 1;
+  btnNext.Enabled := LCurrentPage < LTotalPages;
+end;
+
 function TMainView.GetTotalRegistros: Integer;
 begin
   DatasetCount.Active := False;
@@ -307,32 +328,6 @@ begin
   end;
 end;
 
-procedure TMainView.ProcessarPaginacao;
-var
-  LLimit: Integer;
-  LTotalRegistros: Integer;
-  LCurrentPage: Integer;
-  LTotalPages: Integer;
-begin
-  LTotalRegistros := Await(Integer, Self.GetTotalRegistros);
-  LLimit := StrToIntDef(edtTakeLimit.Text, 0);
-
-  LCurrentPage := 1;
-  LTotalPages := 1;
-  if LLimit > 0 then
-  begin
-    LCurrentPage := (FOffset div LLimit) + 1;
-    LTotalPages := (LTotalRegistros + LLimit - 1) div LLimit;
-  end;
-
-  lbPagination.Caption := Format('Page %d of %d', [LCurrentPage, LTotalPages]);
-  lbPaginationCount.Caption := Format('Displaying %d to %d of %d',
-    [FOffset + 1, Min(FOffset + LLimit, LTotalRegistros), LTotalRegistros]);
-
-  btnPrevious.Enabled := LCurrentPage > 1;
-  btnNext.Enabled := LCurrentPage < LTotalPages;
-end;
-
 procedure TMainView.btnPreviousClick(Sender: TObject);
 begin
   if FOffset >= StrToIntDef(edtTakeLimit.Text, 0) then
@@ -350,6 +345,26 @@ begin
   btnPrevious.Enabled := False;
   btnNext.Enabled := False;
   Self.BuscarDados;
+end;
+
+procedure TMainView.edtTakeLimitChange(Sender: TObject);
+begin
+  Self.ClearPagination;
+end;
+
+procedure TMainView.ClearPagination;
+begin
+  FOffset := 0;
+  lbPagination.Caption := '';
+  lbPaginationCount.Caption := '';
+  btnPrevious.Enabled := False;
+  btnNext.Enabled := False;
+end;
+
+procedure TMainView.edtTakeLimitExit(Sender: TObject);
+begin
+  if not(btnPrevious.Enabled) and not(btnNext.Enabled) then
+    Self.BuscarDados;
 end;
 
 end.
