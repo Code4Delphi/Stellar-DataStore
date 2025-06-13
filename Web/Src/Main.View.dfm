@@ -11,6 +11,7 @@ object MainView: TMainView
     Align = alTop
     BorderColor = clSilver
     Caption = '  Authentication  '
+    ExplicitTop = -6
     DesignSize = (
       1231
       373)
@@ -134,7 +135,7 @@ object MainView: TMainView
       Width = 155
       Height = 22
       Caption = 'Direct access token'
-      Checked = True
+      Checked = False
       ChildOrder = 10
       Color = clNone
       Font.Charset = DEFAULT_CHARSET
@@ -142,6 +143,7 @@ object MainView: TMainView
       Font.Height = -12
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
+      GroupName = 'TypeAuth'
       HeightPercent = 100.000000000000000000
       ParentFont = False
       WidthPercent = 100.000000000000000000
@@ -163,15 +165,15 @@ object MainView: TMainView
       Width = 129
       Height = 22
       Caption = 'OAuth2.0 access'
-      Checked = False
+      Checked = True
       ChildOrder = 3
       Color = clNone
-      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
+      GroupName = 'TypeAuth'
       HeightPercent = 100.000000000000000000
       ParentFont = False
       WidthPercent = 100.000000000000000000
@@ -626,7 +628,6 @@ object MainView: TMainView
       TabOrder = 0
       HeightPercent = 100.000000000000000000
       WidthPercent = 100.000000000000000000
-      ExplicitTop = 6
       ColWidths = (
         24
         64

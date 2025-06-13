@@ -131,9 +131,13 @@ procedure TMainView.WebFormCreate(Sender: TObject);
 begin
   Self.ConfigScreen;
   Self.ClearPagination;
-  edtAccessToken.Text := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2Nlc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6ImE3ZTYyMjc0LTZiNGMtNGZmMS1hZDEwLTA4ZGRhN2JjODU3NiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJhZGEiLCJleHAiOjE3NDk3Nzc0MjksImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLmlvIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.eCyePdM0Bu96LdX10Wkq2V4BXCVGuM8vQTs6E2J6mww';
   edtProjectID.Text := '18f702b7-e8ad-4e9d-d2ad-08dd90ebbada';
-  edtTableName.Text := 'products';
+  //edtTableName.Text := 'products';
+  //edtAccessToken.Text := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJhY2Nlc3MtdG9rZW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllci10b2tlbiI6ImE3ZTYyMjc0LTZiNGMtNGZmMS1hZDEwLTA4ZGRhN2JjODU3NiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyLXByb2plY3QiOiIxOGY3MDJiNy1lOGFkLTRlOWQtZDJhZC0wOGRkOTBlYmJhZGEiLCJleHAiOjE3NDk3Nzc0MjksImlzcyI6Imh0dHBzOi8vc3RlbGxhcmRzLmlvIiwiYXVkIjoiaHR0cHM6Ly9hcGkuc3RlbGxhcmRzLmlvIn0.eCyePdM0Bu96LdX10Wkq2V4BXCVGuM8vQTs6E2J6mww';
+  edtTableID.Text := '345';
+  edtClientID.Text := '';
+  edtSecret.Text := '';
+  edtCallbackURL.Text := '';
 end;
 
 procedure TMainView.ConfigScreen;
@@ -170,10 +174,19 @@ end;
 procedure TMainView.BuscarDados;
 begin
   WebStellarDataStoreClientDataset1.Active := False;
-  WebStellarDataStoreClientDataset1.AccessToken := edtAccessToken.Text;
+
   WebStellarDataStoreClientDataset1.ProjectID := edtProjectID.Text;
   WebStellarDataStoreClientDataset1.TableName := edtTableName.Text;
   WebStellarDataStoreClientDataset1.TableId := StrToInt64Def(edtTableID.Text, 0);
+
+  if rdDirectAccessToken.Checked then
+    WebStellarDataStoreClientDataset1.AccessToken := edtAccessToken.Text
+  else
+  begin
+    WebStellarDataStoreClientDataset1.App.ClientID := edtClientID.Text;
+    WebStellarDataStoreClientDataset1.App.Secret := edtSecret.Text;
+    WebStellarDataStoreClientDataset1.App.CallbackURL := edtCallbackURL.Text;
+  end;
 
   //TableJoinQuery TableName1;JoinField1=TableName2;JoinField2
   WebStellarDataStoreClientDataset1.TableJoinQuery := '';
