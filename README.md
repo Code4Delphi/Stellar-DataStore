@@ -25,6 +25,7 @@ Além disso, o Stellar DataStore oferece suporte nativo e descomplicado a **API 
 - [Stellar DataStore com Delphi #06: Join entre tabelas (TableJoinQuery)](https://www.youtube.com/watch?v=DLm266TbvKY&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
 - [Stellar DataStore com Delphi #07: Paginando dados](https://www.youtube.com/watch?v=mJN1ohcrvLA&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
 - [Stellar DataStore com Delphi #08: OAuth2](https://www.youtube.com/watch?v=q0Wr7IR_LMw&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
+- [Stellar DataStore com Delphi #09: Multi-tenant, Roles & Permissions e Invite user](https://www.youtube.com/watch?v=DHJHRgHPGPw&list=PLLHSz4dOnnN2fQ3nJ2OXGqAOUyTg4Xdx5)
 
 ## 📝 Postagem completa
 [Acessar postagem completo com informações sobre Stellar DataStore com Delphi](https://code4delphi.com.br/blog/stellar-datastore-com-delphi/)
